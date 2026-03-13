@@ -73,7 +73,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
             className="text-4xl lg:text-6xl font-semibold"
             style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
           >
-            축제 캘린더
+            Festival Calendar
           </h1>
           <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
             원하는 달을 선택하면 해당 시기의 축제를 확인할 수 있어요.
@@ -152,7 +152,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                 className="text-2xl font-semibold"
                 style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
               >
-                이 달에는 축제가 없어요
+                No festivals this month
               </h3>
               <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
                 다른 달을 선택해 보세요

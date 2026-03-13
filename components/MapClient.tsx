@@ -54,7 +54,7 @@ export default function MapClient({ festivals }: MapClientProps) {
             className="text-4xl lg:text-6xl font-semibold"
             style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
           >
-            축제 지도
+            Festival Map
           </h1>
           <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
             대륙을 선택하면 해당 지역의 축제를 볼 수 있어요.

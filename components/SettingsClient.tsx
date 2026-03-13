@@ -91,7 +91,7 @@ export default function SettingsClient() {
             className="text-4xl lg:text-5xl font-semibold"
             style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
           >
-            설정
+            Settings
           </h1>
           <p className="mt-2 text-sm" style={{ color: "#6e6e6e", fontFamily: pretendard }}>
             나만의 Festivo 환경을 설정하세요.

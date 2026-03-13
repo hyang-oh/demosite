@@ -73,7 +73,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               color: "#1a1a1a",
             }}
           >
-            축제 탐색
+            Explore Festivals
           </h1>
           <p
             className="mt-4 text-lg max-w-lg"

@@ -8,51 +8,51 @@ const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 const stories = [
   {
     id: "1",
-    title: "축제 여행의 기술",
+    title: "The Art of Festival Travel",
     desc: "축제 여행을 완벽하게 준비하는 법. 현지인처럼 즐기는 팁부터 짐 싸기까지.",
     image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=800&q=80",
-    tag: "여행 가이드",
-    readTime: "5분",
+    tag: "Travel Guide",
+    readTime: "5 min",
   },
   {
     id: "2",
-    title: "2026년 놓칠 수 없는 축제 10선",
+    title: "10 Festivals You Can't Miss in 2026",
     desc: "올해 놓치면 안 되는 전 세계 축제 10선. 에디터가 직접 엄선했습니다.",
     image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80",
-    tag: "에디터 추천",
-    readTime: "8분",
+    tag: "Editor's Pick",
+    readTime: "8 min",
   },
   {
     id: "3",
-    title: "벚꽃 시즌: 포토 에세이",
+    title: "Cherry Blossom Season: A Photo Essay",
     desc: "일본의 벚꽃 시즌을 렌즈에 담았습니다. 도쿄에서 교토까지.",
     image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80",
-    tag: "포토 에세이",
-    readTime: "4분",
+    tag: "Photo Essay",
+    readTime: "4 min",
   },
   {
     id: "4",
-    title: "홀리 축제가 바꿔놓은 나의 시선",
+    title: "How Holi Changed My Perspective",
     desc: "인도 홀리 축제에서 느낀 것들. 색채의 향연 속에서 발견한 의미.",
     image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
-    tag: "개인 에세이",
-    readTime: "6분",
+    tag: "Personal Story",
+    readTime: "6 min",
   },
   {
     id: "5",
-    title: "세계 축제 음식 기행",
+    title: "Festival Food Around the World",
     desc: "축제에서만 맛볼 수 있는 특별한 음식들. 옥토버페스트 프레첼부터 태국 송크란 망고까지.",
     image: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80",
-    tag: "음식과 문화",
-    readTime: "7분",
+    tag: "Food & Culture",
+    readTime: "7 min",
   },
   {
     id: "6",
-    title: "혼자 떠나는 축제 여행 가이드",
+    title: "Solo Festival Travel: A Guide",
     desc: "혼자서도 충분히 즐길 수 있는 축제 여행. 안전하고 풍성한 솔로 트래블 가이드.",
     image: "https://images.unsplash.com/photo-1551887196-72e32bfc7bf3?w=800&q=80",
-    tag: "여행 가이드",
-    readTime: "5분",
+    tag: "Travel Guide",
+    readTime: "5 min",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function MagazinePage() {
               className="text-4xl lg:text-6xl font-semibold"
               style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
             >
-              매거진
+              Magazine
             </h1>
             <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
               축제와 여행에 대한 이야기, 가이드, 포토 에세이.
@@ -125,7 +125,7 @@ export default function MagazinePage() {
                   className="mt-6 text-xs font-medium"
                   style={{ color: "#9e9e9e", fontFamily: pretendard }}
                 >
-                  {featured.readTime} 읽기
+                  {featured.readTime} read
                 </span>
               </div>
             </div>

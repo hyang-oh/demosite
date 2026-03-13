@@ -96,7 +96,7 @@ export default async function FestivalPage({ params }: Params) {
                 className="text-xl font-semibold mb-4"
                 style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
               >
-                축제 소개
+                About the Festival
               </h2>
               <p className="text-base leading-relaxed" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
                 {festival.description}
@@ -136,7 +136,7 @@ export default async function FestivalPage({ params }: Params) {
                   className="text-xl font-semibold mb-6"
                   style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
                 >
-                  여행자 리뷰
+                  Traveler Reviews
                 </h2>
                 <div className="space-y-0">
                   {festival.reviews.map((r, i) => (
@@ -177,7 +177,7 @@ export default async function FestivalPage({ params }: Params) {
                   className="text-base font-semibold mb-5"
                   style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
                 >
-                  방문 계획
+                  Plan Your Visit
                 </h3>
                 <div className="space-y-3 text-sm border-b pb-5 mb-5" style={{ borderColor: "#e5e2da" }}>
                   {[

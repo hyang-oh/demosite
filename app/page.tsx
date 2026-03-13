@@ -21,25 +21,25 @@ const quickMenu = [
 
 /* ── Continent tabs for destination section ── */
 const continentTabs = [
-  { id: "all", label: "전체" },
-  { id: "Asia", label: "아시아" },
-  { id: "Europe", label: "유럽" },
-  { id: "Americas", label: "아메리카" },
+  { id: "all", label: "All" },
+  { id: "Asia", label: "Asia" },
+  { id: "Europe", label: "Europe" },
+  { id: "Americas", label: "Americas" },
 ];
 
 /* ── Stats + Steps combined ── */
 const stats = [
-  { icon: Globe, value: "120+", label: "개국" },
-  { icon: MapPin, value: "2,400+", label: "축제" },
-  { icon: Star, value: "50K+", label: "리뷰" },
-  { icon: Users, value: "180K+", label: "여행자" },
+  { icon: Globe, value: "120+", label: "Countries" },
+  { icon: MapPin, value: "2,400+", label: "Festivals" },
+  { icon: Star, value: "50K+", label: "Reviews" },
+  { icon: Users, value: "180K+", label: "Travelers" },
 ];
 
 const steps = [
-  { step: "01", icon: Search, title: "탐색", desc: "테마, 지역, 시즌별로 축제를 탐색하세요" },
-  { step: "02", icon: Heart, title: "저장", desc: "마음에 드는 축제를 저장하고 추천받으세요" },
-  { step: "03", icon: CalendarCheck, title: "계획", desc: "여행 팁과 리뷰로 준비하세요" },
-  { step: "04", icon: Plane, title: "출발", desc: "세계에서 가장 특별한 축제를 경험하세요" },
+  { step: "01", icon: Search, title: "Discover", desc: "테마, 지역, 시즌별로 축제를 탐색하세요" },
+  { step: "02", icon: Heart, title: "Save", desc: "마음에 드는 축제를 저장하고 추천받으세요" },
+  { step: "03", icon: CalendarCheck, title: "Plan", desc: "여행 팁과 리뷰로 준비하세요" },
+  { step: "04", icon: Plane, title: "Go", desc: "세계에서 가장 특별한 축제를 경험하세요" },
 ];
 
 /* ── Destination data by country ── */
@@ -88,7 +88,7 @@ export default function HomePage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              축제로 세계를<br />발견하다.
+              Discover the world<br />through celebration.
             </h1>
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function HomePage() {
                 className="text-4xl lg:text-5xl font-semibold"
                 style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
               >
-                에디터 추천
+                Editor&apos;s Pick
               </h2>
             </div>
             <Link
@@ -247,7 +247,7 @@ export default function HomePage() {
                 className="text-4xl lg:text-5xl font-semibold"
                 style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
               >
-                인기 여행지
+                Popular Destinations
               </h2>
             </div>
             <Link
@@ -324,7 +324,7 @@ export default function HomePage() {
                 className="text-4xl font-semibold"
                 style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
               >
-                이달의 축제
+                This Month
               </h2>
             </div>
             <Link
@@ -390,7 +390,7 @@ export default function HomePage() {
               className="text-4xl lg:text-5xl font-semibold"
               style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
             >
-              이용 방법
+              How it works
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
@@ -459,7 +459,7 @@ export default function HomePage() {
               lineHeight: 1.05,
             }}
           >
-            다음 축제가 기다리고 있어요.
+            Your next celebration awaits.
           </h2>
           <p
             className="text-lg mb-10"

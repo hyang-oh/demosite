@@ -7,9 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Map } from "lucide-react";
 
 const navLinks = [
-  { href: "/explore", label: "탐색" },
-  { href: "/calendar", label: "캘린더" },
-  { href: "/magazine", label: "매거진" },
+  { href: "/explore", label: "Explore" },
+  { href: "/calendar", label: "Calendar" },
+  { href: "/magazine", label: "Magazine" },
 ];
 
 export default function Navigation() {
@@ -173,7 +173,7 @@ export default function Navigation() {
             style={{ background: "#ffffff", paddingTop: "90px" }}
           >
             <nav className="flex flex-col px-8 py-6 gap-0 flex-1">
-              {[...navLinks, { href: "/map", label: "지도" }].map(({ href, label }, i) => (
+              {[...navLinks, { href: "/map", label: "Map" }].map(({ href, label }, i) => (
                 <motion.div
                   key={href}
                   initial={{ opacity: 0, x: -12 }}
