@@ -7,9 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Map } from "lucide-react";
 
 const navLinks = [
-  { href: "/explore", label: "Explore" },
-  { href: "/calendar", label: "Calendar" },
-  { href: "/magazine", label: "Magazine" },
+  { href: "/explore", label: "탐색" },
+  { href: "/calendar", label: "캘린더" },
+  { href: "/magazine", label: "매거진" },
 ];
 
 export default function Navigation() {
@@ -63,7 +63,7 @@ export default function Navigation() {
                   href={href}
                   className="relative text-base font-medium transition-colors duration-200"
                   style={{
-                    fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+                    fontFamily: "'Pretendard', sans-serif",
                     color: active ? "#4344FD" : "#1a1a1a",
                     letterSpacing: "0.01em",
                   }}
@@ -105,7 +105,7 @@ export default function Navigation() {
               style={{
                 background: "#1a1a1a",
                 color: "#ffffff",
-                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontFamily: "'Pretendard', sans-serif",
               }}
             >
               H
@@ -144,7 +144,7 @@ export default function Navigation() {
                     className="flex-1 text-base outline-none bg-transparent"
                     style={{
                       color: "#1a1a1a",
-                      fontFamily: "var(--font-dm-sans), sans-serif",
+                      fontFamily: "'Pretendard', sans-serif",
                     }}
                   />
                   <button
@@ -173,7 +173,7 @@ export default function Navigation() {
             style={{ background: "#ffffff", paddingTop: "90px" }}
           >
             <nav className="flex flex-col px-8 py-6 gap-0 flex-1">
-              {[...navLinks, { href: "/map", label: "Map" }].map(({ href, label }, i) => (
+              {[...navLinks, { href: "/map", label: "지도" }].map(({ href, label }, i) => (
                 <motion.div
                   key={href}
                   initial={{ opacity: 0, x: -12 }}
@@ -200,13 +200,13 @@ export default function Navigation() {
                 >
                   <span
                     className="w-10 h-10 flex items-center justify-center text-sm font-semibold rounded-full"
-                    style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                    style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: "'Pretendard', sans-serif" }}
                   >
                     H
                   </span>
                   <div>
-                    <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>Hyang Oh</p>
-                    <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>Settings</p>
+                    <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>Hyang Oh</p>
+                    <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>설정</p>
                   </div>
                 </Link>
               </div>

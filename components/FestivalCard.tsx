@@ -59,7 +59,7 @@ export default function FestivalCard({
           <div className="flex-1 min-w-0">
             <span
               className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
             >
               {festival.category}
             </span>
@@ -73,7 +73,7 @@ export default function FestivalCard({
             >
               {festival.name}
             </h3>
-            <p className="text-xs mt-1" style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            <p className="text-xs mt-1" style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif" }}>
               {festival.city}, {festival.country} · {festival.month}
             </p>
           </div>
@@ -104,7 +104,7 @@ export default function FestivalCard({
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span
                 className="text-xs font-semibold tracking-widest uppercase"
-                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
               >
                 {festival.category}
               </span>
@@ -114,7 +114,7 @@ export default function FestivalCard({
               >
                 {festival.name}
               </h2>
-              <p className="text-white/60 text-sm mt-1" style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              <p className="text-white/60 text-sm mt-1" style={{ fontFamily: "'Pretendard', sans-serif" }}>
                 {festival.city}, {festival.country} · {festival.month}
               </p>
             </div>
@@ -155,13 +155,13 @@ export default function FestivalCard({
           <div className="flex items-center justify-between">
             <span
               className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
             >
               {festival.category}
             </span>
             <span
               className="text-xs"
-              style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}
             >
               {festival.month}
             </span>
@@ -178,15 +178,15 @@ export default function FestivalCard({
           </h3>
           <p
             className="text-sm mt-1"
-            style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif" }}
           >
             {festival.city}, {festival.country}
           </p>
           <div className="flex items-center gap-1.5 mt-2">
-            <span className="text-xs font-medium" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            <span className="text-xs font-medium" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
               ★ {festival.rating}
             </span>
-            <span className="text-xs" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            <span className="text-xs" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
               ({festival.reviewCount.toLocaleString()})
             </span>
           </div>

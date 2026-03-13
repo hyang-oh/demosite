@@ -17,11 +17,11 @@ const months = [
 ];
 
 const monthsShort = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  "1월", "2월", "3월", "4월", "5월", "6월",
+  "7월", "8월", "9월", "10월", "11월", "12월",
 ];
 
-const dmSans = "var(--font-dm-sans), 'DM Sans', sans-serif";
+const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
 const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
 function getMonthIndex(month: string): number {
@@ -65,7 +65,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
           <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest block mb-2"
-            style={{ color: "#4344FD", fontFamily: dmSans }}
+            style={{ color: "#4344FD", fontFamily: pretendard }}
           >
             월별 축제 일정
           </span>
@@ -73,9 +73,9 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
             className="text-4xl lg:text-6xl font-semibold"
             style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
           >
-            Festival Calendar
+            축제 캘린더
           </h1>
-          <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+          <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
             원하는 달을 선택하면 해당 시기의 축제를 확인할 수 있어요.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                   className="text-xs font-semibold"
                   style={{
                     color: selectedMonth === i ? "#4344FD" : i === currentMonth ? "#1a1a1a" : "#9e9e9e",
-                    fontFamily: dmSans,
+                    fontFamily: pretendard,
                   }}
                 >
                   {monthsShort[i]}
@@ -116,7 +116,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                     className="text-xs"
                     style={{
                       color: selectedMonth === i ? "#4344FD" : "#c4c4c4",
-                      fontFamily: dmSans,
+                      fontFamily: pretendard,
                     }}
                   >
                     {monthCounts[i]}
@@ -132,7 +132,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
         <div className="flex items-center gap-2 mb-8 pb-4 border-b" style={{ borderColor: "#e5e2da" }}>
           <CalendarDays size={16} strokeWidth={1.5} style={{ color: "#4344FD" }} />
-          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: dmSans }}>
+          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: pretendard }}>
             <span className="font-medium" style={{ color: "#1a1a1a" }}>{months[selectedMonth]}</span>
             {" "}· {festivalsByMonth.length}개 축제
           </p>
@@ -152,9 +152,9 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                 className="text-2xl font-semibold"
                 style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
               >
-                No festivals this month
+                이 달에는 축제가 없어요
               </h3>
-              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: dmSans }}>
+              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
                 다른 달을 선택해 보세요
               </p>
             </motion.div>
@@ -197,12 +197,12 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                     <div className="flex items-center gap-2">
                       <span
                         className="text-xs font-semibold tracking-widest uppercase"
-                        style={{ color: "#4344FD", fontFamily: dmSans }}
+                        style={{ color: "#4344FD", fontFamily: pretendard }}
                       >
                         {f.category}
                       </span>
                       <span className="text-xs" style={{ color: "#c4c4c4" }}>·</span>
-                      <span className="text-xs" style={{ color: "#9e9e9e", fontFamily: dmSans }}>
+                      <span className="text-xs" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
                         {f.duration}
                       </span>
                     </div>
@@ -212,12 +212,12 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                     >
                       {f.name}
                     </h3>
-                    <p className="text-sm mt-0.5" style={{ color: "#6e6e6e", fontFamily: dmSans }}>
+                    <p className="text-sm mt-0.5" style={{ color: "#6e6e6e", fontFamily: pretendard }}>
                       {f.city}, {f.country}
                     </p>
                   </div>
                   <div className="hidden sm:flex items-center gap-1 flex-shrink-0">
-                    <span className="text-xs font-medium" style={{ color: "#1a1a1a", fontFamily: dmSans }}>
+                    <span className="text-xs font-medium" style={{ color: "#1a1a1a", fontFamily: pretendard }}>
                       ★ {f.rating}
                     </span>
                   </div>

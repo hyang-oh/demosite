@@ -19,7 +19,7 @@ const continentData: { id: Continent; label: string; labelKo: string; coords: { 
   { id: "Oceania", label: "Oceania", labelKo: "오세아니아", coords: { x: "80%", y: "65%" } },
 ];
 
-const dmSans = "var(--font-dm-sans), 'DM Sans', sans-serif";
+const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
 const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
 export default function MapClient({ festivals }: MapClientProps) {
@@ -46,7 +46,7 @@ export default function MapClient({ festivals }: MapClientProps) {
           <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest block mb-2"
-            style={{ color: "#4344FD", fontFamily: dmSans }}
+            style={{ color: "#4344FD", fontFamily: pretendard }}
           >
             지도로 찾기
           </span>
@@ -54,9 +54,9 @@ export default function MapClient({ festivals }: MapClientProps) {
             className="text-4xl lg:text-6xl font-semibold"
             style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
           >
-            Festival Map
+            축제 지도
           </h1>
-          <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+          <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
             대륙을 선택하면 해당 지역의 축제를 볼 수 있어요.
           </p>
         </div>
@@ -100,14 +100,14 @@ export default function MapClient({ festivals }: MapClientProps) {
                       className="text-xs font-semibold whitespace-nowrap"
                       style={{
                         color: isActive ? "#4344FD" : "#1a1a1a",
-                        fontFamily: dmSans,
+                        fontFamily: pretendard,
                       }}
                     >
-                      {c.label}
+                      {c.labelKo}
                     </span>
                     <span
                       className="text-xs"
-                      style={{ color: "#9e9e9e", fontFamily: dmSans }}
+                      style={{ color: "#9e9e9e", fontFamily: pretendard }}
                     >
                       {count}개
                     </span>
@@ -132,10 +132,10 @@ export default function MapClient({ festivals }: MapClientProps) {
                   background: !selectedContinent ? "#1a1a1a" : "#ffffff",
                   color: !selectedContinent ? "#ffffff" : "#6e6e6e",
                   borderColor: !selectedContinent ? "#1a1a1a" : "#e5e2da",
-                  fontFamily: dmSans,
+                  fontFamily: pretendard,
                 }}
               >
-                All
+                전체
               </button>
               {continentData.map((c) => (
                 <button
@@ -146,7 +146,7 @@ export default function MapClient({ festivals }: MapClientProps) {
                     background: selectedContinent === c.id ? "#4344FD" : "#ffffff",
                     color: selectedContinent === c.id ? "#ffffff" : "#6e6e6e",
                     borderColor: selectedContinent === c.id ? "#4344FD" : "#e5e2da",
-                    fontFamily: dmSans,
+                    fontFamily: pretendard,
                   }}
                 >
                   {c.labelKo}
@@ -161,7 +161,7 @@ export default function MapClient({ festivals }: MapClientProps) {
               <div className="flex items-center justify-between mb-4">
                 <h2
                   className="text-sm font-semibold"
-                  style={{ color: "#1a1a1a", fontFamily: dmSans }}
+                  style={{ color: "#1a1a1a", fontFamily: pretendard }}
                 >
                   {selectedContinent
                     ? continentData.find((c) => c.id === selectedContinent)?.labelKo
@@ -186,7 +186,7 @@ export default function MapClient({ festivals }: MapClientProps) {
                         <div key={country} className="border-b" style={{ borderColor: "#e5e2da" }}>
                           <p
                             className="text-xs font-semibold uppercase tracking-widest py-3"
-                            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+                            style={{ color: "#9e9e9e", fontFamily: pretendard }}
                           >
                             {country}
                           </p>
@@ -210,11 +210,11 @@ export default function MapClient({ festivals }: MapClientProps) {
                                 <div className="min-w-0 flex-1">
                                   <p
                                     className="text-sm font-medium truncate group-hover:text-blue-500 transition-colors"
-                                    style={{ color: "#1a1a1a", fontFamily: dmSans }}
+                                    style={{ color: "#1a1a1a", fontFamily: pretendard }}
                                   >
                                     {f.name}
                                   </p>
-                                  <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: dmSans }}>
+                                  <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
                                     {f.city} · {f.month}
                                   </p>
                                 </div>

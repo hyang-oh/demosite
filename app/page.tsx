@@ -21,25 +21,25 @@ const quickMenu = [
 
 /* ── Continent tabs for destination section ── */
 const continentTabs = [
-  { id: "all", label: "All" },
-  { id: "Asia", label: "Asia" },
-  { id: "Europe", label: "Europe" },
-  { id: "Americas", label: "Americas" },
+  { id: "all", label: "전체" },
+  { id: "Asia", label: "아시아" },
+  { id: "Europe", label: "유럽" },
+  { id: "Americas", label: "아메리카" },
 ];
 
 /* ── Stats + Steps combined ── */
 const stats = [
-  { icon: Globe, value: "120+", label: "Countries" },
-  { icon: MapPin, value: "2,400+", label: "Festivals" },
-  { icon: Star, value: "50K+", label: "Reviews" },
-  { icon: Users, value: "180K+", label: "Travelers" },
+  { icon: Globe, value: "120+", label: "개국" },
+  { icon: MapPin, value: "2,400+", label: "축제" },
+  { icon: Star, value: "50K+", label: "리뷰" },
+  { icon: Users, value: "180K+", label: "여행자" },
 ];
 
 const steps = [
-  { step: "01", icon: Search, title: "Discover", desc: "테마, 지역, 시즌별로 축제를 탐색하세요" },
-  { step: "02", icon: Heart, title: "Save", desc: "마음에 드는 축제를 저장하고 추천받으세요" },
-  { step: "03", icon: CalendarCheck, title: "Plan", desc: "여행 팁과 리뷰로 준비하세요" },
-  { step: "04", icon: Plane, title: "Go", desc: "세계에서 가장 특별한 축제를 경험하세요" },
+  { step: "01", icon: Search, title: "탐색", desc: "테마, 지역, 시즌별로 축제를 탐색하세요" },
+  { step: "02", icon: Heart, title: "저장", desc: "마음에 드는 축제를 저장하고 추천받으세요" },
+  { step: "03", icon: CalendarCheck, title: "계획", desc: "여행 팁과 리뷰로 준비하세요" },
+  { step: "04", icon: Plane, title: "출발", desc: "세계에서 가장 특별한 축제를 경험하세요" },
 ];
 
 /* ── Destination data by country ── */
@@ -77,59 +77,20 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 100%)" }}
         />
-        <div className="absolute inset-0 flex flex-col justify-end pb-16 lg:pb-24 px-6 lg:px-10">
+        <div className="absolute inset-0 flex flex-col justify-center px-6 lg:px-10">
           <div className="max-w-7xl mx-auto w-full">
-            <div className="max-w-3xl">
-              <span
-                className="text-xs font-semibold uppercase tracking-widest"
-                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
-              >
-                2,400+ festivals · 120 countries
-              </span>
-              <h1
-                className="text-white font-semibold mt-4 leading-none"
-                style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                  fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                  fontStyle: "italic",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Discover the world<br />through celebration.
-              </h1>
-              <p
-                className="text-white/70 mt-6 text-lg max-w-xl leading-relaxed"
-                style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
-              >
-                리오의 카니발 거리부터 일본의 벚꽃 공원까지, 모든 여행자를 위한 축제 큐레이션.
-              </p>
-              <div className="flex flex-wrap gap-4 mt-10">
-                <Link
-                  href="/explore"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-medium transition-all duration-200"
-                  style={{
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                    background: "#ffffff",
-                    color: "#1a1a1a",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  축제 둘러보기
-                </Link>
-                <Link
-                  href="/map"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-medium border border-white/40 text-white hover:bg-white/10 transition-all"
-                  style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "0.02em" }}
-                >
-                  지도로 찾기
-                </Link>
-              </div>
-            </div>
+            <h1
+              className="text-white font-semibold leading-none"
+              style={{
+                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontSize: "clamp(3.5rem, 8vw, 7rem)",
+                fontStyle: "italic",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              축제로 세계를<br />발견하다.
+            </h1>
           </div>
-        </div>
-        <div className="absolute bottom-8 right-10 hidden lg:flex items-center gap-2 opacity-40">
-          <span className="text-white text-xs tracking-widest uppercase" style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}>Scroll</span>
-          <div className="w-8 h-px bg-white/60" />
         </div>
       </section>
 
@@ -148,10 +109,10 @@ export default function HomePage() {
             <div className="flex-1 flex items-center gap-3 px-6 py-4 border-b sm:border-b-0 sm:border-r" style={{ borderColor: "#e5e2da" }}>
               <MapPin size={18} strokeWidth={1.5} style={{ color: "#4344FD", flexShrink: 0 }} />
               <div>
-                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
                   어디로
                 </p>
-                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
                   도시 또는 국가
                 </p>
               </div>
@@ -160,10 +121,10 @@ export default function HomePage() {
             <div className="flex-1 flex items-center gap-3 px-6 py-4 border-b sm:border-b-0 sm:border-r" style={{ borderColor: "#e5e2da" }}>
               <CalendarDays size={18} strokeWidth={1.5} style={{ color: "#4344FD", flexShrink: 0 }} />
               <div>
-                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
                   언제
                 </p>
-                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
                   월 선택
                 </p>
               </div>
@@ -172,10 +133,10 @@ export default function HomePage() {
             <div className="flex-1 flex items-center gap-3 px-6 py-4 border-b sm:border-b-0 sm:border-r" style={{ borderColor: "#e5e2da" }}>
               <Palette size={18} strokeWidth={1.5} style={{ color: "#4344FD", flexShrink: 0 }} />
               <div>
-                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
                   카테고리
                 </p>
-                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
                   전체
                 </p>
               </div>
@@ -187,7 +148,7 @@ export default function HomePage() {
               style={{
                 background: "#4344FD",
                 color: "#ffffff",
-                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontFamily: "'Pretendard', sans-serif",
               }}
             >
               <Search size={20} strokeWidth={2.5} />
@@ -212,7 +173,7 @@ export default function HomePage() {
                   <Icon size={24} strokeWidth={1.5} style={{ color: "#1a1a1a" }} />
                   <span
                     className="text-xs font-semibold tracking-wide"
-                    style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                    style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}
                   >
                     {item.label}
                   </span>
@@ -231,7 +192,7 @@ export default function HomePage() {
               <span className="rule-line" />
               <span
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
-                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
               >
                 에디터가 직접 고른
               </span>
@@ -239,13 +200,13 @@ export default function HomePage() {
                 className="text-4xl lg:text-5xl font-semibold"
                 style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
               >
-                Editor&apos;s Pick
+                에디터 추천
               </h2>
             </div>
             <Link
               href="/explore"
               className="hidden md:inline-flex text-sm font-medium pb-0.5 border-b transition-colors hover:text-blue-500"
-              style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}
             >
               전체 보기 →
             </Link>
@@ -259,7 +220,7 @@ export default function HomePage() {
               <Link
                 href="/explore"
                 className="flex items-center justify-center border transition-colors hover:bg-gray-50"
-                style={{ borderColor: "#e5e2da", fontFamily: "var(--font-dm-sans), sans-serif", minHeight: "120px" }}
+                style={{ borderColor: "#e5e2da", fontFamily: "'Pretendard', sans-serif", minHeight: "120px" }}
               >
                 <span className="text-sm font-medium" style={{ color: "#4344FD" }}>
                   전체 보기 →
@@ -278,7 +239,7 @@ export default function HomePage() {
               <span className="rule-line" />
               <span
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
-                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
               >
                 나라별 탐색
               </span>
@@ -286,13 +247,13 @@ export default function HomePage() {
                 className="text-4xl lg:text-5xl font-semibold"
                 style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
               >
-                Popular Destinations
+                인기 여행지
               </h2>
             </div>
             <Link
               href="/map"
               className="hidden md:inline-flex text-sm font-medium pb-0.5 border-b transition-colors hover:text-blue-500"
-              style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}
             >
               지도로 보기 →
             </Link>
@@ -308,7 +269,7 @@ export default function HomePage() {
                   background: tab.id === "all" ? "#1a1a1a" : "#ffffff",
                   color: tab.id === "all" ? "#ffffff" : "#6e6e6e",
                   borderColor: tab.id === "all" ? "#1a1a1a" : "#e5e2da",
-                  fontFamily: "var(--font-dm-sans), sans-serif",
+                  fontFamily: "'Pretendard', sans-serif",
                 }}
               >
                 {tab.label}
@@ -336,9 +297,9 @@ export default function HomePage() {
                   </h3>
                   <p
                     className="text-white/50 text-xs mt-0.5"
-                    style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}
+                    style={{ fontFamily: "'Pretendard', sans-serif" }}
                   >
-                    {dest.count} festivals
+                    {dest.count}개 축제
                   </p>
                 </div>
               </Link>
@@ -355,21 +316,21 @@ export default function HomePage() {
               <span className="rule-line" />
               <span
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
-                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
               >
-                Spring · March–April
+                봄 · 3~4월
               </span>
               <h2
                 className="text-4xl font-semibold"
                 style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
               >
-                This Month
+                이달의 축제
               </h2>
             </div>
             <Link
               href="/calendar"
               className="hidden md:inline-flex text-sm font-medium pb-0.5 border-b transition-colors hover:text-blue-500"
-              style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}
             >
               캘린더 보기 →
             </Link>
@@ -408,7 +369,7 @@ export default function HomePage() {
                   </span>
                   <span
                     className="text-xs mt-1 tracking-widest uppercase"
-                    style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                    style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}
                   >
                     {stat.label}
                   </span>
@@ -421,7 +382,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <span
               className="text-xs font-semibold uppercase tracking-widest block mb-2"
-              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
             >
               간단한 4단계
             </span>
@@ -429,7 +390,7 @@ export default function HomePage() {
               className="text-4xl lg:text-5xl font-semibold"
               style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
             >
-              How it works
+              이용 방법
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
@@ -443,7 +404,7 @@ export default function HomePage() {
                 >
                   <span
                     className="text-xs font-semibold tracking-widest mb-5"
-                    style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                    style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}
                   >
                     {item.step}
                   </span>
@@ -461,7 +422,7 @@ export default function HomePage() {
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
+                    style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif", fontWeight: 300 }}
                   >
                     {item.desc}
                   </p>
@@ -485,7 +446,7 @@ export default function HomePage() {
         <div className="max-w-2xl mx-auto px-6 text-center">
           <span
             className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
           >
             축제를 놓치지 마세요
           </span>
@@ -498,11 +459,11 @@ export default function HomePage() {
               lineHeight: 1.05,
             }}
           >
-            Your next celebration awaits.
+            다음 축제가 기다리고 있어요.
           </h2>
           <p
             className="text-lg mb-10"
-            style={{ color: "#6e6e6e", fontWeight: 300, fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#6e6e6e", fontWeight: 300, fontFamily: "'Pretendard', sans-serif" }}
           >
             매달 맞춤형 축제 추천을 이메일로 받아보세요.
           </p>
@@ -515,7 +476,7 @@ export default function HomePage() {
                 background: "#1c1c1c",
                 border: "none",
                 color: "#f0ede4",
-                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontFamily: "'Pretendard', sans-serif",
               }}
             />
             <button
@@ -523,7 +484,7 @@ export default function HomePage() {
               style={{
                 background: "#4344FD",
                 color: "#ffffff",
-                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontFamily: "'Pretendard', sans-serif",
                 letterSpacing: "0.05em",
               }}
             >
@@ -549,13 +510,13 @@ export default function HomePage() {
           </span>
           <p
             className="text-sm"
-            style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}
           >
             © 2026 Festivo. 축제로 세계를 발견하다.
           </p>
           <p
             className="text-xs font-medium"
-            style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
           >
             Made with Claude Code ✦
           </p>

@@ -22,7 +22,7 @@
   --color-dark-text:      #f0ede4;
 
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-sans:    'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+  --font-sans:    'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -33,7 +33,7 @@ html { scroll-behavior: smooth; }
 body {
   background-color: #ffffff;
   color: #1a1a1a;
-  font-family: var(--font-sans), 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -86,7 +86,7 @@ html { scrollbar-width: auto; scrollbar-color: #c8c4bc #f5f5f5; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-family: var(--font-sans), 'DM Sans', sans-serif;
+  font-family: 'Pretendard', -apple-system, sans-serif;
   background-color: transparent;
   border: 1px solid #4344FD;
   color: #4344FD;

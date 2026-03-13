@@ -10,6 +10,16 @@ interface CategoryFilterProps {
   includeAll?: boolean;
 }
 
+const categoryKo: Record<string, string> = {
+  All: "전체",
+  Music: "음악",
+  Culture: "문화",
+  Nature: "자연",
+  Food: "음식",
+  Seasonal: "계절",
+  Art: "예술",
+};
+
 export default function CategoryFilter({
   active,
   onChange,
@@ -30,14 +40,14 @@ export default function CategoryFilter({
               whileTap={{ scale: 0.97 }}
               className="px-4 py-1.5 text-xs font-semibold tracking-widest uppercase transition-all duration-200 whitespace-nowrap border"
               style={{
-                fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+                fontFamily: "'Pretendard', sans-serif",
                 background: isActive ? "#1a1a1a" : "transparent",
                 color: isActive ? "#ffffff" : "#6e6e6e",
                 borderColor: isActive ? "#1a1a1a" : "#e5e2da",
                 letterSpacing: "0.1em",
               }}
             >
-              {cat}
+              {categoryKo[cat] || cat}
             </motion.button>
           );
         })}

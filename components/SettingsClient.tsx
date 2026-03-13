@@ -15,9 +15,9 @@ const languages: { code: Language; label: string; native: string }[] = [
 ];
 
 const themes: { value: Theme; label: string; icon: string }[] = [
-  { value: "light", label: "Light", icon: "☀" },
-  { value: "dark", label: "Dark", icon: "☾" },
-  { value: "system", label: "System", icon: "⊙" },
+  { value: "light", label: "라이트", icon: "☀" },
+  { value: "dark", label: "다크", icon: "☾" },
+  { value: "system", label: "시스템", icon: "⊙" },
 ];
 
 interface ToggleProps {
@@ -31,8 +31,8 @@ function Toggle({ checked, onChange, label, desc }: ToggleProps) {
   return (
     <div className="flex items-center justify-between py-4 border-b" style={{ borderColor: "#e5e2da" }}>
       <div>
-        <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>{label}</p>
-        {desc && <p className="text-xs mt-0.5" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>{desc}</p>}
+        <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>{label}</p>
+        {desc && <p className="text-xs mt-0.5" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>{desc}</p>}
       </div>
       <button
         onClick={onChange}
@@ -69,7 +69,7 @@ export default function SettingsClient() {
     updates: true,
   });
 
-  const dmSans = "var(--font-dm-sans), 'DM Sans', sans-serif";
+  const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
   const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
   return (
@@ -83,17 +83,17 @@ export default function SettingsClient() {
           <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest block mb-2"
-            style={{ color: "#4344FD", fontFamily: dmSans }}
+            style={{ color: "#4344FD", fontFamily: pretendard }}
           >
-            Preferences
+            환경설정
           </span>
           <h1
             className="text-4xl lg:text-5xl font-semibold"
             style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
           >
-            Settings
+            설정
           </h1>
-          <p className="mt-2 text-sm" style={{ color: "#6e6e6e", fontFamily: dmSans }}>
+          <p className="mt-2 text-sm" style={{ color: "#6e6e6e", fontFamily: pretendard }}>
             나만의 Festivo 환경을 설정하세요.
           </p>
         </div>
@@ -119,14 +119,14 @@ export default function SettingsClient() {
             </div>
             <div>
               <p className="font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a", fontSize: "1.1rem" }}>Hyang Oh</p>
-              <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: dmSans }}>hyang@festivo.world</p>
+              <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: pretendard }}>hyang@festivo.world</p>
               <span className="badge mt-1">Pro Member</span>
             </div>
             <button
               className="ml-auto text-xs font-medium px-4 py-1.5 border transition-colors"
-              style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
+              style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: pretendard }}
             >
-              Edit
+              편집
             </button>
           </div>
         </motion.div>
@@ -142,9 +142,9 @@ export default function SettingsClient() {
         >
           <h2
             className="text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+            style={{ color: "#9e9e9e", fontFamily: pretendard }}
           >
-            Language
+            언어
           </h2>
           <div className="grid grid-cols-2 gap-2">
             {languages.map((lang) => (
@@ -158,8 +158,8 @@ export default function SettingsClient() {
                 }}
               >
                 <div className="text-left">
-                  <p className="text-sm font-medium" style={{ color: language === lang.code ? "#ffffff" : "#1a1a1a", fontFamily: dmSans }}>{lang.native}</p>
-                  <p className="text-xs" style={{ color: language === lang.code ? "#9e9e9e" : "#9e9e9e", fontFamily: dmSans }}>{lang.label}</p>
+                  <p className="text-sm font-medium" style={{ color: language === lang.code ? "#ffffff" : "#1a1a1a", fontFamily: pretendard }}>{lang.native}</p>
+                  <p className="text-xs" style={{ color: language === lang.code ? "#9e9e9e" : "#9e9e9e", fontFamily: pretendard }}>{lang.label}</p>
                 </div>
                 {language === lang.code && (
                   <span className="text-xs" style={{ color: "#4344FD" }}>✓</span>
@@ -180,9 +180,9 @@ export default function SettingsClient() {
         >
           <h2
             className="text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+            style={{ color: "#9e9e9e", fontFamily: pretendard }}
           >
-            Appearance
+            외관
           </h2>
           <div className="flex gap-2">
             {themes.map((t) => (
@@ -197,7 +197,7 @@ export default function SettingsClient() {
                 }}
               >
                 <span className="text-lg">{t.icon}</span>
-                <span className="text-xs font-medium" style={{ fontFamily: dmSans }}>{t.label}</span>
+                <span className="text-xs font-medium" style={{ fontFamily: pretendard }}>{t.label}</span>
               </button>
             ))}
           </div>
@@ -214,32 +214,32 @@ export default function SettingsClient() {
         >
           <h2
             className="text-xs font-semibold uppercase tracking-widest mb-2"
-            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+            style={{ color: "#9e9e9e", fontFamily: pretendard }}
           >
-            Notifications
+            알림
           </h2>
           <Toggle
             checked={notifications.newFestivals}
             onChange={() => setNotifications((n) => ({ ...n, newFestivals: !n.newFestivals }))}
-            label="New Festivals"
+            label="새 축제"
             desc="관심 있는 새 축제가 등록되면 알려드려요"
           />
           <Toggle
             checked={notifications.reminders}
             onChange={() => setNotifications((n) => ({ ...n, reminders: !n.reminders }))}
-            label="Festival Reminders"
+            label="축제 리마인더"
             desc="저장한 축제 2주 전에 미리 알림을 보내드려요"
           />
           <Toggle
             checked={notifications.newsletter}
             onChange={() => setNotifications((n) => ({ ...n, newsletter: !n.newsletter }))}
-            label="Monthly Newsletter"
+            label="월간 뉴스레터"
             desc="매달 엄선된 축제 추천과 여행 이야기를 보내드려요"
           />
           <Toggle
             checked={notifications.updates}
             onChange={() => setNotifications((n) => ({ ...n, updates: !n.updates }))}
-            label="App Updates"
+            label="앱 업데이트"
             desc="새로운 기능과 업데이트 소식을 알려드려요"
           />
         </motion.div>
@@ -256,14 +256,14 @@ export default function SettingsClient() {
           <div className="flex items-center justify-between mb-4">
             <h2
               className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "#9e9e9e", fontFamily: dmSans }}
+              style={{ color: "#9e9e9e", fontFamily: pretendard }}
             >
-              Saved Festivals
+              저장한 축제
             </h2>
             <Link
               href="/explore"
               className="text-xs font-medium transition-colors"
-              style={{ color: "#4344FD", fontFamily: dmSans }}
+              style={{ color: "#4344FD", fontFamily: pretendard }}
             >
               더 보기 →
             </Link>
@@ -281,7 +281,7 @@ export default function SettingsClient() {
             ))}
             <div
               className="w-14 h-14 flex items-center justify-center flex-shrink-0 text-sm font-medium"
-              style={{ background: "#f5f3eb", color: "#4344FD", fontFamily: dmSans }}
+              style={{ background: "#f5f3eb", color: "#4344FD", fontFamily: pretendard }}
             >
               +14
             </div>
@@ -304,9 +304,9 @@ export default function SettingsClient() {
             >
               Festivo
             </span>
-            <span className="text-xs" style={{ color: "#6e6e6e", fontFamily: dmSans }}>v1.0</span>
+            <span className="text-xs" style={{ color: "#6e6e6e", fontFamily: pretendard }}>v1.0</span>
           </div>
-          <p className="text-sm leading-relaxed mb-5" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+          <p className="text-sm leading-relaxed mb-5" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
             Festivo는 기획부터 배포까지 AI 도구만으로 디자인하고 개발했습니다. 창의성과 Claude Code가 만나면 무엇이 가능한지 보여주는 쇼케이스입니다.
           </p>
           <div className="flex flex-wrap gap-2">
@@ -314,15 +314,15 @@ export default function SettingsClient() {
               <span
                 key={tech}
                 className="px-3 py-1 text-xs font-medium border"
-                style={{ borderColor: "#2e2e2e", color: "#6e6e6e", fontFamily: dmSans }}
+                style={{ borderColor: "#2e2e2e", color: "#6e6e6e", fontFamily: pretendard }}
               >
                 {tech}
               </span>
             ))}
           </div>
           <div className="mt-5 pt-4 border-t flex items-center justify-between" style={{ borderColor: "#2e2e2e" }}>
-            <p className="text-xs" style={{ color: "#6e6e6e", fontFamily: dmSans }}>© 2026 Festivo</p>
-            <p className="text-xs font-medium" style={{ color: "#4344FD", fontFamily: dmSans }}>Made with Claude Code ✦</p>
+            <p className="text-xs" style={{ color: "#6e6e6e", fontFamily: pretendard }}>© 2026 Festivo</p>
+            <p className="text-xs font-medium" style={{ color: "#4344FD", fontFamily: pretendard }}>Made with Claude Code ✦</p>
           </div>
         </motion.div>
 
@@ -337,20 +337,20 @@ export default function SettingsClient() {
         >
           <h2
             className="text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+            style={{ color: "#9e9e9e", fontFamily: pretendard }}
           >
-            Account
+            계정
           </h2>
           <div className="flex flex-col gap-0">
             <button
               className="text-sm font-medium text-left px-0 py-3 border-b transition-colors flex items-center justify-between"
-              style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
+              style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: pretendard }}
             >
               내 데이터 내보내기 <span>→</span>
             </button>
             <button
               className="text-sm font-medium text-left px-0 py-3 transition-colors flex items-center justify-between"
-              style={{ color: "#dc2626", fontFamily: dmSans }}
+              style={{ color: "#dc2626", fontFamily: pretendard }}
             >
               로그아웃 <span>→</span>
             </button>

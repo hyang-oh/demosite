@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -10,21 +10,14 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 });
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "Festivo — Discover the World Through Celebration",
+  title: "Festivo — 축제로 세계를 발견하다",
   description:
-    "Curated festival discovery for curious travelers. Find and plan your next unforgettable celebration, from local traditions to global spectacles.",
-  keywords: "festivals, travel, world festivals, cultural events, celebrations, music festivals",
+    "전 세계 축제를 큐레이션하고 여행을 계획하세요. 현지 전통부터 세계적인 축제까지, 잊을 수 없는 경험을 만나보세요.",
+  keywords: "축제, 여행, 세계 축제, 문화 행사, 페스티벌, 음악 축제",
   openGraph: {
     title: "Festivo",
-    description: "Discover the world through celebration.",
+    description: "축제로 세계를 발견하다.",
     type: "website",
   },
 };
@@ -35,7 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="ko" className={cormorant.variable}>
+      <head>
+        <link
+          rel="stylesheet"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );

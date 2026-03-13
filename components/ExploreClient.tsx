@@ -15,9 +15,9 @@ type ViewMode = "grid" | "list";
 type SortMode = "recommended" | "rating" | "month";
 
 const sortOptions: { value: SortMode; label: string }[] = [
-  { value: "recommended", label: "Recommended" },
-  { value: "rating", label: "Top Rated" },
-  { value: "month", label: "By Month" },
+  { value: "recommended", label: "추천순" },
+  { value: "rating", label: "평점순" },
+  { value: "month", label: "월별" },
 ];
 
 export default function ExploreClient({ festivals, categories }: ExploreClientProps) {
@@ -60,7 +60,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
           <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
           >
             전 세계 {filtered.length}개 축제
           </span>
@@ -73,11 +73,11 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               color: "#1a1a1a",
             }}
           >
-            Explore Festivals
+            축제 탐색
           </h1>
           <p
             className="mt-4 text-lg max-w-lg"
-            style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
+            style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif", fontWeight: 300 }}
           >
             세계 곳곳의 축제를 당신의 스타일로 필터링하세요.
           </p>
@@ -97,7 +97,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                 className="flex-1 bg-transparent text-sm outline-none"
                 style={{
                   color: "#1a1a1a",
-                  fontFamily: "var(--font-dm-sans), sans-serif",
+                  fontFamily: "'Pretendard', sans-serif",
                 }}
               />
               {search && (
@@ -141,7 +141,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               onChange={(e) => setSort(e.target.value as SortMode)}
               className="text-xs font-medium border px-3 py-2 outline-none cursor-pointer hidden sm:block"
               style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontFamily: "'Pretendard', sans-serif",
                 borderColor: "#e5e2da",
                 background: "#ffffff",
                 color: "#6e6e6e",
@@ -166,7 +166,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                     background: viewMode === mode ? "#1a1a1a" : "transparent",
                     color: viewMode === mode ? "#ffffff" : "#9e9e9e",
                   }}
-                  title={mode === "grid" ? "Grid view" : "List view"}
+                  title={mode === "grid" ? "그리드 보기" : "목록 보기"}
                 >
                   {mode === "grid" ? "⊞" : "☰"}
                 </button>
@@ -179,7 +179,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
       {/* Results */}
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
         <div className="flex items-center justify-between mb-8 pb-4 border-b" style={{ borderColor: "#e5e2da" }}>
-          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif" }}>
             {filtered.length > 0 ? (
               <>
                 <span className="font-medium" style={{ color: "#1a1a1a" }}>{filtered.length}</span>개의 축제
@@ -207,9 +207,9 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                 className="text-2xl font-semibold"
                 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", color: "#1a1a1a", fontStyle: "italic" }}
               >
-                No festivals found
+                검색 결과가 없어요
               </h3>
-              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
                 다른 검색어나 카테고리를 시도해 보세요
               </p>
             </motion.div>

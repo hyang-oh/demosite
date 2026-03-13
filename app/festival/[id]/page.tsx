@@ -17,7 +17,7 @@ export default async function FestivalPage({ params }: Params) {
   const festival = getFestivalById(id);
   if (!festival) notFound();
 
-  const dmSans = "var(--font-dm-sans), 'DM Sans', sans-serif";
+  const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
   const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
   return (
@@ -38,7 +38,7 @@ export default async function FestivalPage({ params }: Params) {
           <div className="absolute bottom-0 left-0 right-0 px-6 lg:px-10 pb-10 max-w-5xl mx-auto">
             <span
               className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#4344FD", fontFamily: dmSans }}
+              style={{ color: "#4344FD", fontFamily: pretendard }}
             >
               {festival.category}
             </span>
@@ -51,7 +51,7 @@ export default async function FestivalPage({ params }: Params) {
             {festival.nameKo && (
               <p className="text-white/50 text-base mt-1" style={{ fontFamily: cormorant }}>{festival.nameKo}</p>
             )}
-            <p className="text-white/60 mt-2 text-sm" style={{ fontFamily: dmSans }}>
+            <p className="text-white/60 mt-2 text-sm" style={{ fontFamily: pretendard }}>
               {festival.city}, {festival.country} &nbsp;·&nbsp; {festival.month}
             </p>
           </div>
@@ -74,20 +74,20 @@ export default async function FestivalPage({ params }: Params) {
                   >
                     ★ {festival.rating}
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>평점</div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: pretendard, letterSpacing: "0.08em" }}>평점</div>
                 </div>
                 <div className="w-px" style={{ background: "#e5e2da" }} />
                 <div className="flex-1 text-center py-5 border-r" style={{ borderColor: "#e5e2da" }}>
                   <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
                     {festival.reviewCount.toLocaleString()}
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>리뷰</div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: pretendard, letterSpacing: "0.08em" }}>리뷰</div>
                 </div>
                 <div className="flex-1 text-center py-5">
                   <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
                     {festival.duration}
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>기간</div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: pretendard, letterSpacing: "0.08em" }}>기간</div>
                 </div>
               </div>
 
@@ -96,9 +96,9 @@ export default async function FestivalPage({ params }: Params) {
                 className="text-xl font-semibold mb-4"
                 style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
               >
-                About This Festival
+                축제 소개
               </h2>
-              <p className="text-base leading-relaxed" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+              <p className="text-base leading-relaxed" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
                 {festival.description}
               </p>
 
@@ -113,7 +113,7 @@ export default async function FestivalPage({ params }: Params) {
               <div className="mt-8 pt-6 border-t" style={{ borderColor: "#e5e2da" }}>
                 <h3
                   className="text-xs font-semibold uppercase tracking-widest mb-4"
-                  style={{ color: "#9e9e9e", fontFamily: dmSans }}
+                  style={{ color: "#9e9e9e", fontFamily: pretendard }}
                 >
                   이런 분께 추천
                 </h3>
@@ -122,7 +122,7 @@ export default async function FestivalPage({ params }: Params) {
                     <span
                       key={m}
                       className="px-3 py-1.5 text-sm font-medium border"
-                      style={{ borderColor: "#e5e2da", color: "#1a1a1a", fontFamily: dmSans }}
+                      style={{ borderColor: "#e5e2da", color: "#1a1a1a", fontFamily: pretendard }}
                     >
                       {m}
                     </span>
@@ -136,7 +136,7 @@ export default async function FestivalPage({ params }: Params) {
                   className="text-xl font-semibold mb-6"
                   style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
                 >
-                  Traveler Reviews
+                  여행자 리뷰
                 </h2>
                 <div className="space-y-0">
                   {festival.reviews.map((r, i) => (
@@ -149,8 +149,8 @@ export default async function FestivalPage({ params }: Params) {
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={r.avatar} alt={r.author} className="w-8 h-8 object-cover" />
                         <div>
-                          <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: dmSans }}>{r.author}</p>
-                          <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: dmSans }}>{r.date}</p>
+                          <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: pretendard }}>{r.author}</p>
+                          <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: pretendard }}>{r.date}</p>
                         </div>
                         <div className="ml-auto flex items-center gap-0.5">
                           {[...Array(5)].map((_, j) => (
@@ -158,7 +158,7 @@ export default async function FestivalPage({ params }: Params) {
                           ))}
                         </div>
                       </div>
-                      <p className="text-sm leading-relaxed" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+                      <p className="text-sm leading-relaxed" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
                         {r.comment}
                       </p>
                     </div>
@@ -187,20 +187,20 @@ export default async function FestivalPage({ params }: Params) {
                     { label: "국가", value: festival.country },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between">
-                      <span style={{ color: "#9e9e9e", fontFamily: dmSans }}>{label}</span>
-                      <span className="font-medium text-right" style={{ color: "#1a1a1a", fontFamily: dmSans }}>{value}</span>
+                      <span style={{ color: "#9e9e9e", fontFamily: pretendard }}>{label}</span>
+                      <span className="font-medium text-right" style={{ color: "#1a1a1a", fontFamily: pretendard }}>{value}</span>
                     </div>
                   ))}
                 </div>
                 <button
                   className="w-full py-3 text-sm font-medium transition-opacity hover:opacity-90"
-                  style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: dmSans }}
+                  style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: pretendard }}
                 >
                   위시리스트에 저장
                 </button>
                 <button
                   className="w-full mt-2 py-3 text-sm font-medium border transition-colors hover:bg-gray-50"
-                  style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
+                  style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: pretendard }}
                 >
                   공유하기
                 </button>
@@ -214,7 +214,7 @@ export default async function FestivalPage({ params }: Params) {
           <Link
             href="/explore"
             className="text-sm font-medium flex items-center gap-2 transition-colors"
-            style={{ color: "#4344FD", fontFamily: dmSans }}
+            style={{ color: "#4344FD", fontFamily: pretendard }}
           >
             ← 탐색으로 돌아가기
           </Link>
