@@ -36,7 +36,7 @@ export default function HomePage() {
       <Navigation />
 
       {/* HERO */}
-      <section className="relative w-full overflow-hidden" style={{ height: "100svh", minHeight: "600px" }}>
+      <section className="relative w-full overflow-hidden" style={{ height: "80svh", maxHeight: "720px", minHeight: "480px" }}>
         <Image
           src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=85"
           alt="Golden hour landscape travel"

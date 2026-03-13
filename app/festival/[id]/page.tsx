@@ -25,7 +25,7 @@ export default async function FestivalPage({ params }: Params) {
       <Navigation />
       <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
         {/* Hero */}
-        <div className="relative w-full overflow-hidden" style={{ height: "60vh", minHeight: "400px" }}>
+        <div className="relative w-full overflow-hidden" style={{ height: "50vh", maxHeight: "520px", minHeight: "360px" }}>
           <Image
             src={festival.heroImage}
             alt={festival.name}
