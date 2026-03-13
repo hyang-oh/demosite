@@ -14,14 +14,14 @@ const travelStyles = [
 ];
 
 const destinations = [
-  { name: "Japan", count: "3 festivals", image: "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=600&q=80" },
-  { name: "South Korea", count: "2 festivals", image: "https://images.unsplash.com/photo-1567591370428-3e9e0def2e84?w=600&q=80" },
-  { name: "India", count: "2 festivals", image: "https://images.unsplash.com/photo-1605278407197-a9e00b9ed6d9?w=600&q=80" },
-  { name: "Brazil", count: "1 festival", image: "https://images.unsplash.com/photo-1564419320408-38e88b48956e?w=600&q=80" },
-  { name: "Spain", count: "1 festival", image: "https://images.unsplash.com/photo-1513614835788-548945c0af4e?w=600&q=80" },
-  { name: "Thailand", count: "1 festival", image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80" },
-  { name: "Mexico", count: "1 festival", image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80" },
-  { name: "Germany", count: "1 festival", image: "https://images.unsplash.com/photo-1473196872800-32f8f99de3fb?w=600&q=80" },
+  { name: "Japan", count: "3 festivals", image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80" },
+  { name: "South Korea", count: "2 festivals", image: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600&q=80" },
+  { name: "India", count: "2 festivals", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80" },
+  { name: "Brazil", count: "1 festival", image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=80" },
+  { name: "Spain", count: "1 festival", image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&q=80" },
+  { name: "Thailand", count: "1 festival", image: "https://images.unsplash.com/photo-1528181304800-259b08848526?w=600&q=80" },
+  { name: "Mexico", count: "1 festival", image: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&q=80" },
+  { name: "Germany", count: "1 festival", image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80" },
 ];
 
 export default function HomePage() {
@@ -38,8 +38,8 @@ export default function HomePage() {
       {/* HERO */}
       <section className="relative w-full overflow-hidden" style={{ height: "100svh", minHeight: "600px" }}>
         <Image
-          src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1920&q=85"
-          alt="Festival crowd"
+          src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=85"
+          alt="Golden hour landscape travel"
           fill className="object-cover" priority sizes="100vw"
         />
         <div
