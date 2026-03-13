@@ -32,7 +32,7 @@ export default function CategoryFilter({
               style={{
                 fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
                 background: isActive ? "#1a1a1a" : "transparent",
-                color: isActive ? "#fdfcf3" : "#6e6e6e",
+                color: isActive ? "#ffffff" : "#6e6e6e",
                 borderColor: isActive ? "#1a1a1a" : "#e5e2da",
                 letterSpacing: "0.1em",
               }}

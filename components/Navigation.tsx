@@ -29,7 +29,7 @@ export default function Navigation() {
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: "#fdfcf3",
+          background: "#ffffff",
           borderBottom: scrolled ? "1px solid #e5e2da" : "1px solid #e5e2da",
         }}
       >
@@ -60,7 +60,7 @@ export default function Navigation() {
                   className="relative text-sm font-medium transition-colors duration-200"
                   style={{
                     fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
-                    color: active ? "#25aae1" : "#1a1a1a",
+                    color: active ? "#4344FD" : "#1a1a1a",
                     letterSpacing: "0.01em",
                   }}
                 >
@@ -68,7 +68,7 @@ export default function Navigation() {
                   {active && (
                     <span
                       className="absolute -bottom-0.5 left-0 right-0 h-px"
-                      style={{ background: "#25aae1" }}
+                      style={{ background: "#4344FD" }}
                     />
                   )}
                 </Link>
@@ -92,7 +92,7 @@ export default function Navigation() {
               style={{
                 fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
                 background: "#1a1a1a",
-                color: "#fdfcf3",
+                color: "#ffffff",
               }}
             >
               Plan a trip
@@ -121,7 +121,7 @@ export default function Navigation() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 pt-14 flex flex-col"
-            style={{ background: "#fdfcf3" }}
+            style={{ background: "#ffffff" }}
           >
             <nav className="flex flex-col px-8 py-6 gap-0 flex-1">
               {navLinks.map(({ href, label }, i) => (
@@ -137,7 +137,7 @@ export default function Navigation() {
                     style={{
                       fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                       borderColor: "#e5e2da",
-                      color: pathname === href ? "#25aae1" : "#1a1a1a",
+                      color: pathname === href ? "#4344FD" : "#1a1a1a",
                     }}
                   >
                     {label}
@@ -146,7 +146,7 @@ export default function Navigation() {
               ))}
               <div className="mt-8 flex flex-col gap-3">
                 <button className="w-full py-3 border text-base font-medium" style={{ borderColor: "#e5e2da", color: "#6e6e6e" }}>Sign in</button>
-                <button className="w-full py-3 text-base font-medium" style={{ background: "#1a1a1a", color: "#fdfcf3" }}>Plan a trip</button>
+                <button className="w-full py-3 text-base font-medium" style={{ background: "#1a1a1a", color: "#ffffff" }}>Plan a trip</button>
               </div>
             </nav>
           </motion.div>

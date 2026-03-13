@@ -23,7 +23,7 @@ export default async function FestivalPage({ params }: Params) {
   return (
     <>
       <Navigation />
-      <main className="pt-14 min-h-screen" style={{ background: "#fdfcf3" }}>
+      <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
         {/* Hero */}
         <div className="relative w-full overflow-hidden" style={{ height: "60vh", minHeight: "400px" }}>
           <Image
@@ -38,7 +38,7 @@ export default async function FestivalPage({ params }: Params) {
           <div className="absolute bottom-0 left-0 right-0 px-6 lg:px-10 pb-10 max-w-5xl mx-auto">
             <span
               className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#25aae1", fontFamily: dmSans }}
+              style={{ color: "#4344FD", fontFamily: dmSans }}
             >
               {festival.category}
             </span>
@@ -154,7 +154,7 @@ export default async function FestivalPage({ params }: Params) {
                         </div>
                         <div className="ml-auto flex items-center gap-0.5">
                           {[...Array(5)].map((_, j) => (
-                            <span key={j} className="text-xs" style={{ color: j < r.rating ? "#25aae1" : "#e5e2da" }}>★</span>
+                            <span key={j} className="text-xs" style={{ color: j < r.rating ? "#4344FD" : "#e5e2da" }}>★</span>
                           ))}
                         </div>
                       </div>
@@ -194,7 +194,7 @@ export default async function FestivalPage({ params }: Params) {
                 </div>
                 <button
                   className="w-full py-3 text-sm font-medium transition-opacity hover:opacity-90"
-                  style={{ background: "#1a1a1a", color: "#fdfcf3", fontFamily: dmSans }}
+                  style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: dmSans }}
                 >
                   Save to Wishlist
                 </button>
@@ -214,7 +214,7 @@ export default async function FestivalPage({ params }: Params) {
           <Link
             href="/explore"
             className="text-sm font-medium flex items-center gap-2 transition-colors"
-            style={{ color: "#25aae1", fontFamily: dmSans }}
+            style={{ color: "#4344FD", fontFamily: dmSans }}
           >
             ← Back to Explore
           </Link>

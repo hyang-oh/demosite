@@ -52,7 +52,7 @@ export default function HomePage() {
             <div className="max-w-3xl">
               <span
                 className="text-xs font-semibold uppercase tracking-widest"
-                style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
                 2,400+ festivals · 120 countries
               </span>
@@ -79,7 +79,7 @@ export default function HomePage() {
                   className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-medium transition-all duration-200"
                   style={{
                     fontFamily: "var(--font-dm-sans), sans-serif",
-                    background: "#fdfcf3",
+                    background: "#ffffff",
                     color: "#1a1a1a",
                     letterSpacing: "0.02em",
                   }}
@@ -105,7 +105,7 @@ export default function HomePage() {
       </section>
 
       {/* TRAVEL STYLE TABS */}
-      <section className="py-4 border-b" style={{ borderColor: "#e5e2da", background: "#fdfcf3" }}>
+      <section className="py-4 border-b" style={{ borderColor: "#e5e2da", background: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="scroll-x">
             <div className="flex gap-0 border-l" style={{ width: "max-content", borderColor: "#e5e2da" }}>
@@ -129,14 +129,14 @@ export default function HomePage() {
       </section>
 
       {/* POPULAR DESTINATIONS */}
-      <section className="py-16 lg:py-24" style={{ background: "#fdfcf3" }}>
+      <section className="py-16 lg:py-24" style={{ background: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-end justify-between mb-10 pb-6 border-b" style={{ borderColor: "#e5e2da" }}>
             <div>
               <span className="rule-line" />
               <span
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
-                style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
                 Where to next
               </span>
@@ -163,7 +163,7 @@ export default function HomePage() {
                 key={dest.name}
                 href={`/explore?country=${dest.name}`}
                 className="group relative img-zoom"
-                style={{ aspectRatio: "3/4", background: "#fdfcf3" }}
+                style={{ aspectRatio: "3/4", background: "#ffffff" }}
               >
                 <Image src={dest.image} alt={dest.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                 <div className="absolute inset-0 gradient-bottom opacity-80" />
@@ -192,7 +192,7 @@ export default function HomePage() {
                 key={dest.name}
                 href={`/explore?country=${dest.name}`}
                 className="group relative img-zoom"
-                style={{ aspectRatio: "4/3", background: "#fdfcf3" }}
+                style={{ aspectRatio: "4/3", background: "#ffffff" }}
               >
                 <Image src={dest.image} alt={dest.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                 <div className="absolute inset-0 gradient-bottom opacity-70" />
@@ -224,7 +224,7 @@ export default function HomePage() {
               <span className="rule-line" />
               <span
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
-                style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
                 Handpicked for you
               </span>
@@ -259,13 +259,13 @@ export default function HomePage() {
       </section>
 
       {/* THIS SEASON */}
-      <section className="py-16 border-t" style={{ background: "#fdfcf3", borderColor: "#e5e2da" }}>
+      <section className="py-16 border-t" style={{ background: "#ffffff", borderColor: "#e5e2da" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="mb-8 pb-6 border-b" style={{ borderColor: "#e5e2da" }}>
             <span className="rule-line" />
             <span
               className="text-xs font-semibold uppercase tracking-widest block mb-2"
-              style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
               Spring · March–April
             </span>
@@ -296,7 +296,7 @@ export default function HomePage() {
               <span className="rule-line" />
               <span
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
-                style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
                 Around the world
               </span>
@@ -321,14 +321,14 @@ export default function HomePage() {
                 key={f.id}
                 href={`/festival/${f.id}`}
                 className="group relative img-zoom"
-                style={{ aspectRatio: "16/7", background: "#fdfcf3" }}
+                style={{ aspectRatio: "16/7", background: "#ffffff" }}
               >
                 <Image src={f.image} alt={f.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                 <div className="absolute inset-0 gradient-full" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span
                     className="text-xs font-semibold tracking-widest uppercase"
-                    style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                    style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
                   >
                     {f.category}
                   </span>
@@ -356,7 +356,7 @@ export default function HomePage() {
         <div className="max-w-2xl mx-auto px-6 text-center">
           <span
             className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
             Never miss a festival
           </span>
@@ -392,7 +392,7 @@ export default function HomePage() {
             <button
               className="px-6 py-3.5 text-sm font-medium transition-opacity hover:opacity-90"
               style={{
-                background: "#25aae1",
+                background: "#4344FD",
                 color: "#ffffff",
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 letterSpacing: "0.05em",
@@ -405,7 +405,7 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 border-t" style={{ borderColor: "#e5e2da", background: "#fdfcf3" }}>
+      <footer className="py-8 border-t" style={{ borderColor: "#e5e2da", background: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <span
             className="text-xl font-semibold"
@@ -426,7 +426,7 @@ export default function HomePage() {
           </p>
           <p
             className="text-xs font-medium"
-            style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
             Made with Claude Code ✦
           </p>

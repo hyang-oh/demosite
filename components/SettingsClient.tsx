@@ -73,7 +73,7 @@ export default function SettingsClient() {
   const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
   return (
-    <main className="pt-14 min-h-screen" style={{ background: "#fdfcf3" }}>
+    <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
       {/* Header */}
       <div
         className="py-12 lg:py-16 border-b"
@@ -83,7 +83,7 @@ export default function SettingsClient() {
           <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest block mb-2"
-            style={{ color: "#25aae1", fontFamily: dmSans }}
+            style={{ color: "#4344FD", fontFamily: dmSans }}
           >
             Preferences
           </span>
@@ -158,11 +158,11 @@ export default function SettingsClient() {
                 }}
               >
                 <div className="text-left">
-                  <p className="text-sm font-medium" style={{ color: language === lang.code ? "#fdfcf3" : "#1a1a1a", fontFamily: dmSans }}>{lang.native}</p>
+                  <p className="text-sm font-medium" style={{ color: language === lang.code ? "#ffffff" : "#1a1a1a", fontFamily: dmSans }}>{lang.native}</p>
                   <p className="text-xs" style={{ color: language === lang.code ? "#9e9e9e" : "#9e9e9e", fontFamily: dmSans }}>{lang.label}</p>
                 </div>
                 {language === lang.code && (
-                  <span className="text-xs" style={{ color: "#25aae1" }}>✓</span>
+                  <span className="text-xs" style={{ color: "#4344FD" }}>✓</span>
                 )}
               </button>
             ))}
@@ -193,7 +193,7 @@ export default function SettingsClient() {
                 style={{
                   borderColor: theme === t.value ? "#1a1a1a" : "#e5e2da",
                   background: theme === t.value ? "#1a1a1a" : "#ffffff",
-                  color: theme === t.value ? "#fdfcf3" : "#6e6e6e",
+                  color: theme === t.value ? "#ffffff" : "#6e6e6e",
                 }}
               >
                 <span className="text-lg">{t.icon}</span>
@@ -263,7 +263,7 @@ export default function SettingsClient() {
             <Link
               href="/explore"
               className="text-xs font-medium transition-colors"
-              style={{ color: "#25aae1", fontFamily: dmSans }}
+              style={{ color: "#4344FD", fontFamily: dmSans }}
             >
               Browse more →
             </Link>
@@ -281,7 +281,7 @@ export default function SettingsClient() {
             ))}
             <div
               className="w-14 h-14 flex items-center justify-center flex-shrink-0 text-sm font-medium"
-              style={{ background: "#f5f3eb", color: "#25aae1", fontFamily: dmSans }}
+              style={{ background: "#f5f3eb", color: "#4344FD", fontFamily: dmSans }}
             >
               +14
             </div>
@@ -322,7 +322,7 @@ export default function SettingsClient() {
           </div>
           <div className="mt-5 pt-4 border-t flex items-center justify-between" style={{ borderColor: "#2e2e2e" }}>
             <p className="text-xs" style={{ color: "#6e6e6e", fontFamily: dmSans }}>© 2026 Festivo</p>
-            <p className="text-xs font-medium" style={{ color: "#25aae1", fontFamily: dmSans }}>Made with Claude Code ✦</p>
+            <p className="text-xs font-medium" style={{ color: "#4344FD", fontFamily: dmSans }}>Made with Claude Code ✦</p>
           </div>
         </motion.div>
 

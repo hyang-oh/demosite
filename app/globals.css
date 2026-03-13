@@ -2,11 +2,11 @@
 
 /* ─── Design Tokens ──────────────────────────────────────────── */
 @theme inline {
-  --color-primary:        #25aae1;
-  --color-primary-hover:  #1a8fc4;
-  --color-primary-light:  #e8f6fc;
+  --color-primary:        #4344FD;
+  --color-primary-hover:  #3233d4;
+  --color-primary-light:  #eeeeff;
 
-  --color-bg:             #fdfcf3;
+  --color-bg:             #ffffff;
   --color-bg-warm:        #f5f3eb;
   --color-surface:        #ffffff;
   --color-border:         #e5e2da;
@@ -31,7 +31,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #fdfcf3;
+  background-color: #ffffff;
   color: #1a1a1a;
   font-family: var(--font-sans), 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
   font-size: 15px;
@@ -54,7 +54,7 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-thumb { background: #d5d2ca; border-radius: 9999px; }
 
 /* ─── Focus ─────────────────────────────────────────────────── */
-:focus-visible { outline: 2px solid #25aae1; outline-offset: 2px; border-radius: 1px; }
+:focus-visible { outline: 2px solid #4344FD; outline-offset: 2px; border-radius: 1px; }
 
 /* ─── Horizontal scroll (hidden scrollbar) ──────────────────── */
 .scroll-x { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
@@ -85,8 +85,8 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   font-family: var(--font-sans), 'DM Sans', sans-serif;
   background-color: transparent;
-  border: 1px solid #25aae1;
-  color: #25aae1;
+  border: 1px solid #4344FD;
+  color: #4344FD;
   white-space: nowrap;
 }
 
@@ -95,7 +95,7 @@ h1, h2, h3, h4 {
   display: block;
   width: 32px;
   height: 2px;
-  background: #25aae1;
+  background: #4344FD;
   margin-bottom: 12px;
 }
 

@@ -12,12 +12,12 @@ interface FestivalCardProps {
 }
 
 const categoryColors: Record<string, string> = {
-  Music: "#25aae1",
-  Culture: "#25aae1",
-  Nature: "#25aae1",
-  Food: "#25aae1",
-  Seasonal: "#25aae1",
-  Art: "#25aae1",
+  Music: "#4344FD",
+  Culture: "#4344FD",
+  Nature: "#4344FD",
+  Food: "#4344FD",
+  Seasonal: "#4344FD",
+  Art: "#4344FD",
 };
 
 export default function FestivalCard({
@@ -59,7 +59,7 @@ export default function FestivalCard({
           <div className="flex-1 min-w-0">
             <span
               className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
               {festival.category}
             </span>
@@ -104,7 +104,7 @@ export default function FestivalCard({
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span
                 className="text-xs font-semibold tracking-widest uppercase"
-                style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
                 {festival.category}
               </span>
@@ -155,7 +155,7 @@ export default function FestivalCard({
           <div className="flex items-center justify-between">
             <span
               className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
               {festival.category}
             </span>

@@ -50,17 +50,17 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
   }, [festivals, activeCategory, search, sort]);
 
   return (
-    <main className="pt-14 min-h-screen" style={{ background: "#fdfcf3" }}>
+    <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
       {/* Page header */}
       <div
         className="relative py-16 lg:py-24 overflow-hidden border-b"
-        style={{ background: "#fdfcf3", borderColor: "#e5e2da" }}
+        style={{ background: "#ffffff", borderColor: "#e5e2da" }}
       >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
             {filtered.length} festivals worldwide
           </span>
@@ -118,7 +118,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
       <div
         className="sticky top-14 z-30 border-b"
         style={{
-          background: "rgba(253, 252, 243, 0.97)",
+          background: "rgba(255, 255, 255, 0.97)",
           backdropFilter: "blur(12px)",
           borderColor: "#e5e2da",
         }}
@@ -142,7 +142,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               style={{
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 borderColor: "#e5e2da",
-                background: "#fdfcf3",
+                background: "#ffffff",
                 color: "#6e6e6e",
                 letterSpacing: "0.05em",
               }}
@@ -163,7 +163,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                   className="w-8 h-8 flex items-center justify-center transition-all duration-200 text-xs"
                   style={{
                     background: viewMode === mode ? "#1a1a1a" : "transparent",
-                    color: viewMode === mode ? "#fdfcf3" : "#9e9e9e",
+                    color: viewMode === mode ? "#ffffff" : "#9e9e9e",
                   }}
                   title={mode === "grid" ? "Grid view" : "List view"}
                 >
@@ -183,7 +183,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               <>
                 <span className="font-medium" style={{ color: "#1a1a1a" }}>{filtered.length}</span> festivals
                 {activeCategory !== "All" && (
-                  <> in <span className="font-medium" style={{ color: "#25aae1" }}>{activeCategory}</span></>
+                  <> in <span className="font-medium" style={{ color: "#4344FD" }}>{activeCategory}</span></>
                 )}
               </>
             ) : (
