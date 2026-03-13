@@ -1,5 +1,6 @@
 export type Category = 'Music' | 'Culture' | 'Nature' | 'Food' | 'Seasonal' | 'Art';
 export type Mood = 'Energetic' | 'Spiritual' | 'Romantic' | 'Family' | 'Adventure' | 'Chill';
+export type Continent = 'Asia' | 'Europe' | 'Americas' | 'Africa' | 'Oceania';
 
 export interface Review {
   author: string;
@@ -9,6 +10,12 @@ export interface Review {
   comment: string;
 }
 
+export interface Highlight {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
 export interface Festival {
   id: string;
   name: string;
@@ -16,14 +23,17 @@ export interface Festival {
   country: string;
   city: string;
   countryCode: string;
+  continent: Continent;
   month: string;
   duration: string;
   category: Category;
   mood: Mood[];
   image: string;
   heroImage: string;
+  gallery?: string[];
   description: string;
   shortDesc: string;
+  highlights?: Highlight[];
   rating: number;
   reviewCount: number;
   featured: boolean;
@@ -41,6 +51,7 @@ export const festivals: Festival[] = [
     country: 'South Korea',
     city: 'Jinju',
     countryCode: 'KR',
+    continent: 'Asia',
     month: 'October',
     duration: '10 days',
     category: 'Culture',
@@ -66,6 +77,7 @@ export const festivals: Festival[] = [
     country: 'South Korea',
     city: 'Boryeong',
     countryCode: 'KR',
+    continent: 'Asia',
     month: 'July',
     duration: '10 days',
     category: 'Culture',
@@ -90,6 +102,7 @@ export const festivals: Festival[] = [
     country: 'South Korea',
     city: 'Andong',
     countryCode: 'KR',
+    continent: 'Asia',
     month: 'September',
     duration: '9 days',
     category: 'Art',
@@ -114,6 +127,7 @@ export const festivals: Festival[] = [
     country: 'South Korea',
     city: 'Hwacheon',
     countryCode: 'KR',
+    continent: 'Asia',
     month: 'January',
     duration: '20 days',
     category: 'Nature',
@@ -138,6 +152,7 @@ export const festivals: Festival[] = [
     country: 'South Korea',
     city: 'Busan',
     countryCode: 'KR',
+    continent: 'Asia',
     month: 'October',
     duration: '1 day',
     category: 'Culture',
@@ -163,6 +178,7 @@ export const festivals: Festival[] = [
     country: 'United States',
     city: 'Indio, California',
     countryCode: 'US',
+    continent: 'Americas',
     month: 'April',
     duration: '3 weekends',
     category: 'Music',
@@ -187,6 +203,7 @@ export const festivals: Festival[] = [
     country: 'Brazil',
     city: 'Rio de Janeiro',
     countryCode: 'BR',
+    continent: 'Americas',
     month: 'February',
     duration: '5 days',
     category: 'Culture',
@@ -210,6 +227,7 @@ export const festivals: Festival[] = [
     country: 'United Kingdom',
     city: 'Pilton, Somerset',
     countryCode: 'GB',
+    continent: 'Europe',
     month: 'June',
     duration: '5 days',
     category: 'Music',
@@ -233,6 +251,7 @@ export const festivals: Festival[] = [
     country: 'United States',
     city: 'Black Rock City, Nevada',
     countryCode: 'US',
+    continent: 'Americas',
     month: 'August',
     duration: '9 days',
     category: 'Art',
@@ -256,6 +275,7 @@ export const festivals: Festival[] = [
     country: 'India',
     city: 'Mathura & Vrindavan',
     countryCode: 'IN',
+    continent: 'Asia',
     month: 'March',
     duration: '2 days',
     category: 'Seasonal',
@@ -279,6 +299,7 @@ export const festivals: Festival[] = [
     country: 'Germany',
     city: 'Munich',
     countryCode: 'DE',
+    continent: 'Europe',
     month: 'September',
     duration: '16 days',
     category: 'Food',
@@ -302,6 +323,7 @@ export const festivals: Festival[] = [
     country: 'Japan',
     city: 'Tokyo & Kyoto',
     countryCode: 'JP',
+    continent: 'Asia',
     month: 'March–April',
     duration: '2 weeks',
     category: 'Nature',
@@ -325,6 +347,7 @@ export const festivals: Festival[] = [
     country: 'Spain',
     city: 'Buñol, Valencia',
     countryCode: 'ES',
+    continent: 'Europe',
     month: 'August',
     duration: '1 day',
     category: 'Culture',
@@ -348,6 +371,7 @@ export const festivals: Festival[] = [
     country: 'India',
     city: 'Jaipur & Varanasi',
     countryCode: 'IN',
+    continent: 'Asia',
     month: 'October–November',
     duration: '5 days',
     category: 'Seasonal',
@@ -371,6 +395,7 @@ export const festivals: Festival[] = [
     country: 'United Kingdom',
     city: 'Edinburgh, Scotland',
     countryCode: 'GB',
+    continent: 'Europe',
     month: 'August',
     duration: '25 days',
     category: 'Art',
@@ -394,6 +419,7 @@ export const festivals: Festival[] = [
     country: 'Thailand',
     city: 'Chiang Mai & Bangkok',
     countryCode: 'TH',
+    continent: 'Asia',
     month: 'April',
     duration: '3 days',
     category: 'Culture',
@@ -417,6 +443,7 @@ export const festivals: Festival[] = [
     country: 'United Kingdom',
     city: 'London',
     countryCode: 'GB',
+    continent: 'Europe',
     month: 'August',
     duration: '2 days',
     category: 'Music',
@@ -440,6 +467,7 @@ export const festivals: Festival[] = [
     country: 'Mexico',
     city: 'Oaxaca & Mexico City',
     countryCode: 'MX',
+    continent: 'Americas',
     month: 'November',
     duration: '3 days',
     category: 'Seasonal',
@@ -463,7 +491,14 @@ export const getFeaturedFestivals = () => festivals.filter(f => f.featured);
 export const getEditorsPick = () => festivals.filter(f => f.editorsPick);
 export const getByCategory = (category: Category) => festivals.filter(f => f.category === category);
 export const getByMood = (mood: Mood) => festivals.filter(f => f.mood.includes(mood));
+export const getByContinent = (continent: Continent) => festivals.filter(f => f.continent === continent);
+export const getByCountry = (country: string) => festivals.filter(f => f.country === country);
 export const getFestivalById = (id: string) => festivals.find(f => f.id === id);
+export const getRelatedFestivals = (festival: Festival, limit = 3) =>
+  festivals.filter(f => f.id !== festival.id && (f.country === festival.country || f.category === festival.category || f.month === festival.month)).slice(0, limit);
 
 export const categories: Category[] = ['Music', 'Culture', 'Nature', 'Food', 'Seasonal', 'Art'];
 export const moods: Mood[] = ['Energetic', 'Spiritual', 'Romantic', 'Family', 'Adventure', 'Chill'];
+export const continents: Continent[] = ['Asia', 'Europe', 'Americas', 'Africa', 'Oceania'];
+export const allCountries = [...new Set(festivals.map(f => f.country))].sort();
+export const allMonths = ['January', 'February', 'March', 'March–April', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'October–November', 'November', 'December'];

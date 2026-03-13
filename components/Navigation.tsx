@@ -4,17 +4,20 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { Search } from "lucide-react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/explore", label: "Explore" },
-  { href: "/settings", label: "More" },
+  { href: "/map", label: "Map" },
+  { href: "/calendar", label: "Calendar" },
+  { href: "/magazine", label: "Magazine" },
 ];
 
 export default function Navigation() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 16);
@@ -22,7 +25,7 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => { setMenuOpen(false); setSearchOpen(false); }, [pathname]);
 
   return (
     <>
@@ -30,12 +33,12 @@ export default function Navigation() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           background: "#ffffff",
-          borderBottom: scrolled ? "1px solid #e5e2da" : "1px solid #e5e2da",
+          borderBottom: scrolled ? "1px solid #e5e2da" : "1px solid transparent",
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-14 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-0 group">
+          <Link href="/" className="flex items-center gap-0 group flex-shrink-0">
             <span
               className="text-xl font-bold tracking-tight"
               style={{
@@ -50,9 +53,9 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-7">
             {navLinks.map(({ href, label }) => {
-              const active = pathname === href;
+              const active = pathname === href || (href !== "/" && pathname.startsWith(href));
               return (
                 <Link
                   key={href}
@@ -76,27 +79,26 @@ export default function Navigation() {
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Desktop right */}
+          <div className="hidden md:flex items-center gap-3">
             <button
-              className="text-sm font-medium transition-colors duration-200"
-              style={{
-                fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
-                color: "#6e6e6e",
-              }}
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="w-9 h-9 flex items-center justify-center transition-colors hover:bg-gray-50"
+              aria-label="Search"
             >
-              Sign in
+              <Search size={18} strokeWidth={1.5} style={{ color: "#6e6e6e" }} />
             </button>
-            <button
-              className="text-sm font-medium px-5 py-2 transition-all duration-200"
+            <Link
+              href="/settings"
+              className="w-9 h-9 flex items-center justify-center text-xs font-semibold"
               style={{
-                fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
                 background: "#1a1a1a",
                 color: "#ffffff",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Plan a trip
-            </button>
+              H
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -110,6 +112,42 @@ export default function Navigation() {
             <span className="block w-5 h-px transition-all duration-300" style={{ background: "#1a1a1a", transform: menuOpen ? "rotate(-45deg) translate(2px, -2px)" : "none" }} />
           </button>
         </div>
+
+        {/* Search bar overlay */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="border-t overflow-hidden"
+              style={{ borderColor: "#e5e2da" }}
+            >
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3">
+                <div className="flex items-center gap-3">
+                  <Search size={16} strokeWidth={1.5} style={{ color: "#9e9e9e" }} />
+                  <input
+                    type="text"
+                    placeholder="축제명, 도시, 국가로 검색..."
+                    autoFocus
+                    className="flex-1 text-sm outline-none bg-transparent"
+                    style={{
+                      color: "#1a1a1a",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                    }}
+                  />
+                  <button
+                    onClick={() => setSearchOpen(false)}
+                    className="text-xs"
+                    style={{ color: "#9e9e9e" }}
+                  >
+                    ESC
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Mobile menu */}
@@ -144,9 +182,22 @@ export default function Navigation() {
                   </Link>
                 </motion.div>
               ))}
-              <div className="mt-8 flex flex-col gap-3">
-                <button className="w-full py-3 border text-base font-medium" style={{ borderColor: "#e5e2da", color: "#6e6e6e" }}>Sign in</button>
-                <button className="w-full py-3 text-base font-medium" style={{ background: "#1a1a1a", color: "#ffffff" }}>Plan a trip</button>
+              <div className="mt-8">
+                <Link
+                  href="/settings"
+                  className="flex items-center gap-3 py-4"
+                >
+                  <span
+                    className="w-10 h-10 flex items-center justify-center text-sm font-semibold"
+                    style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                  >
+                    H
+                  </span>
+                  <div>
+                    <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>Hyang Oh</p>
+                    <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>Settings</p>
+                  </div>
+                </Link>
               </div>
             </nav>
           </motion.div>
