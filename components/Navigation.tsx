@@ -22,36 +22,25 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  // Close menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   return (
     <>
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled
-            ? "rgba(247, 244, 239, 0.95)"
-            : "rgba(247, 244, 239, 0.0)",
+          background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.0)",
           backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: scrolled ? "1px solid #E8E3DC" : "1px solid transparent",
+          borderBottom: scrolled ? "1px solid #E8E4DF" : "1px solid transparent",
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div
-              className="w-7 h-7 rounded-full flex items-center justify-center"
-              style={{ background: "#C8741A" }}
-            >
-              <span className="text-white text-xs font-bold" style={{ fontFamily: "var(--font-playfair)" }}>F</span>
+            <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "#E8311A" }}>
+              <span className="text-white text-xs font-bold">F</span>
             </div>
-            <span
-              className="text-xl font-semibold tracking-tight"
-              style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}
-            >
+            <span className="text-lg font-700 tracking-tight font-bold" style={{ color: "#222222", letterSpacing: "-0.03em" }}>
               Festivo
             </span>
           </Link>
@@ -64,16 +53,13 @@ export default function Navigation() {
                 <Link
                   key={href}
                   href={href}
-                  className="relative text-sm font-medium transition-colors duration-200 group"
-                  style={{ color: active ? "#C8741A" : "#1C1C1C" }}
+                  className="relative text-sm font-medium transition-colors duration-200"
+                  style={{ color: active ? "#E8311A" : "#222222" }}
                 >
                   {label}
                   <span
                     className="absolute -bottom-0.5 left-0 h-0.5 transition-all duration-300"
-                    style={{
-                      background: "#C8741A",
-                      width: active ? "100%" : "0%",
-                    }}
+                    style={{ background: "#E8311A", width: active ? "100%" : "0%" }}
                   />
                 </Link>
               );
@@ -83,14 +69,14 @@ export default function Navigation() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <button
-              className="text-sm font-medium px-4 py-1.5 rounded-full border transition-colors duration-200"
-              style={{ borderColor: "#E8E3DC", color: "#6B6B6B" }}
+              className="text-sm font-medium px-5 py-2 rounded-full border transition-colors duration-200 hover:bg-gray-50"
+              style={{ borderColor: "#E8E4DF", color: "#666666" }}
             >
               Sign in
             </button>
             <button
-              className="text-sm font-medium px-4 py-1.5 rounded-full text-white transition-all duration-200 hover:opacity-90"
-              style={{ background: "#C8741A" }}
+              className="text-sm font-semibold px-5 py-2 rounded-full text-white transition-all duration-200 hover:opacity-90"
+              style={{ background: "#E8311A" }}
             >
               Plan a trip
             </button>
@@ -102,27 +88,9 @@ export default function Navigation() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span
-              className="block w-5 h-0.5 transition-all duration-300"
-              style={{
-                background: "#1C1C1C",
-                transform: menuOpen ? "rotate(45deg) translate(3px, 3px)" : "none",
-              }}
-            />
-            <span
-              className="block w-5 h-0.5 transition-all duration-300"
-              style={{
-                background: "#1C1C1C",
-                opacity: menuOpen ? 0 : 1,
-              }}
-            />
-            <span
-              className="block w-5 h-0.5 transition-all duration-300"
-              style={{
-                background: "#1C1C1C",
-                transform: menuOpen ? "rotate(-45deg) translate(3px, -3px)" : "none",
-              }}
-            />
+            <span className="block w-5 h-0.5 transition-all duration-300" style={{ background: "#222222", transform: menuOpen ? "rotate(45deg) translate(3px, 3px)" : "none" }} />
+            <span className="block w-5 h-0.5 transition-all duration-300" style={{ background: "#222222", opacity: menuOpen ? 0 : 1 }} />
+            <span className="block w-5 h-0.5 transition-all duration-300" style={{ background: "#222222", transform: menuOpen ? "rotate(-45deg) translate(3px, -3px)" : "none" }} />
           </button>
         </div>
       </header>
@@ -135,8 +103,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 pt-16 flex flex-col"
-            style={{ background: "#F7F4EF" }}
+            className="fixed inset-0 z-40 pt-16 flex flex-col bg-white"
           >
             <nav className="flex flex-col p-8 gap-2 flex-1">
               {navLinks.map(({ href, label }, i) => (
@@ -148,31 +115,16 @@ export default function Navigation() {
                 >
                   <Link
                     href={href}
-                    className="block py-4 text-3xl font-semibold border-b transition-colors"
-                    style={{
-                      fontFamily: "var(--font-playfair)",
-                      borderColor: "#E8E3DC",
-                      color: pathname === href ? "#C8741A" : "#1C1C1C",
-                    }}
+                    className="block py-4 text-2xl font-semibold border-b transition-colors"
+                    style={{ borderColor: "#E8E4DF", color: pathname === href ? "#E8311A" : "#222222" }}
                   >
                     {label}
                   </Link>
                 </motion.div>
               ))}
-
               <div className="mt-8 flex flex-col gap-3">
-                <button
-                  className="w-full py-3 rounded-full border text-base font-medium"
-                  style={{ borderColor: "#E8E3DC", color: "#6B6B6B" }}
-                >
-                  Sign in
-                </button>
-                <button
-                  className="w-full py-3 rounded-full text-base font-medium text-white"
-                  style={{ background: "#C8741A" }}
-                >
-                  Plan a trip
-                </button>
+                <button className="w-full py-3 rounded-full border text-base font-medium" style={{ borderColor: "#E8E4DF", color: "#666666" }}>Sign in</button>
+                <button className="w-full py-3 rounded-full text-base font-semibold text-white" style={{ background: "#E8311A" }}>Plan a trip</button>
               </div>
             </nav>
           </motion.div>

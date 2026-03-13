@@ -1,27 +1,35 @@
 @import "tailwindcss";
 
-/* ─── Festivo Design Tokens ─────────────────────────────────── */
+/* ─── Design Tokens ──────────────────────────────────────────── */
 @theme inline {
-  --color-amber:          #C8741A;
-  --color-amber-hover:    #A85D12;
-  --color-amber-light:    #FFF3E0;
-  --color-amber-dark:     #E8881F;
+  --color-primary:        #E8311A;
+  --color-primary-hover:  #C9270F;
+  --color-primary-light:  #FFF0EE;
 
-  --color-bg:             #F7F4EF;
+  --color-bg:             #FFFFFF;
+  --color-bg-sand:        #F6F4F0;
   --color-surface:        #FFFFFF;
-  --color-border:         #E8E3DC;
+  --color-border:         #E8E4DF;
 
-  --color-text-primary:   #1C1C1C;
-  --color-text-secondary: #6B6B6B;
-  --color-text-tertiary:  #A8A8A8;
+  --color-text-primary:   #222222;
+  --color-text-secondary: #666666;
+  --color-text-tertiary:  #999999;
 
-  --color-dark-bg:        #111111;
-  --color-dark-surface:   #1E1E1E;
-  --color-dark-border:    #2E2E2E;
-  --color-dark-text:      #F0EDE8;
+  --color-dark-bg:        #222222;
+  --color-dark-surface:   #2E2E2E;
+  --color-dark-border:    #3A3A3A;
+  --color-dark-text:      #F6F4F0;
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-sans:    'Inter', system-ui, sans-serif;
+  /* destination accent palette */
+  --color-nature:   #0a6e50;
+  --color-culture:  #ffc828;
+  --color-food:     #ff9155;
+  --color-music:    #E8311A;
+  --color-seasonal: #4178ff;
+  --color-art:      #db2777;
+
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-sans:    'Montserrat', system-ui, sans-serif;
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -30,10 +38,10 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #F7F4EF;
-  color: #1C1C1C;
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
+  background-color: #FFFFFF;
+  color: #222222;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,9 +49,10 @@ body {
 
 /* ─── Typography ───────────────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 600;
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
@@ -52,7 +61,7 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-thumb { background: #E8E3DC; border-radius: 9999px; }
 
 /* ─── Focus ─────────────────────────────────────────────────── */
-:focus-visible { outline: 2px solid #C8741A; outline-offset: 2px; border-radius: 2px; }
+:focus-visible { outline: 2px solid #E8311A; outline-offset: 2px; border-radius: 2px; }
 
 /* ─── Horizontal scroll (hidden scrollbar) ──────────────────── */
 .scroll-x { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
@@ -81,8 +90,8 @@ h1, h2, h3, h4 {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background-color: #FFF3E0;
-  color: #C8741A;
+  background-color: #FFF0EE;
+  color: #E8311A;
   white-space: nowrap;
 }
 

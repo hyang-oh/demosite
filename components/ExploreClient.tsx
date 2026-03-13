@@ -50,30 +50,30 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
   }, [festivals, activeCategory, search, sort]);
 
   return (
-    <main className="pt-16 min-h-screen" style={{ background: "#F7F4EF" }}>
+    <main className="pt-16 min-h-screen" style={{ background: "#F6F4F0" }}>
       {/* Page header */}
       <div
         className="relative py-16 lg:py-24 overflow-hidden"
-        style={{ background: "#1C1C1C" }}
+        style={{ background: "#222222" }}
       >
         <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(45deg, #C8741A 0, #C8741A 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(45deg, #E8311A 0, #E8311A 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <span
             className="text-xs font-semibold uppercase tracking-[0.15em]"
-            style={{ color: "#C8741A" }}
+            style={{ color: "#E8311A" }}
           >
             {filtered.length} festivals worldwide
           </span>
           <h1
             className="text-4xl lg:text-6xl font-bold text-white mt-2"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            style={{ fontFamily: "var(--font-montserrat)" }}
           >
             Explore Festivals
           </h1>
@@ -112,7 +112,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
       <div
         className="sticky top-16 z-30 py-4 border-b"
         style={{
-          background: "rgba(247, 244, 239, 0.95)",
+          background: "rgba(246, 244, 240, 0.95)",
           backdropFilter: "blur(12px)",
           borderColor: "#E8E3DC",
         }}
@@ -157,7 +157,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                   onClick={() => setViewMode(mode)}
                   className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 text-xs"
                   style={{
-                    background: viewMode === mode ? "#C8741A" : "transparent",
+                    background: viewMode === mode ? "#E8311A" : "transparent",
                     color: viewMode === mode ? "#FFFFFF" : "#A8A8A8",
                   }}
                   title={mode === "grid" ? "Grid view" : "List view"}
@@ -176,9 +176,9 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
           <p className="text-sm" style={{ color: "#6B6B6B" }}>
             {filtered.length > 0 ? (
               <>
-                <span className="font-medium" style={{ color: "#1C1C1C" }}>{filtered.length}</span> festivals
+                <span className="font-medium" style={{ color: "#222222" }}>{filtered.length}</span> festivals
                 {activeCategory !== "All" && (
-                  <> in <span className="font-medium" style={{ color: "#C8741A" }}>{activeCategory}</span></>
+                  <> in <span className="font-medium" style={{ color: "#E8311A" }}>{activeCategory}</span></>
                 )}
               </>
             ) : (
@@ -199,7 +199,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               <div className="text-4xl mb-4">✦</div>
               <h3
                 className="text-xl font-semibold"
-                style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}
+                style={{ fontFamily: "var(--font-montserrat)", color: "#222222" }}
               >
                 No festivals found
               </h3>

@@ -13,7 +13,7 @@ interface FestivalCardProps {
 
 const categoryColors: Record<string, string> = {
   Music: "#7C3AED",
-  Culture: "#C8741A",
+  Culture: "#E8311A",
   Nature: "#16A34A",
   Food: "#DC2626",
   Seasonal: "#0284C7",
@@ -61,7 +61,7 @@ export default function FestivalCard({
               {festival.city}, {festival.country} · {festival.month}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <span className="text-xs" style={{ color: "#C8741A" }}>★</span>
+              <span className="text-xs" style={{ color: "#E8311A" }}>★</span>
               <span className="text-xs font-medium">{festival.rating}</span>
               <span className="text-xs" style={{ color: "#A8A8A8" }}>({festival.reviewCount.toLocaleString()})</span>
             </div>
@@ -139,7 +139,7 @@ export default function FestivalCard({
             </div>
           )}
           <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1">
-            <span className="text-xs" style={{ color: "#C8741A" }}>★</span>
+            <span className="text-xs" style={{ color: "#E8311A" }}>★</span>
             <span className="text-xs font-semibold" style={{ color: "#1C1C1C" }}>{festival.rating}</span>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function FestivalCard({
           <div className="flex items-center gap-2">
             <span
               className="text-xs font-semibold uppercase tracking-wider"
-              style={{ color: categoryColors[festival.category] ?? "#C8741A" }}
+              style={{ color: categoryColors[festival.category] ?? "#E8311A" }}
             >
               {festival.category}
             </span>
