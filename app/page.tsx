@@ -19,10 +19,10 @@ const travelStyles = [
 ];
 
 const howItWorks = [
-  { step: "01", icon: Search, title: "Discover", desc: "Browse 2,400+ festivals by theme, destination, or season" },
-  { step: "02", icon: Heart, title: "Save & Plan", desc: "Save favorites and get personalized recommendations" },
-  { step: "03", icon: CalendarCheck, title: "Get Ready", desc: "Access travel tips, reviews, and local guides" },
-  { step: "04", icon: Plane, title: "Celebrate", desc: "Experience the world's most incredible celebrations" },
+  { step: "01", icon: Search, title: "Discover", desc: "테마, 지역, 시즌별로 2,400개 이상의 축제를 탐색하세요" },
+  { step: "02", icon: Heart, title: "Save & Plan", desc: "마음에 드는 축제를 저장하고 맞춤 추천을 받으세요" },
+  { step: "03", icon: CalendarCheck, title: "Get Ready", desc: "여행 팁, 리뷰, 현지 가이드를 확인하세요" },
+  { step: "04", icon: Plane, title: "Celebrate", desc: "세계에서 가장 특별한 축제를 경험하세요" },
 ];
 
 const stats = [
@@ -90,7 +90,7 @@ export default function HomePage() {
                 className="text-white/70 mt-6 text-lg max-w-xl leading-relaxed"
                 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
               >
-                Curated festivals for every kind of traveler — from Rio&apos;s carnival streets to Japan&apos;s cherry blossom parks.
+                리오의 카니발 거리부터 일본의 벚꽃 공원까지, 모든 여행자를 위한 축제 큐레이션.
               </p>
               <div className="flex flex-wrap gap-4 mt-10">
                 <Link
@@ -103,13 +103,13 @@ export default function HomePage() {
                     letterSpacing: "0.02em",
                   }}
                 >
-                  Explore festivals
+                  축제 둘러보기
                 </Link>
                 <button
                   className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-medium border border-white/40 text-white hover:bg-white/10 transition-all"
                   style={{ fontFamily: "var(--font-dm-sans), sans-serif", letterSpacing: "0.02em" }}
                 >
-                  How it works
+                  이용 방법
                 </button>
               </div>
             </div>
@@ -131,14 +131,14 @@ export default function HomePage() {
               className="text-xs font-semibold uppercase tracking-widest"
               style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-              Browse by theme
+              테마별 둘러보기
             </h2>
             <Link
               href="/explore"
               className="text-xs font-medium transition-colors hover:text-blue-500"
               style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-              See all →
+              전체 보기 →
             </Link>
           </div>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
@@ -207,7 +207,7 @@ export default function HomePage() {
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
                 style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
-                Where to next
+                다음 여행지는?
               </span>
               <h2
                 className="text-4xl lg:text-5xl font-semibold"
@@ -221,7 +221,7 @@ export default function HomePage() {
               className="hidden md:inline-flex text-sm font-medium pb-0.5 border-b transition-colors hover:text-blue-500"
               style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-              View all →
+              전체 보기 →
             </Link>
           </div>
 
@@ -295,7 +295,7 @@ export default function HomePage() {
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
                 style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
-                Handpicked for you
+                에디터가 직접 고른
               </span>
               <h2
                 className="text-4xl lg:text-5xl font-semibold"
@@ -309,7 +309,7 @@ export default function HomePage() {
               className="hidden md:inline-flex text-sm font-medium pb-0.5 border-b transition-colors hover:text-blue-500"
               style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-              View all →
+              전체 보기 →
             </Link>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -367,7 +367,7 @@ export default function HomePage() {
                 className="text-xs font-semibold uppercase tracking-widest block mb-2"
                 style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
               >
-                Around the world
+                전 세계에서
               </span>
               <h2
                 className="text-4xl lg:text-5xl font-semibold"
@@ -381,7 +381,7 @@ export default function HomePage() {
               className="hidden md:inline-flex text-sm font-medium pb-0.5 border-b transition-colors hover:text-blue-500"
               style={{ color: "#1a1a1a", borderColor: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-              See all →
+              전체 보기 →
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "#e5e2da" }}>
@@ -429,7 +429,7 @@ export default function HomePage() {
               className="text-xs font-semibold uppercase tracking-widest block mb-2"
               style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
             >
-              Simple as 1-2-3-4
+              간단한 4단계
             </span>
             <h2
               className="text-4xl lg:text-5xl font-semibold"
@@ -493,7 +493,7 @@ export default function HomePage() {
             className="text-xs font-semibold uppercase tracking-widest"
             style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
-            Never miss a festival
+            축제를 놓치지 마세요
           </span>
           <h2
             className="text-4xl lg:text-6xl font-semibold mt-4 mb-4"
@@ -510,7 +510,7 @@ export default function HomePage() {
             className="text-lg mb-10"
             style={{ color: "#6e6e6e", fontWeight: 300, fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
-            Get personalized festival recommendations delivered to your inbox every month.
+            매달 맞춤형 축제 추천을 이메일로 받아보세요.
           </p>
           <div className="flex flex-col sm:flex-row gap-0 max-w-md mx-auto border" style={{ borderColor: "#2e2e2e" }}>
             <input
@@ -533,7 +533,7 @@ export default function HomePage() {
                 letterSpacing: "0.05em",
               }}
             >
-              Subscribe
+              구독하기
             </button>
           </div>
         </div>
@@ -557,7 +557,7 @@ export default function HomePage() {
             className="text-sm"
             style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
-            © 2026 Festivo. Discover the world through celebration.
+            © 2026 Festivo. 축제로 세계를 발견하다.
           </p>
           <p
             className="text-xs font-medium"

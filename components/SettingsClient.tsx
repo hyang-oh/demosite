@@ -94,7 +94,7 @@ export default function SettingsClient() {
             Settings
           </h1>
           <p className="mt-2 text-sm" style={{ color: "#6e6e6e", fontFamily: dmSans }}>
-            Customize your Festivo experience.
+            나만의 Festivo 환경을 설정하세요.
           </p>
         </div>
       </div>
@@ -222,25 +222,25 @@ export default function SettingsClient() {
             checked={notifications.newFestivals}
             onChange={() => setNotifications((n) => ({ ...n, newFestivals: !n.newFestivals }))}
             label="New Festivals"
-            desc="Get notified when new festivals match your interests"
+            desc="관심 있는 새 축제가 등록되면 알려드려요"
           />
           <Toggle
             checked={notifications.reminders}
             onChange={() => setNotifications((n) => ({ ...n, reminders: !n.reminders }))}
             label="Festival Reminders"
-            desc="Reminders 2 weeks before saved festivals"
+            desc="저장한 축제 2주 전에 미리 알림을 보내드려요"
           />
           <Toggle
             checked={notifications.newsletter}
             onChange={() => setNotifications((n) => ({ ...n, newsletter: !n.newsletter }))}
             label="Monthly Newsletter"
-            desc="Curated festival picks and travel stories"
+            desc="매달 엄선된 축제 추천과 여행 이야기를 보내드려요"
           />
           <Toggle
             checked={notifications.updates}
             onChange={() => setNotifications((n) => ({ ...n, updates: !n.updates }))}
             label="App Updates"
-            desc="Product news and new features"
+            desc="새로운 기능과 업데이트 소식을 알려드려요"
           />
         </motion.div>
 
@@ -265,7 +265,7 @@ export default function SettingsClient() {
               className="text-xs font-medium transition-colors"
               style={{ color: "#4344FD", fontFamily: dmSans }}
             >
-              Browse more →
+              더 보기 →
             </Link>
           </div>
           <div className="flex gap-2 overflow-hidden">
@@ -307,7 +307,7 @@ export default function SettingsClient() {
             <span className="text-xs" style={{ color: "#6e6e6e", fontFamily: dmSans }}>v1.0</span>
           </div>
           <p className="text-sm leading-relaxed mb-5" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
-            Festivo was designed and built entirely with AI tools — from design to deployment. A showcase of what&apos;s possible when creativity meets Claude Code.
+            Festivo는 기획부터 배포까지 AI 도구만으로 디자인하고 개발했습니다. 창의성과 Claude Code가 만나면 무엇이 가능한지 보여주는 쇼케이스입니다.
           </p>
           <div className="flex flex-wrap gap-2">
             {["Claude Code", "Next.js 15", "Framer Motion", "Tailwind CSS v4", "Vercel"].map((tech) => (
@@ -346,13 +346,13 @@ export default function SettingsClient() {
               className="text-sm font-medium text-left px-0 py-3 border-b transition-colors flex items-center justify-between"
               style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
             >
-              Export my data <span>→</span>
+              내 데이터 내보내기 <span>→</span>
             </button>
             <button
               className="text-sm font-medium text-left px-0 py-3 transition-colors flex items-center justify-between"
               style={{ color: "#dc2626", fontFamily: dmSans }}
             >
-              Sign out <span>→</span>
+              로그아웃 <span>→</span>
             </button>
           </div>
         </motion.div>

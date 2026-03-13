@@ -74,20 +74,20 @@ export default async function FestivalPage({ params }: Params) {
                   >
                     ★ {festival.rating}
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>RATING</div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>평점</div>
                 </div>
                 <div className="w-px" style={{ background: "#e5e2da" }} />
                 <div className="flex-1 text-center py-5 border-r" style={{ borderColor: "#e5e2da" }}>
                   <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
                     {festival.reviewCount.toLocaleString()}
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>REVIEWS</div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>리뷰</div>
                 </div>
                 <div className="flex-1 text-center py-5">
                   <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
                     {festival.duration}
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>DURATION</div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>기간</div>
                 </div>
               </div>
 
@@ -96,7 +96,7 @@ export default async function FestivalPage({ params }: Params) {
                 className="text-xl font-semibold mb-4"
                 style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
               >
-                About this festival
+                About This Festival
               </h2>
               <p className="text-base leading-relaxed" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
                 {festival.description}
@@ -115,7 +115,7 @@ export default async function FestivalPage({ params }: Params) {
                   className="text-xs font-semibold uppercase tracking-widest mb-4"
                   style={{ color: "#9e9e9e", fontFamily: dmSans }}
                 >
-                  Perfect for
+                  이런 분께 추천
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {festival.mood.map((m) => (
@@ -177,14 +177,14 @@ export default async function FestivalPage({ params }: Params) {
                   className="text-base font-semibold mb-5"
                   style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
                 >
-                  Plan your visit
+                  방문 계획
                 </h3>
                 <div className="space-y-3 text-sm border-b pb-5 mb-5" style={{ borderColor: "#e5e2da" }}>
                   {[
-                    { label: "When", value: festival.month },
-                    { label: "Duration", value: festival.duration },
-                    { label: "Location", value: festival.city },
-                    { label: "Country", value: festival.country },
+                    { label: "시기", value: festival.month },
+                    { label: "기간", value: festival.duration },
+                    { label: "도시", value: festival.city },
+                    { label: "국가", value: festival.country },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between">
                       <span style={{ color: "#9e9e9e", fontFamily: dmSans }}>{label}</span>
@@ -196,13 +196,13 @@ export default async function FestivalPage({ params }: Params) {
                   className="w-full py-3 text-sm font-medium transition-opacity hover:opacity-90"
                   style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: dmSans }}
                 >
-                  Save to Wishlist
+                  위시리스트에 저장
                 </button>
                 <button
                   className="w-full mt-2 py-3 text-sm font-medium border transition-colors hover:bg-gray-50"
                   style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
                 >
-                  Share
+                  공유하기
                 </button>
               </div>
             </div>
@@ -216,7 +216,7 @@ export default async function FestivalPage({ params }: Params) {
             className="text-sm font-medium flex items-center gap-2 transition-colors"
             style={{ color: "#4344FD", fontFamily: dmSans }}
           >
-            ← Back to Explore
+            ← 탐색으로 돌아가기
           </Link>
         </div>
       </main>

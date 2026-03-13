@@ -145,7 +145,7 @@ export default function FestivalCard({
           />
           {festival.editorsPick && (
             <div className="absolute top-3 left-3">
-              <span className="badge">Editor&apos;s Pick</span>
+              <span className="badge">에디터 추천</span>
             </div>
           )}
         </div>

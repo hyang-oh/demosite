@@ -62,7 +62,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
             className="text-xs font-semibold uppercase tracking-widest"
             style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
-            {filtered.length} festivals worldwide
+            전 세계 {filtered.length}개 축제
           </span>
           <h1
             className="text-5xl lg:text-7xl font-semibold mt-3"
@@ -79,7 +79,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
             className="mt-4 text-lg max-w-lg"
             style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
           >
-            Every celebration, every corner of the world. Filter by your style.
+            세계 곳곳의 축제를 당신의 스타일로 필터링하세요.
           </p>
 
           {/* Search bar */}
@@ -91,7 +91,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               <span style={{ color: "#6e6e6e", fontSize: "14px" }}>⌕</span>
               <input
                 type="text"
-                placeholder="Search by name, city, country..."
+                placeholder="축제명, 도시, 국가로 검색..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="flex-1 bg-transparent text-sm outline-none"
@@ -181,13 +181,13 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
           <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
             {filtered.length > 0 ? (
               <>
-                <span className="font-medium" style={{ color: "#1a1a1a" }}>{filtered.length}</span> festivals
+                <span className="font-medium" style={{ color: "#1a1a1a" }}>{filtered.length}</span>개의 축제
                 {activeCategory !== "All" && (
-                  <> in <span className="font-medium" style={{ color: "#4344FD" }}>{activeCategory}</span></>
+                  <> · <span className="font-medium" style={{ color: "#4344FD" }}>{activeCategory}</span></>
                 )}
               </>
             ) : (
-              "No festivals found"
+              "검색 결과가 없습니다"
             )}
           </p>
         </div>
@@ -209,7 +209,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                 No festivals found
               </h3>
               <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Try a different search or category
+                다른 검색어나 카테고리를 시도해 보세요
               </p>
             </motion.div>
           ) : viewMode === "grid" ? (
