@@ -54,9 +54,10 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
       {/* Page header */}
       <div
         className="relative py-16 lg:py-24 overflow-hidden border-b"
-        style={{ background: "#111111", borderColor: "#2e2e2e" }}
+        style={{ background: "#fdfcf3", borderColor: "#e5e2da" }}
       >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
+          <span className="rule-line" />
           <span
             className="text-xs font-semibold uppercase tracking-widest"
             style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
@@ -64,11 +65,12 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
             {filtered.length} festivals worldwide
           </span>
           <h1
-            className="text-5xl lg:text-7xl font-semibold text-white mt-3"
+            className="text-5xl lg:text-7xl font-semibold mt-3"
             style={{
               fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
               fontStyle: "italic",
               lineHeight: 1.0,
+              color: "#1a1a1a",
             }}
           >
             Explore Festivals
@@ -84,7 +86,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
           <div className="mt-8 max-w-md">
             <div
               className="flex items-center gap-3 px-4 py-3 border"
-              style={{ background: "#1c1c1c", borderColor: "#2e2e2e" }}
+              style={{ background: "#ffffff", borderColor: "#e5e2da" }}
             >
               <span style={{ color: "#6e6e6e", fontSize: "14px" }}>⌕</span>
               <input
@@ -94,7 +96,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
                 onChange={(e) => setSearch(e.target.value)}
                 className="flex-1 bg-transparent text-sm outline-none"
                 style={{
-                  color: "#f0ede4",
+                  color: "#1a1a1a",
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               />
