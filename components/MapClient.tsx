@@ -39,7 +39,7 @@ export default function MapClient({ festivals }: MapClientProps) {
   }, [filteredFestivals]);
 
   return (
-    <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
+    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
       {/* Header */}
       <div className="py-12 lg:py-16 border-b" style={{ borderColor: "#e5e2da" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -157,7 +157,7 @@ export default function MapClient({ festivals }: MapClientProps) {
 
           {/* Festival list panel */}
           <div className="lg:col-span-1">
-            <div className="sticky" style={{ top: "80px" }}>
+            <div className="sticky" style={{ top: "106px" }}>
               <div className="flex items-center justify-between mb-4">
                 <h2
                   className="text-sm font-semibold"

@@ -58,7 +58,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
   }, [festivals]);
 
   return (
-    <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
+    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
       {/* Header */}
       <div className="py-12 lg:py-16 border-b" style={{ borderColor: "#e5e2da" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -83,8 +83,9 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
 
       {/* Month selector - sticky */}
       <div
-        className="sticky top-14 z-30 border-b"
+        className="sticky z-30 border-b"
         style={{
+          top: "90px",
           background: "rgba(255,255,255,0.97)",
           backdropFilter: "blur(12px)",
           borderColor: "#e5e2da",

@@ -73,7 +73,7 @@ export default function SettingsClient() {
   const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
   return (
-    <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
+    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
       {/* Header */}
       <div
         className="py-12 lg:py-16 border-b"

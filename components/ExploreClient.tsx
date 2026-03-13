@@ -50,7 +50,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
   }, [festivals, activeCategory, search, sort]);
 
   return (
-    <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
+    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
       {/* Page header */}
       <div
         className="relative py-16 lg:py-24 overflow-hidden border-b"
@@ -116,8 +116,9 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
 
       {/* Sticky filter bar */}
       <div
-        className="sticky top-14 z-30 border-b"
+        className="sticky z-30 border-b"
         style={{
+          top: "90px",
           background: "rgba(255, 255, 255, 0.97)",
           backdropFilter: "blur(12px)",
           borderColor: "#e5e2da",

@@ -63,7 +63,7 @@ export default function MagazinePage() {
   return (
     <>
       <Navigation />
-      <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
+      <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
         {/* Header */}
         <div className="py-12 lg:py-16 border-b" style={{ borderColor: "#e5e2da" }}>
           <div className="max-w-7xl mx-auto px-6 lg:px-10">

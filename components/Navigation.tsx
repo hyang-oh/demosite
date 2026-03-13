@@ -4,11 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react";
+import { Search, Map } from "lucide-react";
 
 const navLinks = [
   { href: "/explore", label: "Explore" },
-  { href: "/map", label: "Map" },
   { href: "/calendar", label: "Calendar" },
   { href: "/magazine", label: "Magazine" },
 ];
@@ -27,6 +26,8 @@ export default function Navigation() {
 
   useEffect(() => { setMenuOpen(false); setSearchOpen(false); }, [pathname]);
 
+  const isMapActive = pathname === "/map";
+
   return (
     <>
       <header
@@ -36,11 +37,11 @@ export default function Navigation() {
           borderBottom: scrolled ? "1px solid #e5e2da" : "1px solid transparent",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 h-14 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between" style={{ height: "90px" }}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-0 group flex-shrink-0">
             <span
-              className="text-xl font-bold tracking-tight"
+              className="text-2xl lg:text-3xl font-bold tracking-tight"
               style={{
                 fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                 color: "#1a1a1a",
@@ -53,14 +54,14 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map(({ href, label }) => {
               const active = pathname === href || (href !== "/" && pathname.startsWith(href));
               return (
                 <Link
                   key={href}
                   href={href}
-                  className="relative text-sm font-medium transition-colors duration-200"
+                  className="relative text-base font-medium transition-colors duration-200"
                   style={{
                     fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
                     color: active ? "#4344FD" : "#1a1a1a",
@@ -70,7 +71,7 @@ export default function Navigation() {
                   {label}
                   {active && (
                     <span
-                      className="absolute -bottom-0.5 left-0 right-0 h-px"
+                      className="absolute -bottom-1 left-0 right-0 h-px"
                       style={{ background: "#4344FD" }}
                     />
                   )}
@@ -79,18 +80,28 @@ export default function Navigation() {
             })}
           </nav>
 
-          {/* Desktop right */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Desktop right: Map icon + Search icon + Profile */}
+          <div className="hidden md:flex items-center gap-2">
+            <Link
+              href="/map"
+              className="w-10 h-10 flex items-center justify-center rounded-lg transition-colors hover:bg-gray-50"
+              aria-label="Map"
+              style={{
+                color: isMapActive ? "#4344FD" : "#3a3a3a",
+              }}
+            >
+              <Map size={20} strokeWidth={2} />
+            </Link>
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="w-9 h-9 flex items-center justify-center transition-colors hover:bg-gray-50"
+              className="w-10 h-10 flex items-center justify-center rounded-lg transition-colors hover:bg-gray-50"
               aria-label="Search"
             >
-              <Search size={18} strokeWidth={1.5} style={{ color: "#6e6e6e" }} />
+              <Search size={20} strokeWidth={2.5} style={{ color: "#3a3a3a" }} />
             </button>
             <Link
               href="/settings"
-              className="w-9 h-9 flex items-center justify-center text-xs font-semibold"
+              className="w-10 h-10 flex items-center justify-center text-xs font-semibold rounded-full ml-1"
               style={{
                 background: "#1a1a1a",
                 color: "#ffffff",
@@ -123,14 +134,14 @@ export default function Navigation() {
               className="border-t overflow-hidden"
               style={{ borderColor: "#e5e2da" }}
             >
-              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3">
+              <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4">
                 <div className="flex items-center gap-3">
-                  <Search size={16} strokeWidth={1.5} style={{ color: "#9e9e9e" }} />
+                  <Search size={18} strokeWidth={2} style={{ color: "#9e9e9e" }} />
                   <input
                     type="text"
                     placeholder="축제명, 도시, 국가로 검색..."
                     autoFocus
-                    className="flex-1 text-sm outline-none bg-transparent"
+                    className="flex-1 text-base outline-none bg-transparent"
                     style={{
                       color: "#1a1a1a",
                       fontFamily: "var(--font-dm-sans), sans-serif",
@@ -158,11 +169,11 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 pt-14 flex flex-col"
-            style={{ background: "#ffffff" }}
+            className="fixed inset-0 z-40 flex flex-col"
+            style={{ background: "#ffffff", paddingTop: "90px" }}
           >
             <nav className="flex flex-col px-8 py-6 gap-0 flex-1">
-              {navLinks.map(({ href, label }, i) => (
+              {[...navLinks, { href: "/map", label: "Map" }].map(({ href, label }, i) => (
                 <motion.div
                   key={href}
                   initial={{ opacity: 0, x: -12 }}
@@ -188,7 +199,7 @@ export default function Navigation() {
                   className="flex items-center gap-3 py-4"
                 >
                   <span
-                    className="w-10 h-10 flex items-center justify-center text-sm font-semibold"
+                    className="w-10 h-10 flex items-center justify-center text-sm font-semibold rounded-full"
                     style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: "var(--font-dm-sans), sans-serif" }}
                   >
                     H

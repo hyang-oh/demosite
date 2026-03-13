@@ -23,7 +23,7 @@ export default async function FestivalPage({ params }: Params) {
   return (
     <>
       <Navigation />
-      <main className="pt-14 min-h-screen" style={{ background: "#ffffff" }}>
+      <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
         {/* Hero */}
         <div className="relative w-full overflow-hidden" style={{ height: "50vh", maxHeight: "520px", minHeight: "360px" }}>
           <Image
