@@ -2,34 +2,27 @@
 
 /* ─── Design Tokens ──────────────────────────────────────────── */
 @theme inline {
-  --color-primary:        #E8311A;
-  --color-primary-hover:  #C9270F;
-  --color-primary-light:  #FFF0EE;
+  --color-primary:        #25aae1;
+  --color-primary-hover:  #1a8fc4;
+  --color-primary-light:  #e8f6fc;
 
-  --color-bg:             #FFFFFF;
-  --color-bg-sand:        #F6F4F0;
-  --color-surface:        #FFFFFF;
-  --color-border:         #E8E4DF;
+  --color-bg:             #fdfcf3;
+  --color-bg-warm:        #f5f3eb;
+  --color-surface:        #ffffff;
+  --color-border:         #e5e2da;
+  --color-border-strong:  #c8c4bc;
 
-  --color-text-primary:   #222222;
-  --color-text-secondary: #666666;
-  --color-text-tertiary:  #999999;
+  --color-text-primary:   #1a1a1a;
+  --color-text-secondary: #6e6e6e;
+  --color-text-tertiary:  #9e9e9e;
 
-  --color-dark-bg:        #222222;
-  --color-dark-surface:   #2E2E2E;
-  --color-dark-border:    #3A3A3A;
-  --color-dark-text:      #F6F4F0;
+  --color-dark-bg:        #111111;
+  --color-dark-surface:   #1c1c1c;
+  --color-dark-border:    #2e2e2e;
+  --color-dark-text:      #f0ede4;
 
-  /* destination accent palette */
-  --color-nature:   #0a6e50;
-  --color-culture:  #ffc828;
-  --color-food:     #ff9155;
-  --color-music:    #E8311A;
-  --color-seasonal: #4178ff;
-  --color-art:      #db2777;
-
-  --font-display: 'Montserrat', system-ui, sans-serif;
-  --font-sans:    'Montserrat', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:    'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -38,9 +31,9 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #FFFFFF;
-  color: #222222;
-  font-family: 'Montserrat', system-ui, sans-serif;
+  background-color: #fdfcf3;
+  color: #1a1a1a;
+  font-family: var(--font-sans), 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -49,19 +42,19 @@ body {
 
 /* ─── Typography ───────────────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Montserrat', system-ui, sans-serif;
+  font-family: var(--font-display), 'Cormorant Garamond', Georgia, serif;
   font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #E8E3DC; border-radius: 9999px; }
+::-webkit-scrollbar-thumb { background: #d5d2ca; border-radius: 9999px; }
 
 /* ─── Focus ─────────────────────────────────────────────────── */
-:focus-visible { outline: 2px solid #E8311A; outline-offset: 2px; border-radius: 2px; }
+:focus-visible { outline: 2px solid #25aae1; outline-offset: 2px; border-radius: 1px; }
 
 /* ─── Horizontal scroll (hidden scrollbar) ──────────────────── */
 .scroll-x { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
@@ -69,30 +62,41 @@ h1, h2, h3, h4 {
 
 /* ─── Image zoom on hover ───────────────────────────────────── */
 .img-zoom { overflow: hidden; }
-.img-zoom img, .img-zoom > div { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-.img-zoom:hover img, .img-zoom:hover > div { transform: scale(1.06); }
+.img-zoom img, .img-zoom > div { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.img-zoom:hover img, .img-zoom:hover > div { transform: scale(1.04); }
 
 /* ─── Text clamp ────────────────────────────────────────────── */
 .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
 /* ─── Gradient overlays ─────────────────────────────────────── */
-.gradient-bottom { background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 60%); }
-.gradient-full   { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); }
+.gradient-bottom { background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 55%); }
+.gradient-full   { background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%); }
 
-/* ─── Badge ─────────────────────────────────────────────────── */
+/* ─── Category label ─────────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 3px 10px;
-  border-radius: 9999px;
-  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 0;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  background-color: #FFF0EE;
-  color: #E8311A;
+  font-family: var(--font-sans), 'DM Sans', sans-serif;
+  background-color: transparent;
+  border: 1px solid #25aae1;
+  color: #25aae1;
   white-space: nowrap;
+}
+
+/* ─── Section rule line ──────────────────────────────────────── */
+.rule-line {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: #25aae1;
+  margin-bottom: 12px;
 }
 
 /* ─── Reduced Motion ────────────────────────────────────────── */

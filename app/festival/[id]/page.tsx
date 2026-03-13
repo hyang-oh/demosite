@@ -17,10 +17,13 @@ export default async function FestivalPage({ params }: Params) {
   const festival = getFestivalById(id);
   if (!festival) notFound();
 
+  const dmSans = "var(--font-dm-sans), 'DM Sans', sans-serif";
+  const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+
   return (
     <>
       <Navigation />
-      <main className="pt-0 min-h-screen" style={{ background: "#F7F4EF" }}>
+      <main className="pt-14 min-h-screen" style={{ background: "#fdfcf3" }}>
         {/* Hero */}
         <div className="relative w-full overflow-hidden" style={{ height: "60vh", minHeight: "400px" }}>
           <Image
@@ -32,52 +35,72 @@ export default async function FestivalPage({ params }: Params) {
             sizes="100vw"
           />
           <div className="absolute inset-0 gradient-full" />
-          <div className="absolute bottom-0 left-0 right-0 p-8 max-w-5xl mx-auto">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="badge">{festival.category}</span>
-              <span className="text-white/60 text-xs">· {festival.duration}</span>
-            </div>
+          <div className="absolute bottom-0 left-0 right-0 px-6 lg:px-10 pb-10 max-w-5xl mx-auto">
+            <span
+              className="text-xs font-semibold tracking-widest uppercase"
+              style={{ color: "#25aae1", fontFamily: dmSans }}
+            >
+              {festival.category}
+            </span>
             <h1
-              className="text-4xl lg:text-5xl font-bold text-white"
-              style={{ fontFamily: "var(--font-playfair)", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
+              className="text-4xl lg:text-6xl font-semibold text-white mt-2"
+              style={{ fontFamily: cormorant, fontStyle: "italic", lineHeight: 1.05 }}
             >
               {festival.name}
             </h1>
             {festival.nameKo && (
-              <p className="text-white/60 text-lg mt-1" style={{ fontFamily: "var(--font-playfair)" }}>{festival.nameKo}</p>
+              <p className="text-white/50 text-base mt-1" style={{ fontFamily: cormorant }}>{festival.nameKo}</p>
             )}
-            <p className="text-white/70 mt-2 text-base">
-              📍 {festival.city}, {festival.country} &nbsp;·&nbsp; 📅 {festival.month}
+            <p className="text-white/60 mt-2 text-sm" style={{ fontFamily: dmSans }}>
+              {festival.city}, {festival.country} &nbsp;·&nbsp; {festival.month}
             </p>
           </div>
         </div>
 
         {/* Content */}
-        <div className="max-w-5xl mx-auto px-6 py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main */}
             <div className="lg:col-span-2">
               {/* Stats row */}
-              <div className="flex gap-4 flex-wrap mb-8 p-5 rounded-2xl" style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}>
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold" style={{ fontFamily: "var(--font-playfair)", color: "#C8741A" }}>★ {festival.rating}</div>
-                  <div className="text-xs mt-0.5" style={{ color: "#A8A8A8" }}>Rating</div>
+              <div
+                className="flex gap-0 mb-10 border"
+                style={{ borderColor: "#e5e2da" }}
+              >
+                <div className="flex-1 text-center py-5 border-r" style={{ borderColor: "#e5e2da" }}>
+                  <div
+                    className="text-2xl font-semibold"
+                    style={{ fontFamily: cormorant, color: "#1a1a1a" }}
+                  >
+                    ★ {festival.rating}
+                  </div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>RATING</div>
                 </div>
-                <div className="w-px" style={{ background: "#E8E3DC" }} />
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>{festival.reviewCount.toLocaleString()}</div>
-                  <div className="text-xs mt-0.5" style={{ color: "#A8A8A8" }}>Reviews</div>
+                <div className="w-px" style={{ background: "#e5e2da" }} />
+                <div className="flex-1 text-center py-5 border-r" style={{ borderColor: "#e5e2da" }}>
+                  <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
+                    {festival.reviewCount.toLocaleString()}
+                  </div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>REVIEWS</div>
                 </div>
-                <div className="w-px" style={{ background: "#E8E3DC" }} />
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>{festival.duration}</div>
-                  <div className="text-xs mt-0.5" style={{ color: "#A8A8A8" }}>Duration</div>
+                <div className="flex-1 text-center py-5">
+                  <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
+                    {festival.duration}
+                  </div>
+                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: dmSans, letterSpacing: "0.08em" }}>DURATION</div>
                 </div>
               </div>
 
               {/* Description */}
-              <h2 className="text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>About this festival</h2>
-              <p className="text-base leading-relaxed" style={{ color: "#6B6B6B" }}>{festival.description}</p>
+              <h2
+                className="text-xl font-semibold mb-4"
+                style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+              >
+                About this festival
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+                {festival.description}
+              </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mt-6">
@@ -86,36 +109,58 @@ export default async function FestivalPage({ params }: Params) {
                 ))}
               </div>
 
-              {/* Mood */}
-              <div className="mt-6">
-                <h3 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "#A8A8A8" }}>Perfect for</h3>
+              {/* Perfect for */}
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: "#e5e2da" }}>
+                <h3
+                  className="text-xs font-semibold uppercase tracking-widest mb-4"
+                  style={{ color: "#9e9e9e", fontFamily: dmSans }}
+                >
+                  Perfect for
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {festival.mood.map((m) => (
-                    <span key={m} className="px-3 py-1.5 rounded-full text-sm font-medium border" style={{ borderColor: "#E8E3DC", color: "#1C1C1C" }}>{m}</span>
+                    <span
+                      key={m}
+                      className="px-3 py-1.5 text-sm font-medium border"
+                      style={{ borderColor: "#e5e2da", color: "#1a1a1a", fontFamily: dmSans }}
+                    >
+                      {m}
+                    </span>
                   ))}
                 </div>
               </div>
 
               {/* Reviews */}
-              <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>Traveler Reviews</h2>
-                <div className="space-y-4">
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: "#e5e2da" }}>
+                <h2
+                  className="text-xl font-semibold mb-6"
+                  style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+                >
+                  Traveler Reviews
+                </h2>
+                <div className="space-y-0">
                   {festival.reviews.map((r, i) => (
-                    <div key={i} className="p-4 rounded-xl" style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}>
+                    <div
+                      key={i}
+                      className="py-5 border-b"
+                      style={{ borderColor: "#e5e2da" }}
+                    >
                       <div className="flex items-center gap-3 mb-3">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={r.avatar} alt={r.author} className="w-9 h-9 rounded-full object-cover" />
+                        <img src={r.avatar} alt={r.author} className="w-8 h-8 object-cover" />
                         <div>
-                          <p className="text-sm font-medium" style={{ color: "#1C1C1C" }}>{r.author}</p>
-                          <p className="text-xs" style={{ color: "#A8A8A8" }}>{r.date}</p>
+                          <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: dmSans }}>{r.author}</p>
+                          <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: dmSans }}>{r.date}</p>
                         </div>
                         <div className="ml-auto flex items-center gap-0.5">
                           {[...Array(5)].map((_, j) => (
-                            <span key={j} className="text-xs" style={{ color: j < r.rating ? "#C8741A" : "#E8E3DC" }}>★</span>
+                            <span key={j} className="text-xs" style={{ color: j < r.rating ? "#25aae1" : "#e5e2da" }}>★</span>
                           ))}
                         </div>
                       </div>
-                      <p className="text-sm leading-relaxed" style={{ color: "#6B6B6B" }}>{r.comment}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
+                        {r.comment}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -123,36 +168,39 @@ export default async function FestivalPage({ params }: Params) {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-4">
-              <div className="rounded-2xl p-5 sticky top-20" style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}>
-                <h3 className="text-base font-semibold mb-4" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>Plan your visit</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span style={{ color: "#A8A8A8" }}>When</span>
-                    <span className="font-medium" style={{ color: "#1C1C1C" }}>{festival.month}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span style={{ color: "#A8A8A8" }}>Duration</span>
-                    <span className="font-medium" style={{ color: "#1C1C1C" }}>{festival.duration}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span style={{ color: "#A8A8A8" }}>Location</span>
-                    <span className="font-medium text-right" style={{ color: "#1C1C1C" }}>{festival.city}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span style={{ color: "#A8A8A8" }}>Country</span>
-                    <span className="font-medium" style={{ color: "#1C1C1C" }}>{festival.country}</span>
-                  </div>
+            <div>
+              <div
+                className="border sticky top-18 p-6"
+                style={{ background: "#ffffff", borderColor: "#e5e2da", top: "80px" }}
+              >
+                <h3
+                  className="text-base font-semibold mb-5"
+                  style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+                >
+                  Plan your visit
+                </h3>
+                <div className="space-y-3 text-sm border-b pb-5 mb-5" style={{ borderColor: "#e5e2da" }}>
+                  {[
+                    { label: "When", value: festival.month },
+                    { label: "Duration", value: festival.duration },
+                    { label: "Location", value: festival.city },
+                    { label: "Country", value: festival.country },
+                  ].map(({ label, value }) => (
+                    <div key={label} className="flex justify-between">
+                      <span style={{ color: "#9e9e9e", fontFamily: dmSans }}>{label}</span>
+                      <span className="font-medium text-right" style={{ color: "#1a1a1a", fontFamily: dmSans }}>{value}</span>
+                    </div>
+                  ))}
                 </div>
                 <button
-                  className="w-full mt-5 py-3 rounded-full text-white font-medium text-sm hover:opacity-90 transition-opacity"
-                  style={{ background: "#C8741A" }}
+                  className="w-full py-3 text-sm font-medium transition-opacity hover:opacity-90"
+                  style={{ background: "#1a1a1a", color: "#fdfcf3", fontFamily: dmSans }}
                 >
                   Save to Wishlist
                 </button>
                 <button
-                  className="w-full mt-2 py-3 rounded-full font-medium text-sm border hover:bg-gray-50 transition-colors"
-                  style={{ borderColor: "#E8E3DC", color: "#6B6B6B" }}
+                  className="w-full mt-2 py-3 text-sm font-medium border transition-colors hover:bg-gray-50"
+                  style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
                 >
                   Share
                 </button>
@@ -162,8 +210,12 @@ export default async function FestivalPage({ params }: Params) {
         </div>
 
         {/* Back link */}
-        <div className="max-w-5xl mx-auto px-6 pb-12">
-          <Link href="/explore" className="text-sm font-medium flex items-center gap-1 hover:opacity-70 transition-opacity" style={{ color: "#C8741A" }}>
+        <div className="max-w-5xl mx-auto px-6 lg:px-10 pb-12">
+          <Link
+            href="/explore"
+            className="text-sm font-medium flex items-center gap-2 transition-colors"
+            style={{ color: "#25aae1", fontFamily: dmSans }}
+          >
             ← Back to Explore
           </Link>
         </div>

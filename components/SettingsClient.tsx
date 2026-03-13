@@ -29,21 +29,21 @@ interface ToggleProps {
 
 function Toggle({ checked, onChange, label, desc }: ToggleProps) {
   return (
-    <div className="flex items-center justify-between py-4">
+    <div className="flex items-center justify-between py-4 border-b" style={{ borderColor: "#e5e2da" }}>
       <div>
-        <p className="text-sm font-medium" style={{ color: "#1C1C1C" }}>{label}</p>
-        {desc && <p className="text-xs mt-0.5" style={{ color: "#A8A8A8" }}>{desc}</p>}
+        <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}>{label}</p>
+        {desc && <p className="text-xs mt-0.5" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>{desc}</p>}
       </div>
       <button
         onClick={onChange}
-        className="relative w-12 h-6 rounded-full transition-colors duration-300 flex-shrink-0"
-        style={{ background: checked ? "#C8741A" : "#E8E3DC" }}
+        className="relative w-11 h-6 transition-colors duration-300 flex-shrink-0"
+        style={{ background: checked ? "#1a1a1a" : "#e5e2da" }}
         aria-checked={checked}
         role="switch"
       >
         <span
-          className="absolute top-1 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-300"
-          style={{ transform: checked ? "translateX(26px)" : "translateX(4px)" }}
+          className="absolute top-1 w-4 h-4 bg-white transition-transform duration-300"
+          style={{ transform: checked ? "translateX(23px)" : "translateX(4px)" }}
         />
       </button>
     </div>
@@ -51,11 +51,11 @@ function Toggle({ checked, onChange, label, desc }: ToggleProps) {
 }
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 12 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.4, ease: "easeOut" as const },
+    transition: { delay: i * 0.07, duration: 0.35, ease: "easeOut" as const },
   }),
 };
 
@@ -69,22 +69,37 @@ export default function SettingsClient() {
     updates: true,
   });
 
+  const dmSans = "var(--font-dm-sans), 'DM Sans', sans-serif";
+  const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+
   return (
-    <main className="pt-16 min-h-screen" style={{ background: "#F7F4EF" }}>
+    <main className="pt-14 min-h-screen" style={{ background: "#fdfcf3" }}>
       {/* Header */}
-      <div className="py-12 lg:py-16" style={{ background: "#FFFFFF", borderBottom: "1px solid #E8E3DC" }}>
+      <div
+        className="py-12 lg:py-16 border-b"
+        style={{ background: "#ffffff", borderColor: "#e5e2da" }}
+      >
         <div className="max-w-2xl mx-auto px-6">
-          <span className="text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: "#C8741A" }}>Preferences</span>
-          <h1 className="text-4xl font-bold mt-1" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>
+          <span className="rule-line" />
+          <span
+            className="text-xs font-semibold uppercase tracking-widest block mb-2"
+            style={{ color: "#25aae1", fontFamily: dmSans }}
+          >
+            Preferences
+          </span>
+          <h1
+            className="text-4xl lg:text-5xl font-semibold"
+            style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+          >
             Settings
           </h1>
-          <p className="mt-2 text-sm" style={{ color: "#6B6B6B" }}>
+          <p className="mt-2 text-sm" style={{ color: "#6e6e6e", fontFamily: dmSans }}>
             Customize your Festivo experience.
           </p>
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-6 py-10 space-y-6">
+      <div className="max-w-2xl mx-auto px-6 py-10 space-y-px">
 
         {/* Profile card */}
         <motion.div
@@ -92,22 +107,25 @@ export default function SettingsClient() {
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl p-6"
-          style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}
+          className="p-6 border-b"
+          style={{ background: "#ffffff", borderColor: "#e5e2da" }}
         >
           <div className="flex items-center gap-4">
             <div
-              className="w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold"
-              style={{ background: "linear-gradient(135deg, #C8741A, #E8881F)" }}
+              className="w-12 h-12 flex items-center justify-center text-white text-lg font-semibold"
+              style={{ background: "#1a1a1a", fontFamily: cormorant }}
             >
               H
             </div>
             <div>
-              <p className="font-semibold" style={{ fontFamily: "var(--font-playfair)", color: "#1C1C1C" }}>Hyang Oh</p>
-              <p className="text-sm" style={{ color: "#6B6B6B" }}>hyang@festivo.world</p>
+              <p className="font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a", fontSize: "1.1rem" }}>Hyang Oh</p>
+              <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: dmSans }}>hyang@festivo.world</p>
               <span className="badge mt-1">Pro Member</span>
             </div>
-            <button className="ml-auto text-sm font-medium px-4 py-1.5 rounded-full border transition-colors hover:bg-gray-50" style={{ borderColor: "#E8E3DC", color: "#6B6B6B" }}>
+            <button
+              className="ml-auto text-xs font-medium px-4 py-1.5 border transition-colors"
+              style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
+            >
               Edit
             </button>
           </div>
@@ -119,27 +137,32 @@ export default function SettingsClient() {
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl p-6"
-          style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}
+          className="p-6 border-b"
+          style={{ background: "#ffffff", borderColor: "#e5e2da" }}
         >
-          <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: "#A8A8A8" }}>Language</h2>
+          <h2
+            className="text-xs font-semibold uppercase tracking-widest mb-4"
+            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+          >
+            Language
+          </h2>
           <div className="grid grid-cols-2 gap-2">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
-                className="flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-200"
+                className="flex items-center justify-between px-4 py-3 border transition-all duration-200"
                 style={{
-                  borderColor: language === lang.code ? "#C8741A" : "#E8E3DC",
-                  background: language === lang.code ? "#FFF3E0" : "#FFFFFF",
+                  borderColor: language === lang.code ? "#1a1a1a" : "#e5e2da",
+                  background: language === lang.code ? "#1a1a1a" : "#ffffff",
                 }}
               >
                 <div className="text-left">
-                  <p className="text-sm font-medium" style={{ color: "#1C1C1C" }}>{lang.native}</p>
-                  <p className="text-xs" style={{ color: "#A8A8A8" }}>{lang.label}</p>
+                  <p className="text-sm font-medium" style={{ color: language === lang.code ? "#fdfcf3" : "#1a1a1a", fontFamily: dmSans }}>{lang.native}</p>
+                  <p className="text-xs" style={{ color: language === lang.code ? "#9e9e9e" : "#9e9e9e", fontFamily: dmSans }}>{lang.label}</p>
                 </div>
                 {language === lang.code && (
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs text-white" style={{ background: "#C8741A" }}>✓</span>
+                  <span className="text-xs" style={{ color: "#25aae1" }}>✓</span>
                 )}
               </button>
             ))}
@@ -152,23 +175,29 @@ export default function SettingsClient() {
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl p-6"
-          style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}
+          className="p-6 border-b"
+          style={{ background: "#ffffff", borderColor: "#e5e2da" }}
         >
-          <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: "#A8A8A8" }}>Appearance</h2>
-          <div className="flex gap-3">
+          <h2
+            className="text-xs font-semibold uppercase tracking-widest mb-4"
+            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+          >
+            Appearance
+          </h2>
+          <div className="flex gap-2">
             {themes.map((t) => (
               <button
                 key={t.value}
                 onClick={() => setTheme(t.value)}
-                className="flex-1 flex flex-col items-center gap-2 py-4 rounded-xl border transition-all duration-200"
+                className="flex-1 flex flex-col items-center gap-2 py-4 border transition-all duration-200"
                 style={{
-                  borderColor: theme === t.value ? "#C8741A" : "#E8E3DC",
-                  background: theme === t.value ? "#FFF3E0" : "#FFFFFF",
+                  borderColor: theme === t.value ? "#1a1a1a" : "#e5e2da",
+                  background: theme === t.value ? "#1a1a1a" : "#ffffff",
+                  color: theme === t.value ? "#fdfcf3" : "#6e6e6e",
                 }}
               >
-                <span className="text-xl">{t.icon}</span>
-                <span className="text-xs font-medium" style={{ color: theme === t.value ? "#C8741A" : "#6B6B6B" }}>{t.label}</span>
+                <span className="text-lg">{t.icon}</span>
+                <span className="text-xs font-medium" style={{ fontFamily: dmSans }}>{t.label}</span>
               </button>
             ))}
           </div>
@@ -180,36 +209,39 @@ export default function SettingsClient() {
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl px-6"
-          style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}
+          className="px-6 pt-6 border-b"
+          style={{ background: "#ffffff", borderColor: "#e5e2da" }}
         >
-          <h2 className="text-sm font-semibold uppercase tracking-wider pt-6 mb-2" style={{ color: "#A8A8A8" }}>Notifications</h2>
-          <div className="divide-y" style={{ borderColor: "#E8E3DC" }}>
-            <Toggle
-              checked={notifications.newFestivals}
-              onChange={() => setNotifications((n) => ({ ...n, newFestivals: !n.newFestivals }))}
-              label="New Festivals"
-              desc="Get notified when new festivals are added near your interests"
-            />
-            <Toggle
-              checked={notifications.reminders}
-              onChange={() => setNotifications((n) => ({ ...n, reminders: !n.reminders }))}
-              label="Festival Reminders"
-              desc="Reminders 2 weeks before saved festivals"
-            />
-            <Toggle
-              checked={notifications.newsletter}
-              onChange={() => setNotifications((n) => ({ ...n, newsletter: !n.newsletter }))}
-              label="Monthly Newsletter"
-              desc="Curated festival picks and travel stories"
-            />
-            <Toggle
-              checked={notifications.updates}
-              onChange={() => setNotifications((n) => ({ ...n, updates: !n.updates }))}
-              label="App Updates"
-              desc="Product news and new features"
-            />
-          </div>
+          <h2
+            className="text-xs font-semibold uppercase tracking-widest mb-2"
+            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+          >
+            Notifications
+          </h2>
+          <Toggle
+            checked={notifications.newFestivals}
+            onChange={() => setNotifications((n) => ({ ...n, newFestivals: !n.newFestivals }))}
+            label="New Festivals"
+            desc="Get notified when new festivals match your interests"
+          />
+          <Toggle
+            checked={notifications.reminders}
+            onChange={() => setNotifications((n) => ({ ...n, reminders: !n.reminders }))}
+            label="Festival Reminders"
+            desc="Reminders 2 weeks before saved festivals"
+          />
+          <Toggle
+            checked={notifications.newsletter}
+            onChange={() => setNotifications((n) => ({ ...n, newsletter: !n.newsletter }))}
+            label="Monthly Newsletter"
+            desc="Curated festival picks and travel stories"
+          />
+          <Toggle
+            checked={notifications.updates}
+            onChange={() => setNotifications((n) => ({ ...n, updates: !n.updates }))}
+            label="App Updates"
+            desc="Product news and new features"
+          />
         </motion.div>
 
         {/* Saved Festivals teaser */}
@@ -218,24 +250,39 @@ export default function SettingsClient() {
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl p-6"
-          style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}
+          className="p-6 border-b"
+          style={{ background: "#ffffff", borderColor: "#e5e2da" }}
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "#A8A8A8" }}>Saved Festivals</h2>
-            <Link href="/explore" className="text-xs font-medium" style={{ color: "#C8741A" }}>Browse more →</Link>
+            <h2
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "#9e9e9e", fontFamily: dmSans }}
+            >
+              Saved Festivals
+            </h2>
+            <Link
+              href="/explore"
+              className="text-xs font-medium transition-colors"
+              style={{ color: "#25aae1", fontFamily: dmSans }}
+            >
+              Browse more →
+            </Link>
           </div>
-          <div className="flex gap-3 overflow-hidden">
-            {["https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&q=70",
+          <div className="flex gap-2 overflow-hidden">
+            {[
+              "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&q=70",
               "https://images.unsplash.com/photo-1567591370428-3e9e0def2e84?w=200&q=70",
               "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=200&q=70",
             ].map((img, i) => (
-              <div key={i} className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+              <div key={i} className="relative w-14 h-14 overflow-hidden flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={img} alt="Saved festival" className="w-full h-full object-cover" />
               </div>
             ))}
-            <div className="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 text-sm font-semibold" style={{ background: "#FFF3E0", color: "#C8741A" }}>
+            <div
+              className="w-14 h-14 flex items-center justify-center flex-shrink-0 text-sm font-medium"
+              style={{ background: "#f5f3eb", color: "#25aae1", fontFamily: dmSans }}
+            >
               +14
             </div>
           </div>
@@ -247,52 +294,65 @@ export default function SettingsClient() {
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl p-6"
-          style={{ background: "#1C1C1C" }}
+          className="p-6"
+          style={{ background: "#111111" }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "#C8741A" }}>
-              <span className="text-white font-bold" style={{ fontFamily: "var(--font-playfair)" }}>F</span>
-            </div>
-            <div>
-              <p className="font-semibold text-white" style={{ fontFamily: "var(--font-playfair)" }}>Festivo v1.0</p>
-              <p className="text-xs" style={{ color: "#6B6B6B" }}>Festival Discovery App</p>
-            </div>
+            <span
+              className="text-xl font-semibold"
+              style={{ fontFamily: cormorant, color: "#f0ede4", fontStyle: "italic" }}
+            >
+              Festivo
+            </span>
+            <span className="text-xs" style={{ color: "#6e6e6e", fontFamily: dmSans }}>v1.0</span>
           </div>
-          <p className="text-sm leading-relaxed mb-4" style={{ color: "#A8A8A8" }}>
+          <p className="text-sm leading-relaxed mb-5" style={{ color: "#6e6e6e", fontFamily: dmSans, fontWeight: 300 }}>
             Festivo was designed and built entirely with AI tools — from design to deployment. A showcase of what&apos;s possible when creativity meets Claude Code.
           </p>
           <div className="flex flex-wrap gap-2">
-            {["Claude Code", "Next.js 15", "Framer Motion", "Tailwind CSS", "Vercel"].map((tech) => (
-              <span key={tech} className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: "rgba(200,116,26,0.15)", color: "#C8741A" }}>
+            {["Claude Code", "Next.js 15", "Framer Motion", "Tailwind CSS v4", "Vercel"].map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 text-xs font-medium border"
+                style={{ borderColor: "#2e2e2e", color: "#6e6e6e", fontFamily: dmSans }}
+              >
                 {tech}
               </span>
             ))}
           </div>
-          <div className="mt-4 pt-4 border-t flex items-center justify-between" style={{ borderColor: "#2E2E2E" }}>
-            <p className="text-xs" style={{ color: "#6B6B6B" }}>© 2026 Festivo</p>
-            <p className="text-xs" style={{ color: "#C8741A" }}>Made with Claude Code ✦</p>
+          <div className="mt-5 pt-4 border-t flex items-center justify-between" style={{ borderColor: "#2e2e2e" }}>
+            <p className="text-xs" style={{ color: "#6e6e6e", fontFamily: dmSans }}>© 2026 Festivo</p>
+            <p className="text-xs font-medium" style={{ color: "#25aae1", fontFamily: dmSans }}>Made with Claude Code ✦</p>
           </div>
         </motion.div>
 
-        {/* Danger zone */}
+        {/* Account */}
         <motion.div
           custom={6}
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
-          className="rounded-2xl p-6"
-          style={{ background: "#FFFFFF", border: "1px solid #E8E3DC" }}
+          className="p-6 border"
+          style={{ background: "#ffffff", borderColor: "#e5e2da" }}
         >
-          <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: "#A8A8A8" }}>Account</h2>
-          <div className="flex flex-col gap-2">
-            <button className="text-sm font-medium text-left px-4 py-3 rounded-xl border transition-colors hover:bg-gray-50 flex items-center justify-between" style={{ borderColor: "#E8E3DC", color: "#6B6B6B" }}>
-              Export my data
-              <span>→</span>
+          <h2
+            className="text-xs font-semibold uppercase tracking-widest mb-4"
+            style={{ color: "#9e9e9e", fontFamily: dmSans }}
+          >
+            Account
+          </h2>
+          <div className="flex flex-col gap-0">
+            <button
+              className="text-sm font-medium text-left px-0 py-3 border-b transition-colors flex items-center justify-between"
+              style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: dmSans }}
+            >
+              Export my data <span>→</span>
             </button>
-            <button className="text-sm font-medium text-left px-4 py-3 rounded-xl transition-colors hover:bg-red-50 flex items-center justify-between" style={{ color: "#DC2626" }}>
-              Sign out
-              <span>→</span>
+            <button
+              className="text-sm font-medium text-left px-0 py-3 transition-colors flex items-center justify-between"
+              style={{ color: "#dc2626", fontFamily: dmSans }}
+            >
+              Sign out <span>→</span>
             </button>
           </div>
         </motion.div>

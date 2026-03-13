@@ -50,55 +50,59 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
   }, [festivals, activeCategory, search, sort]);
 
   return (
-    <main className="pt-16 min-h-screen" style={{ background: "#F6F4F0" }}>
+    <main className="pt-14 min-h-screen" style={{ background: "#fdfcf3" }}>
       {/* Page header */}
       <div
-        className="relative py-16 lg:py-24 overflow-hidden"
-        style={{ background: "#222222" }}
+        className="relative py-16 lg:py-24 overflow-hidden border-b"
+        style={{ background: "#111111", borderColor: "#2e2e2e" }}
       >
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #E8311A 0, #E8311A 1px, transparent 0, transparent 50%)",
-            backgroundSize: "20px 20px",
-          }}
-        />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <span
-            className="text-xs font-semibold uppercase tracking-[0.15em]"
-            style={{ color: "#E8311A" }}
+            className="text-xs font-semibold uppercase tracking-widest"
+            style={{ color: "#25aae1", fontFamily: "var(--font-dm-sans), sans-serif" }}
           >
             {filtered.length} festivals worldwide
           </span>
           <h1
-            className="text-4xl lg:text-6xl font-bold text-white mt-2"
-            style={{ fontFamily: "var(--font-montserrat)" }}
+            className="text-5xl lg:text-7xl font-semibold text-white mt-3"
+            style={{
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontStyle: "italic",
+              lineHeight: 1.0,
+            }}
           >
             Explore Festivals
           </h1>
-          <p className="mt-3 text-white/60 text-lg max-w-lg">
+          <p
+            className="mt-4 text-lg max-w-lg"
+            style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
+          >
             Every celebration, every corner of the world. Filter by your style.
           </p>
 
           {/* Search bar */}
-          <div className="mt-8 max-w-lg">
+          <div className="mt-8 max-w-md">
             <div
-              className="flex items-center gap-3 px-5 py-3 rounded-full"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
+              className="flex items-center gap-3 px-4 py-3 border"
+              style={{ background: "#1c1c1c", borderColor: "#2e2e2e" }}
             >
-              <span className="text-white/40 text-lg">⌕</span>
+              <span style={{ color: "#6e6e6e", fontSize: "14px" }}>⌕</span>
               <input
                 type="text"
                 placeholder="Search by name, city, country..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="flex-1 bg-transparent text-white placeholder-white/40 text-sm outline-none"
+                className="flex-1 bg-transparent text-sm outline-none"
+                style={{
+                  color: "#f0ede4",
+                  fontFamily: "var(--font-dm-sans), sans-serif",
+                }}
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="text-white/40 hover:text-white text-xs transition-colors"
+                  className="text-xs transition-colors"
+                  style={{ color: "#6e6e6e" }}
                 >
                   ✕
                 </button>
@@ -110,14 +114,14 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
 
       {/* Sticky filter bar */}
       <div
-        className="sticky top-16 z-30 py-4 border-b"
+        className="sticky top-14 z-30 border-b"
         style={{
-          background: "rgba(246, 244, 240, 0.95)",
+          background: "rgba(253, 252, 243, 0.97)",
           backdropFilter: "blur(12px)",
-          borderColor: "#E8E3DC",
+          borderColor: "#e5e2da",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-center justify-between gap-4">
           <div className="flex-1 min-w-0">
             <CategoryFilter
               active={activeCategory}
@@ -127,16 +131,18 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
             />
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-3 flex-shrink-0">
             {/* Sort */}
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortMode)}
-              className="text-xs font-medium border rounded-full px-3 py-2 outline-none cursor-pointer hidden sm:block"
+              className="text-xs font-medium border px-3 py-2 outline-none cursor-pointer hidden sm:block"
               style={{
-                borderColor: "#E8E3DC",
-                background: "#FFFFFF",
-                color: "#6B6B6B",
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                borderColor: "#e5e2da",
+                background: "#fdfcf3",
+                color: "#6e6e6e",
+                letterSpacing: "0.05em",
               }}
             >
               {sortOptions.map((s) => (
@@ -147,18 +153,15 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
             </select>
 
             {/* View toggle */}
-            <div
-              className="flex rounded-full border p-0.5 gap-0.5"
-              style={{ borderColor: "#E8E3DC" }}
-            >
+            <div className="flex border" style={{ borderColor: "#e5e2da" }}>
               {(["grid", "list"] as ViewMode[]).map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setViewMode(mode)}
-                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 text-xs"
+                  className="w-8 h-8 flex items-center justify-center transition-all duration-200 text-xs"
                   style={{
-                    background: viewMode === mode ? "#E8311A" : "transparent",
-                    color: viewMode === mode ? "#FFFFFF" : "#A8A8A8",
+                    background: viewMode === mode ? "#1a1a1a" : "transparent",
+                    color: viewMode === mode ? "#fdfcf3" : "#9e9e9e",
                   }}
                   title={mode === "grid" ? "Grid view" : "List view"}
                 >
@@ -172,13 +175,13 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
 
       {/* Results */}
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
-        <div className="flex items-center justify-between mb-6">
-          <p className="text-sm" style={{ color: "#6B6B6B" }}>
+        <div className="flex items-center justify-between mb-8 pb-4 border-b" style={{ borderColor: "#e5e2da" }}>
+          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
             {filtered.length > 0 ? (
               <>
-                <span className="font-medium" style={{ color: "#222222" }}>{filtered.length}</span> festivals
+                <span className="font-medium" style={{ color: "#1a1a1a" }}>{filtered.length}</span> festivals
                 {activeCategory !== "All" && (
-                  <> in <span className="font-medium" style={{ color: "#E8311A" }}>{activeCategory}</span></>
+                  <> in <span className="font-medium" style={{ color: "#25aae1" }}>{activeCategory}</span></>
                 )}
               </>
             ) : (
@@ -196,14 +199,14 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               exit={{ opacity: 0 }}
               className="py-24 text-center"
             >
-              <div className="text-4xl mb-4">✦</div>
+              <div className="text-3xl mb-4 font-light" style={{ color: "#9e9e9e" }}>—</div>
               <h3
-                className="text-xl font-semibold"
-                style={{ fontFamily: "var(--font-montserrat)", color: "#222222" }}
+                className="text-2xl font-semibold"
+                style={{ fontFamily: "var(--font-cormorant), Georgia, serif", color: "#1a1a1a", fontStyle: "italic" }}
               >
                 No festivals found
               </h3>
-              <p className="text-sm mt-2" style={{ color: "#A8A8A8" }}>
+              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}>
                 Try a different search or category
               </p>
             </motion.div>
@@ -213,8 +216,8 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              transition={{ duration: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             >
               {filtered.map((f, i) => (
                 <FestivalCard key={f.id} festival={f} variant="standard" index={i} />
@@ -226,9 +229,7 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="divide-y"
-              style={{ borderTop: "1px solid #E8E3DC", borderBottom: "1px solid #E8E3DC" }}
+              transition={{ duration: 0.2 }}
             >
               {filtered.map((f, i) => (
                 <FestivalCard key={f.id} festival={f} variant="horizontal" index={i} />
