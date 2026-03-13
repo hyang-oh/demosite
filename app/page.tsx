@@ -3,14 +3,33 @@ import FestivalCard from "@/components/FestivalCard";
 import { festivals, getEditorsPick, getFeaturedFestivals } from "@/lib/festivals";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Music, Palette, TreePine, UtensilsCrossed, Snowflake, Camera,
+  Search, Heart, CalendarCheck, Plane,
+  Globe, MapPin, Star, Users,
+} from "lucide-react";
 
 const travelStyles = [
-  { label: "Adventure" },
-  { label: "Cultural" },
-  { label: "Food & Drink" },
-  { label: "Wildlife" },
-  { label: "Family" },
-  { label: "Photography" },
+  { label: "Music", icon: Music, color: "#EEF0FF" },
+  { label: "Culture", icon: Palette, color: "#FFF4EC" },
+  { label: "Nature", icon: TreePine, color: "#ECFAEF" },
+  { label: "Food & Drink", icon: UtensilsCrossed, color: "#FFF8EC" },
+  { label: "Seasonal", icon: Snowflake, color: "#ECF6FF" },
+  { label: "Photography", icon: Camera, color: "#F9ECFF" },
+];
+
+const howItWorks = [
+  { step: "01", icon: Search, title: "Discover", desc: "Browse 2,400+ festivals by theme, destination, or season" },
+  { step: "02", icon: Heart, title: "Save & Plan", desc: "Save favorites and get personalized recommendations" },
+  { step: "03", icon: CalendarCheck, title: "Get Ready", desc: "Access travel tips, reviews, and local guides" },
+  { step: "04", icon: Plane, title: "Celebrate", desc: "Experience the world's most incredible celebrations" },
+];
+
+const stats = [
+  { icon: Globe, value: "120+", label: "Countries" },
+  { icon: MapPin, value: "2,400+", label: "Festivals" },
+  { icon: Star, value: "50K+", label: "Reviews" },
+  { icon: Users, value: "180K+", label: "Travelers" },
 ];
 
 const destinations = [
@@ -104,26 +123,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TRAVEL STYLE TABS */}
-      <section className="py-4 border-b" style={{ borderColor: "#e5e2da", background: "#ffffff" }}>
+      {/* TRAVEL STYLE CARDS */}
+      <section className="py-12 lg:py-16 border-b" style={{ borderColor: "#e5e2da", background: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="scroll-x">
-            <div className="flex gap-0 border-l" style={{ width: "max-content", borderColor: "#e5e2da" }}>
-              {travelStyles.map((style) => (
+          <div className="flex items-center justify-between mb-8">
+            <h2
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            >
+              Browse by theme
+            </h2>
+            <Link
+              href="/explore"
+              className="text-xs font-medium transition-colors hover:text-blue-500"
+              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            >
+              See all →
+            </Link>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+            {travelStyles.map((style) => {
+              const Icon = style.icon;
+              return (
                 <Link
                   key={style.label}
                   href={`/explore?style=${style.label}`}
-                  className="px-5 py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-200 hover:text-blue-500 border-r whitespace-nowrap"
-                  style={{
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                    borderColor: "#e5e2da",
-                    color: "#6e6e6e",
-                  }}
+                  className="group flex flex-col items-center gap-3 py-6 transition-all duration-200 hover:scale-[1.02]"
+                  style={{ background: style.color, borderRadius: "12px" }}
                 >
-                  {style.label}
+                  <Icon size={28} strokeWidth={1.5} style={{ color: "#1a1a1a" }} />
+                  <span
+                    className="text-xs font-semibold tracking-wide"
+                    style={{ color: "#1a1a1a", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                  >
+                    {style.label}
+                  </span>
                 </Link>
-              ))}
-            </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* STATS BAR */}
+      <section className="py-10 border-b" style={{ borderColor: "#e5e2da", background: "#ffffff" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border" style={{ borderColor: "#e5e2da" }}>
+            {stats.map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={stat.label}
+                  className="flex flex-col items-center py-8 text-center"
+                  style={{ borderRight: i < 3 ? "1px solid #e5e2da" : "none" }}
+                >
+                  <Icon size={20} strokeWidth={1.5} style={{ color: "#4344FD" }} className="mb-3" />
+                  <span
+                    className="text-3xl lg:text-4xl font-semibold"
+                    style={{ fontFamily: "var(--font-cormorant), Georgia, serif", color: "#1a1a1a" }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span
+                    className="text-xs mt-1 tracking-widest uppercase"
+                    style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                  >
+                    {stat.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -347,6 +416,72 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="py-16 lg:py-24 border-t" style={{ background: "#fafafa", borderColor: "#e5e2da" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="text-center mb-14">
+            <span className="rule-line mx-auto" />
+            <span
+              className="text-xs font-semibold uppercase tracking-widest block mb-2"
+              style={{ color: "#4344FD", fontFamily: "var(--font-dm-sans), sans-serif" }}
+            >
+              Simple as 1-2-3-4
+            </span>
+            <h2
+              className="text-4xl lg:text-5xl font-semibold"
+              style={{ color: "#1a1a1a", fontFamily: "var(--font-cormorant), Georgia, serif", fontStyle: "italic" }}
+            >
+              How it works
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
+            {howItWorks.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.step}
+                  className="relative flex flex-col items-center text-center px-6 py-10 border"
+                  style={{ borderColor: "#e5e2da", background: "#ffffff" }}
+                >
+                  <span
+                    className="text-xs font-semibold tracking-widest mb-5"
+                    style={{ color: "#9e9e9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
+                  >
+                    {item.step}
+                  </span>
+                  <div
+                    className="w-14 h-14 flex items-center justify-center mb-5"
+                    style={{ background: "#f5f3eb", borderRadius: "50%" }}
+                  >
+                    <Icon size={24} strokeWidth={1.5} style={{ color: "#4344FD" }} />
+                  </div>
+                  <h3
+                    className="text-xl font-semibold mb-2"
+                    style={{ fontFamily: "var(--font-cormorant), Georgia, serif", color: "#1a1a1a", fontStyle: "italic" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "#6e6e6e", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 300 }}
+                  >
+                    {item.desc}
+                  </p>
+                  {i < howItWorks.length - 1 && (
+                    <span
+                      className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 text-lg z-10"
+                      style={{ color: "#9e9e9e" }}
+                    >
+                      →
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
