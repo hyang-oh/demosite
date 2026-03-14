@@ -173,7 +173,7 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
                         padding: "8px 0",
                         minWidth: "180px",
                         zIndex: 50,
-                        boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+                        boxShadow: "var(--shadow-sm)",
                       }}
                     >
                       {section.items.map((item) => (

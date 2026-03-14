@@ -80,7 +80,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
         className="sticky z-30"
         style={{
           top: "64px",
-          background: "rgba(255,255,255,0.97)",
+          background: "var(--color-bg-glass)",
           backdropFilter: "blur(12px)",
           borderBottom: "1px solid var(--color-border-default)",
         }}

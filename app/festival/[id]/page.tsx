@@ -33,7 +33,7 @@ export default async function FestivalPage({ params }: Params) {
           />
           <div className="absolute inset-0 gradient-full" />
           <div className="absolute bottom-0 left-0 right-0 px-8 pb-10 max-w-[1100px] mx-auto">
-            <span className="text-label" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <span className="text-label" style={{ color: "var(--color-text-on-dark-secondary)" }}>
               {festival.category}
             </span>
             <h1
@@ -44,17 +44,17 @@ export default async function FestivalPage({ params }: Params) {
                 fontWeight: 400,
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
-                color: "#ffffff",
+                color: "var(--color-text-on-dark)",
               }}
             >
               {festival.name}
             </h1>
             {festival.nameKo && (
-              <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-serif)", fontSize: "16px", marginTop: "4px" }}>
+              <p style={{ color: "var(--color-text-on-dark-tertiary)", fontFamily: "var(--font-serif)", fontSize: "16px", marginTop: "4px" }}>
                 {festival.nameKo}
               </p>
             )}
-            <p className="text-caption mt-2" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <p className="text-caption mt-2" style={{ color: "var(--color-text-on-dark-secondary)" }}>
               {festival.city}, {festival.country} · {festival.month}
             </p>
           </div>

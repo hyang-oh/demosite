@@ -94,7 +94,7 @@ export default function FestivalCard({
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span
                 className="text-label"
-                style={{ color: "rgba(255,255,255,0.6)" }}
+                style={{ color: "var(--color-text-on-dark-secondary)" }}
               >
                 {festival.category}
               </span>
@@ -106,14 +106,14 @@ export default function FestivalCard({
                   fontWeight: 400,
                   letterSpacing: "-0.01em",
                   lineHeight: 1.2,
-                  color: "#ffffff",
+                  color: "var(--color-text-on-dark)",
                 }}
               >
                 {festival.name}
               </h2>
               <p
                 className="text-caption mt-1"
-                style={{ color: "rgba(255,255,255,0.5)" }}
+                style={{ color: "var(--color-text-on-dark-tertiary)" }}
               >
                 {festival.city}, {festival.country} · {festival.month}
               </p>

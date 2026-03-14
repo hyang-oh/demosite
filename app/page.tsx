@@ -142,13 +142,13 @@ export default function HomePage() {
                       fontFamily: "var(--font-serif)",
                       fontSize: "16px",
                       fontWeight: 400,
-                      color: "#ffffff",
+                      color: "var(--color-text-on-dark)",
                       lineHeight: 1.2,
                     }}
                   >
                     {dest.name}
                   </h3>
-                  <p className="text-caption" style={{ color: "rgba(255,255,255,0.5)", marginTop: "2px" }}>
+                  <p className="text-caption" style={{ color: "var(--color-text-on-dark-tertiary)", marginTop: "2px" }}>
                     {dest.count} festivals
                   </p>
                 </div>
@@ -162,7 +162,7 @@ export default function HomePage() {
       {/* ═══ SPRING FESTIVALS — colored bg section ═══ */}
       <section
         style={{
-          background: "#E8E6E1",
+          background: "var(--color-bg-accent)",
           paddingBottom: "64px",
           paddingTop: "48px",
         }}

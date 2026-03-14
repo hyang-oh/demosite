@@ -369,7 +369,7 @@ export default function SettingsClient() {
           </div>
           <p
             className="text-body mb-5"
-            style={{ color: "rgba(255,255,255,0.5)" }}
+            style={{ color: "var(--color-text-on-dark-tertiary)" }}
           >
             Designed and developed entirely with AI tools — from planning to deployment.
           </p>
@@ -380,8 +380,8 @@ export default function SettingsClient() {
                 className="text-caption"
                 style={{
                   padding: "4px 12px",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  color: "rgba(255,255,255,0.4)",
+                  border: "1px solid var(--color-border-on-dark)",
+                  color: "var(--color-text-on-dark-tertiary)",
                 }}
               >
                 {tech}
@@ -390,12 +390,12 @@ export default function SettingsClient() {
           </div>
           <div
             className="mt-5 pt-4 flex items-center justify-between"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
+            style={{ borderTop: "1px solid var(--color-border-on-dark)" }}
           >
-            <p className="text-caption" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <p className="text-caption" style={{ color: "var(--color-text-on-dark-tertiary)" }}>
               &copy; 2026 Festivo
             </p>
-            <p className="text-caption" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="text-caption" style={{ color: "var(--color-text-on-dark-secondary)" }}>
               Made with Claude Code
             </p>
           </div>
@@ -436,7 +436,7 @@ export default function SettingsClient() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "14px",
                 fontWeight: 500,
-                color: "#dc2626",
+                color: "var(--color-status-error)",
                 background: "none",
                 border: "none",
                 cursor: "pointer",

@@ -89,10 +89,10 @@ export default function MapClient({ festivals }: MapClientProps) {
                       style={{
                         background: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
                         borderRadius: "50%",
-                        boxShadow: isActive ? "0 0 0 4px rgba(0,0,0,0.1)" : "none",
+                        boxShadow: isActive ? "var(--shadow-ring)" : "none",
                       }}
                     >
-                      <MapPin size={18} strokeWidth={1.5} color="#ffffff" />
+                      <MapPin size={18} strokeWidth={1.5} color="var(--color-text-on-dark)" />
                     </div>
                     <span
                       style={{

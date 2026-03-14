@@ -1,38 +1,60 @@
 @import "tailwindcss";
 
-/* ─── Design Tokens ──────────────────────────────────────────── */
-@theme inline {
-  /* Backgrounds */
-  --color-bg-base:     #F7F7F5;
-  --color-bg-elevated: #FFFFFF;
-  --color-bg-sunken:   #EFEFED;
+/* ═══════════════════════════════════════════════════════════════
+   Festivo Design System
+   ═══════════════════════════════════════════════════════════════ */
 
-  /* Text */
+@theme inline {
+
+  /* ── Color: Background ─────────────────────────────────────── */
+  --color-bg-base:      #F7F7F5;
+  --color-bg-elevated:  #FFFFFF;
+  --color-bg-sunken:    #EFEFED;
+  --color-bg-accent:    #E8E6E1;
+  --color-bg-glass:     rgba(255, 255, 255, 0.97);
+
+  /* ── Color: Text ───────────────────────────────────────────── */
   --color-text-primary:   #1A1A18;
   --color-text-secondary: #6B6B68;
   --color-text-tertiary:  #9B9B97;
 
-  /* Border */
+  /* ── Color: Text on Dark ───────────────────────────────────── */
+  --color-text-on-dark:           #FFFFFF;
+  --color-text-on-dark-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-on-dark-tertiary:  rgba(255, 255, 255, 0.4);
+
+  /* ── Color: Border ─────────────────────────────────────────── */
   --color-border-default: #E4E4E0;
   --color-border-strong:  #D4D4CF;
+  --color-border-on-dark: rgba(255, 255, 255, 0.15);
 
-  /* Accent — 모노키 유지, 별도 컬러 없음 */
+  /* ── Color: Accent ─────────────────────────────────────────── */
   --color-accent: #1A1A18;
 
-  /* Typography */
+  /* ── Color: Status ─────────────────────────────────────────── */
+  --color-status-error: #dc2626;
+
+  /* ── Shadow ────────────────────────────────────────────────── */
+  --shadow-sm:   0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-ring: 0 0 0 4px rgba(0, 0, 0, 0.1);
+
+  /* ── Typography ────────────────────────────────────────────── */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans:  'DM Sans', system-ui, sans-serif;
 
-  /* Spacing — 4px Grid */
+  /* ── Spacing (4px grid) ────────────────────────────────────── */
   --space-xs:  4px;
   --space-sm:  8px;
   --space-md:  16px;
   --space-lg:  32px;
   --space-xl:  64px;
-  --space-2xl: 120px;
+  --space-2xl: 96px;
 }
 
-/* ─── Base ──────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════ */
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -47,7 +69,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Typography ───────────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-weight: 400;
@@ -55,16 +76,38 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-/* Display — 히어로 헤드라인 전용. 세리프 */
+/* ═══════════════════════════════════════════════════════════════
+   Typography Scale
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Display — Home hero headline */
 .text-display {
   font-family: var(--font-serif);
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(44px, 6vw, 72px);
   font-weight: 400;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 1.05;
 }
 
-/* Heading — 섹션 제목. 세리프 */
+/* Title — Page titles (Explore, Calendar, Theme, Magazine, Map) */
+.text-title {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Title Small — Narrow pages (Settings) */
+.text-title-sm {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Heading — Section titles, featured card overlay */
 .text-heading {
   font-family: var(--font-serif);
   font-size: 28px;
@@ -73,16 +116,25 @@ h1, h2, h3, h4 {
   line-height: 1.2;
 }
 
-/* Subheading — 카드 제목. 산세리프 */
+/* Subheading — Magazine featured story, detail page h2 */
 .text-subheading {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Card Title — Festival card names */
+.text-card-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1.3;
 }
 
-/* Body — 산세리프 */
+/* Body — Default paragraph text */
 .text-body {
   font-family: var(--font-sans);
   font-size: 15px;
@@ -91,7 +143,23 @@ h1, h2, h3, h4 {
   line-height: 1.65;
 }
 
-/* Label — 섹션 슈퍼라벨, 태그. 산세리프 */
+/* Body Small — Toggle labels, buttons, reviewer names */
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Control — Filter pills, dropdown items, month tabs */
+.text-control {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Label — Section superlabels, tags (uppercase) */
 .text-label {
   font-family: var(--font-sans);
   font-size: 11px;
@@ -100,7 +168,7 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
 }
 
-/* Caption — 날짜, 위치 등. 산세리프 */
+/* Caption — Dates, locations, metadata */
 .text-caption {
   font-family: var(--font-sans);
   font-size: 12px;
@@ -108,86 +176,39 @@ h1, h2, h3, h4 {
   line-height: 1.5;
 }
 
-/* ─── Section spacing ──────────────────────────────────────── */
-.section   { padding: var(--space-2xl) 0; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 var(--space-lg); }
+/* ═══════════════════════════════════════════════════════════════
+   Utilities
+   ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Section header pattern ───────────────────────────────── */
-.section-header {
-  margin-bottom: 48px;
-}
-
-.section-header .text-label {
-  color: var(--color-text-tertiary);
-  margin-bottom: 8px;
-}
-
-/* ─── Scrollbar ─────────────────────────────────────────────── */
+/* ── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 12px; height: 12px; }
 ::-webkit-scrollbar-track { background: var(--color-bg-sunken); }
 ::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 6px; border: 3px solid var(--color-bg-sunken); }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-tertiary); }
-/* Firefox */
 html { scrollbar-width: auto; scrollbar-color: var(--color-border-strong) var(--color-bg-sunken); }
 
-/* ─── Focus ─────────────────────────────────────────────────── */
+/* ── Focus ─────────────────────────────────────────────────── */
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 1px; }
 
-/* ─── Horizontal scroll (hidden scrollbar) ──────────────────── */
+/* ── Hidden scrollbar (horizontal scroll) ──────────────────── */
 .scroll-x { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
 .scroll-x::-webkit-scrollbar { display: none; }
 
-/* ─── Image zoom on hover ───────────────────────────────────── */
-.img-zoom { overflow: hidden; }
-.img-zoom img, .img-zoom > div { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-.img-zoom:hover img, .img-zoom:hover > div { transform: scale(1.04); }
-
-/* ─── Text clamp ────────────────────────────────────────────── */
+/* ── Text clamp ────────────────────────────────────────────── */
 .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-/* ─── Gradient overlays ─────────────────────────────────────── */
+/* ── Gradient overlays (image cards) ───────────────────────── */
 .gradient-bottom { background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 55%); }
 .gradient-full   { background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%); }
 
-/* ─── Card ──────────────────────────────────────────────────── */
-.card {
-  border: 1px solid var(--color-border-default);
-  border-radius: 4px;
-  overflow: hidden;
-  background: var(--color-bg-elevated);
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.card:hover {
-  border-color: var(--color-border-strong);
-}
-
-/* ─── Filter pill ──────────────────────────────────────────── */
+/* ── Filter pill hover ─────────────────────────────────────── */
 .filter-pill:hover {
   border-color: var(--color-text-primary) !important;
   color: var(--color-text-primary) !important;
 }
 
-/* ─── Badge / tag ───────────────────────────────────────────── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  border-radius: 0;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--font-sans);
-  background-color: transparent;
-  border: 1px solid var(--color-border-default);
-  color: var(--color-text-tertiary);
-  white-space: nowrap;
-}
-
-/* ─── Reduced Motion ────────────────────────────────────────── */
+/* ── Reduced Motion ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
