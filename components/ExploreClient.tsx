@@ -94,26 +94,25 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
           className="relative flex items-center gap-2 flex-wrap"
           style={{
             paddingBottom: "32px",
-            borderBottom: "1px solid var(--color-border-default)",
             marginBottom: "32px",
           }}
         >
           {/* All button */}
           <button
             onClick={() => { setActiveFilter(null); setOpenDropdown(null); }}
+            className="group/btn relative"
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "13px",
-              fontWeight: activeFilter === null ? 500 : 400,
-              color: activeFilter === null ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+              fontWeight: 500,
+              color: activeFilter === null ? "var(--color-bg-elevated)" : "var(--color-text-primary)",
               padding: "6px 14px",
-              border: activeFilter === null
-                ? "1px solid var(--color-text-primary)"
-                : "1px solid var(--color-border-default)",
+              border: "1px solid var(--color-text-primary)",
               borderRadius: "9999px",
-              background: "none",
+              background: activeFilter === null ? "var(--color-text-primary)" : "none",
               cursor: "pointer",
-              transition: "all 0.15s",
+              transition: "all 0.2s",
+              overflow: "hidden",
             }}
           >
             All
@@ -127,20 +126,18 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
               <div key={section.id} className="relative">
                 <button
                   onClick={() => setOpenDropdown(isOpen ? null : section.id)}
-                  className="flex items-center gap-1"
+                  className="group/btn relative flex items-center gap-1"
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
-                    fontWeight: hasActive ? 500 : 400,
-                    color: hasActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+                    fontWeight: 500,
+                    color: hasActive ? "var(--color-bg-elevated)" : "var(--color-text-primary)",
                     padding: "6px 14px",
-                    border: hasActive
-                      ? "1px solid var(--color-text-primary)"
-                      : "1px solid var(--color-border-default)",
+                    border: "1px solid var(--color-text-primary)",
                     borderRadius: "9999px",
-                    background: "none",
+                    background: hasActive ? "var(--color-text-primary)" : "none",
                     cursor: "pointer",
-                    transition: "all 0.15s",
+                    transition: "all 0.2s",
                   }}
                 >
                   {hasActive ? activeFilter : section.label}

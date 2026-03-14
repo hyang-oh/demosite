@@ -146,18 +146,15 @@ export default function FestivalCard({
         </div>
 
         {/* Content */}
-        <div
-          className="mt-4 pb-4"
-          style={{ borderBottom: "1px solid var(--color-border-default)" }}
-        >
+        <div className="mt-3">
           <span className="text-label" style={{ color: "var(--color-text-tertiary)" }}>
             {festival.category}
           </span>
           <h3
-            className="line-clamp-2 mt-2"
+            className="line-clamp-2 mt-1"
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "18px",
+              fontSize: "20px",
               fontWeight: 400,
               letterSpacing: "-0.02em",
               lineHeight: 1.3,
@@ -166,7 +163,7 @@ export default function FestivalCard({
           >
             {festival.name}
           </h3>
-          <p className="text-caption mt-2" style={{ color: "var(--color-text-secondary)" }}>
+          <p className="text-caption mt-1" style={{ color: "var(--color-text-secondary)" }}>
             {festival.city}, {festival.country} · {festival.month}
           </p>
         </div>
