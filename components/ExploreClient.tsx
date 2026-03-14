@@ -3,167 +3,163 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FestivalCard from "@/components/FestivalCard";
-import CategoryFilter from "@/components/CategoryFilter";
-import type { Festival, Category } from "@/lib/festivals";
+import type { Festival } from "@/lib/festivals";
 
 interface ExploreClientProps {
   festivals: Festival[];
-  categories: Category[];
 }
 
-type ViewMode = "grid" | "list";
-type SortMode = "recommended" | "rating" | "month";
-
-const sortOptions: { value: SortMode; label: string }[] = [
-  { value: "recommended", label: "추천순" },
-  { value: "rating", label: "평점순" },
-  { value: "month", label: "월별" },
+/* ── Sidebar filter sections — §7 ── */
+const sidebarSections = [
+  {
+    id: "theme",
+    label: "By Theme",
+    items: ["Music", "Cultural", "Food", "Light & Fire", "Nature", "Art", "Seasonal", "Water"],
+  },
+  {
+    id: "country",
+    label: "By Country",
+    items: ["Japan", "South Korea", "India", "Thailand", "United Kingdom", "Germany", "Spain", "Brazil", "United States", "Mexico"],
+  },
+  {
+    id: "month",
+    label: "By Month",
+    items: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  },
+  {
+    id: "vibe",
+    label: "By Vibe",
+    items: ["Family-friendly", "Romantic", "Solo", "Adventure", "Cultural"],
+  },
 ];
 
-export default function ExploreClient({ festivals, categories }: ExploreClientProps) {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const [sort, setSort] = useState<SortMode>("recommended");
-  const [search, setSearch] = useState("");
+export default function ExploreClient({ festivals }: ExploreClientProps) {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    let list = [...festivals];
-    if (activeCategory !== "All") {
-      list = list.filter((f) => f.category === activeCategory);
-    }
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      list = list.filter(
-        (f) =>
-          f.name.toLowerCase().includes(q) ||
-          f.city.toLowerCase().includes(q) ||
-          f.country.toLowerCase().includes(q) ||
-          f.category.toLowerCase().includes(q)
-      );
-    }
-    if (sort === "rating") list.sort((a, b) => b.rating - a.rating);
-    if (sort === "month") {
-      const monthOrder = ["January","February","March","March–April","April","May","June","July","August","September","October","October–November","November","December"];
-      list.sort((a, b) => monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month));
-    }
-    return list;
-  }, [festivals, activeCategory, search, sort]);
+    if (!activeFilter) return festivals;
+    const q = activeFilter.toLowerCase();
+    return festivals.filter(
+      (f) =>
+        f.category.toLowerCase() === q ||
+        f.country.toLowerCase() === q ||
+        f.month.toLowerCase() === q ||
+        (f.mood && f.mood.some((m) => m.toLowerCase() === q))
+    );
+  }, [festivals, activeFilter]);
 
   return (
-    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
-      {/* Page header */}
-      <div
-        className="relative py-16 lg:py-24 overflow-hidden border-b"
-        style={{ background: "#ffffff", borderColor: "#e5e2da" }}
-      >
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="rule-line" />
-          <span
-            className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#4344FD", fontFamily: "'Pretendard', sans-serif" }}
-          >
-            전 세계 {filtered.length}개 축제
-          </span>
-          <h1
-            className="text-5xl lg:text-7xl font-semibold mt-3"
-            style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-              fontStyle: "italic",
-              lineHeight: 1.0,
-              color: "#1a1a1a",
-            }}
-          >
-            Explore Festivals
-          </h1>
-          <p
-            className="mt-4 text-lg max-w-lg"
-            style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif", fontWeight: 300 }}
-          >
-            세계 곳곳의 축제를 당신의 스타일로 필터링하세요.
-          </p>
-
-        </div>
-      </div>
-
-      {/* Sticky filter bar */}
-      <div
-        className="sticky z-30 border-b"
+    <main
+      style={{
+        display: "grid",
+        gridTemplateColumns: "200px 1fr",
+        minHeight: "100vh",
+        paddingTop: "56px",
+      }}
+    >
+      {/* ── Left sidebar — §7 ── */}
+      <aside
         style={{
-          top: "90px",
-          background: "rgba(255, 255, 255, 0.97)",
-          backdropFilter: "blur(12px)",
-          borderColor: "#e5e2da",
+          background: "var(--color-bg-sunken)",
+          borderRight: "1px solid var(--color-border-default)",
+          padding: "32px 0",
+          position: "sticky",
+          top: "56px",
+          height: "calc(100vh - 56px)",
+          overflowY: "auto",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-center justify-between gap-4">
-          <div className="flex-1 min-w-0">
-            <CategoryFilter
-              active={activeCategory}
-              onChange={setActiveCategory}
-              categories={categories}
-              includeAll
-            />
-          </div>
+        {/* All reset */}
+        <div style={{ padding: "0 20px", marginBottom: "20px" }}>
+          <button
+            onClick={() => setActiveFilter(null)}
+            style={{
+              display: "block",
+              width: "100%",
+              textAlign: "left",
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              fontWeight: activeFilter === null ? 500 : 400,
+              color: activeFilter === null
+                ? "var(--color-text-primary)"
+                : "var(--color-text-secondary)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "7px 0 7px 8px",
+              borderLeft: activeFilter === null
+                ? "2px solid var(--color-accent)"
+                : "2px solid transparent",
+            }}
+          >
+            All ({festivals.length})
+          </button>
+        </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0">
-            {/* Sort */}
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value as SortMode)}
-              className="text-xs font-medium border px-3 py-2 outline-none cursor-pointer hidden sm:block"
+        {sidebarSections.map((section) => (
+          <div key={section.id} style={{ padding: "0 20px", marginBottom: "28px" }}>
+            <p
+              className="text-label"
               style={{
-                fontFamily: "'Pretendard', sans-serif",
-                borderColor: "#e5e2da",
-                background: "#ffffff",
-                color: "#6e6e6e",
-                letterSpacing: "0.05em",
+                color: "var(--color-text-tertiary)",
+                marginBottom: "10px",
               }}
             >
-              {sortOptions.map((s) => (
-                <option key={s.value} value={s.value}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
-
-            {/* View toggle */}
-            <div className="flex border" style={{ borderColor: "#e5e2da" }}>
-              {(["grid", "list"] as ViewMode[]).map((mode) => (
+              {section.label}
+            </p>
+            {section.items.map((item) => {
+              const isActive = activeFilter === item;
+              return (
                 <button
-                  key={mode}
-                  onClick={() => setViewMode(mode)}
-                  className="w-8 h-8 flex items-center justify-center transition-all duration-200 text-xs"
+                  key={item}
+                  onClick={() => setActiveFilter(isActive ? null : item)}
                   style={{
-                    background: viewMode === mode ? "#1a1a1a" : "transparent",
-                    color: viewMode === mode ? "#ffffff" : "#9e9e9e",
+                    display: "block",
+                    width: "100%",
+                    textAlign: "left",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    color: isActive
+                      ? "var(--color-text-primary)"
+                      : "var(--color-text-secondary)",
+                    fontWeight: isActive ? 500 : 400,
+                    padding: "7px 0 7px 8px",
+                    background: "none",
+                    border: "none",
+                    borderLeft: isActive
+                      ? "2px solid var(--color-accent)"
+                      : "2px solid transparent",
+                    cursor: "pointer",
+                    transition: "all 0.1s",
                   }}
-                  title={mode === "grid" ? "그리드 보기" : "목록 보기"}
                 >
-                  {mode === "grid" ? "⊞" : "☰"}
+                  {item}
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        </div>
-      </div>
+        ))}
+      </aside>
 
-      {/* Results */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
-        <div className="flex items-center justify-between mb-8 pb-4 border-b" style={{ borderColor: "#e5e2da" }}>
-          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: "'Pretendard', sans-serif" }}>
-            {filtered.length > 0 ? (
-              <>
-                <span className="font-medium" style={{ color: "#1a1a1a" }}>{filtered.length}</span>개의 축제
-                {activeCategory !== "All" && (
-                  <> · <span className="font-medium" style={{ color: "#4344FD" }}>{activeCategory}</span></>
-                )}
-              </>
-            ) : (
-              "검색 결과가 없습니다"
-            )}
+      {/* ── Right content — §7 ── */}
+      <div style={{ padding: "48px 32px", background: "var(--color-bg-base)" }}>
+        {/* Section header — §4 pattern */}
+        <div style={{ marginBottom: "48px" }}>
+          <p className="text-label" style={{ color: "var(--color-text-tertiary)", marginBottom: "8px" }}>
+            {activeFilter ?? `전 세계 ${filtered.length}개 축제`}
           </p>
+          <h1 className="text-heading">Explore Festivals</h1>
         </div>
 
+        {/* Result count */}
+        <p
+          className="text-caption"
+          style={{ color: "var(--color-text-secondary)", marginBottom: "24px" }}
+        >
+          {filtered.length}개의 축제
+        </p>
+
+        {/* Card grid — 3 columns */}
         <AnimatePresence mode="wait">
           {filtered.length === 0 ? (
             <motion.div
@@ -171,42 +167,30 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="py-24 text-center"
+              style={{ padding: "96px 0", textAlign: "center" }}
             >
-              <div className="text-3xl mb-4 font-light" style={{ color: "#9e9e9e" }}>—</div>
-              <h3
-                className="text-2xl font-semibold"
-                style={{ fontFamily: "var(--font-cormorant), Georgia, serif", color: "#1a1a1a", fontStyle: "italic" }}
-              >
+              <p className="text-heading" style={{ color: "var(--color-text-tertiary)" }}>
                 검색 결과가 없어요
-              </h3>
-              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
-                다른 검색어나 카테고리를 시도해 보세요
               </p>
-            </motion.div>
-          ) : viewMode === "grid" ? (
-            <motion.div
-              key={`grid-${activeCategory}-${sort}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-            >
-              {filtered.map((f, i) => (
-                <FestivalCard key={f.id} festival={f} variant="standard" index={i} />
-              ))}
+              <p className="text-caption" style={{ color: "var(--color-text-tertiary)", marginTop: "8px" }}>
+                다른 필터를 선택해 보세요
+              </p>
             </motion.div>
           ) : (
             <motion.div
-              key={`list-${activeCategory}-${sort}`}
+              key={`grid-${activeFilter}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "24px",
+              }}
             >
               {filtered.map((f, i) => (
-                <FestivalCard key={f.id} festival={f} variant="horizontal" index={i} />
+                <FestivalCard key={f.id} festival={f} variant="standard" index={i} />
               ))}
             </motion.div>
           )}

@@ -67,29 +67,61 @@ export default function HomePage() {
       <Navigation />
 
       {/* ═══ 1. HERO ═══ */}
-      <section className="relative w-full overflow-hidden" style={{ height: "80svh", maxHeight: "720px", minHeight: "480px" }}>
-        <Image
-          src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=85"
-          alt="Golden hour landscape travel"
-          fill className="object-cover" priority sizes="100vw"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 100%)" }}
-        />
-        <div className="absolute inset-0 flex flex-col justify-center px-6 lg:px-10">
-          <div className="max-w-7xl mx-auto w-full">
-            <h1
-              className="text-white font-semibold leading-none"
-              style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                fontStyle: "italic",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Discover the world<br />through celebration.
-            </h1>
+      <section style={{ background: "var(--color-bg-base)", paddingTop: "120px", paddingBottom: "120px" }}>
+        <div className="max-w-[1100px] mx-auto px-8">
+          <p
+            className="text-label"
+            style={{ color: "var(--color-text-tertiary)", marginBottom: "8px" }}
+          >
+            Discover festivals worldwide
+          </p>
+          <h1
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(40px, 6vw, 72px)",
+              fontWeight: 400,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: "var(--color-text-primary)",
+            }}
+          >
+            Discover the world<br />through celebration
+          </h1>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "15px",
+              color: "var(--color-text-secondary)",
+              lineHeight: 1.65,
+              marginTop: "24px",
+            }}
+          >
+            전 세계 축제를 테마, 지역, 시즌별로 탐색하세요.
+          </p>
+          <div className="flex gap-2" style={{ marginTop: "48px" }}>
+            {[
+              { label: "테마별", href: "/explore" },
+              { label: "나라별", href: "/explore" },
+              { label: "이달의 축제", href: "/calendar" },
+            ].map((pill) => (
+              <Link
+                key={pill.label}
+                href={pill.href}
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  color: "var(--color-text-secondary)",
+                  padding: "8px 20px",
+                  border: "1px solid var(--color-border-default)",
+                  borderRadius: "9999px",
+                  transition: "border-color 0.15s, color 0.15s",
+                }}
+                className="hover:text-[--color-text-primary] hover:border-[--color-border-strong]"
+              >
+                {pill.label}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
