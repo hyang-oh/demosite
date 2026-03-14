@@ -159,12 +159,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ SPRING FESTIVALS — horizontal scroll ═══ */}
+      {/* ═══ SPRING FESTIVALS — colored bg section ═══ */}
       <section
         style={{
-          background: "var(--color-bg-elevated)",
+          background: "#E8E6E1",
           paddingBottom: "64px",
-          borderTop: "1px solid var(--color-border-default)",
           paddingTop: "48px",
         }}
       >

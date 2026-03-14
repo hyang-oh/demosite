@@ -55,20 +55,21 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
   return (
     <main className="min-h-screen" style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}>
       {/* Header */}
-      <div style={{ borderBottom: "1px solid var(--color-border-default)" }}>
-        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "48px", paddingBottom: "32px" }}>
+      <div>
+        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "96px", paddingBottom: "64px" }}>
           <h1
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "36px",
+              fontSize: "54px",
               fontWeight: 400,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
               color: "var(--color-text-primary)",
             }}
           >
             Festival Calendar
           </h1>
-          <p className="text-body" style={{ color: "var(--color-text-secondary)", marginTop: "8px" }}>
+          <p className="text-body" style={{ color: "var(--color-text-secondary)", marginTop: "12px" }}>
             Browse festivals by month
           </p>
         </div>

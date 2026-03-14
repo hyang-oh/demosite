@@ -68,13 +68,14 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
     >
       <div className="max-w-[1100px] mx-auto px-8">
         {/* Header */}
-        <div style={{ paddingTop: "48px", paddingBottom: "32px" }}>
+        <div style={{ paddingTop: "96px", paddingBottom: "64px" }}>
           <h1
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "36px",
+              fontSize: "54px",
               fontWeight: 400,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
               color: "var(--color-text-primary)",
             }}
           >
@@ -82,7 +83,7 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
           </h1>
           <p
             className="text-body"
-            style={{ color: "var(--color-text-secondary)", marginTop: "8px" }}
+            style={{ color: "var(--color-text-secondary)", marginTop: "12px" }}
           >
             {filtered.length} festivals{activeFilter ? ` — ${activeFilter}` : ""}
           </p>
@@ -100,19 +101,20 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
           {/* All button */}
           <button
             onClick={() => { setActiveFilter(null); setOpenDropdown(null); }}
-            className="group/btn relative"
+            className="filter-pill"
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "13px",
               fontWeight: 500,
-              color: activeFilter === null ? "var(--color-bg-elevated)" : "var(--color-text-primary)",
+              color: activeFilter === null ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
               padding: "6px 14px",
-              border: "1px solid var(--color-text-primary)",
+              border: activeFilter === null
+                ? "1px solid var(--color-text-primary)"
+                : "1px solid var(--color-border-default)",
               borderRadius: "9999px",
               background: activeFilter === null ? "var(--color-text-primary)" : "none",
               cursor: "pointer",
               transition: "all 0.2s",
-              overflow: "hidden",
             }}
           >
             All
@@ -126,14 +128,16 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
               <div key={section.id} className="relative">
                 <button
                   onClick={() => setOpenDropdown(isOpen ? null : section.id)}
-                  className="group/btn relative flex items-center gap-1"
+                  className="filter-pill flex items-center gap-1"
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
                     fontWeight: 500,
-                    color: hasActive ? "var(--color-bg-elevated)" : "var(--color-text-primary)",
+                    color: hasActive ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
                     padding: "6px 14px",
-                    border: "1px solid var(--color-text-primary)",
+                    border: hasActive
+                      ? "1px solid var(--color-text-primary)"
+                      : "1px solid var(--color-border-default)",
                     borderRadius: "9999px",
                     background: hasActive ? "var(--color-text-primary)" : "none",
                     cursor: "pointer",

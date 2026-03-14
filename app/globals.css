@@ -164,6 +164,12 @@ html { scrollbar-width: auto; scrollbar-color: var(--color-border-strong) var(--
   border-color: var(--color-border-strong);
 }
 
+/* ─── Filter pill ──────────────────────────────────────────── */
+.filter-pill:hover {
+  border-color: var(--color-text-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
 /* ─── Badge / tag ───────────────────────────────────────────── */
 .badge {
   display: inline-flex;
