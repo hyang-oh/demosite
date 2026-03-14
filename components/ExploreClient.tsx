@@ -82,35 +82,6 @@ export default function ExploreClient({ festivals, categories }: ExploreClientPr
             세계 곳곳의 축제를 당신의 스타일로 필터링하세요.
           </p>
 
-          {/* Search bar */}
-          <div className="mt-8 max-w-md">
-            <div
-              className="flex items-center gap-3 px-4 py-3 border"
-              style={{ background: "#ffffff", borderColor: "#e5e2da" }}
-            >
-              <span style={{ color: "#6e6e6e", fontSize: "14px" }}>⌕</span>
-              <input
-                type="text"
-                placeholder="축제명, 도시, 국가로 검색..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="flex-1 bg-transparent text-sm outline-none"
-                style={{
-                  color: "#1a1a1a",
-                  fontFamily: "'Pretendard', sans-serif",
-                }}
-              />
-              {search && (
-                <button
-                  onClick={() => setSearch("")}
-                  className="text-xs transition-colors"
-                  style={{ color: "#6e6e6e" }}
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
         </div>
       </div>
 

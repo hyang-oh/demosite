@@ -94,69 +94,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ SEARCH BAR (floating over hero) ═══ */}
-      <div className="relative z-10" style={{ marginTop: "-44px" }}>
-        <div className="max-w-4xl mx-auto px-6 lg:px-10">
-          <div
-            className="flex flex-col sm:flex-row items-stretch"
-            style={{
-              background: "#ffffff",
-              boxShadow: "0 8px 40px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
-              borderRadius: "2px",
-            }}
-          >
-            {/* 어디로 */}
-            <div className="flex-1 flex items-center gap-3 px-6 py-4 border-b sm:border-b-0 sm:border-r" style={{ borderColor: "#e5e2da" }}>
-              <MapPin size={18} strokeWidth={1.5} style={{ color: "#4344FD", flexShrink: 0 }} />
-              <div>
-                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
-                  어디로
-                </p>
-                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
-                  도시 또는 국가
-                </p>
-              </div>
-            </div>
-            {/* 언제 */}
-            <div className="flex-1 flex items-center gap-3 px-6 py-4 border-b sm:border-b-0 sm:border-r" style={{ borderColor: "#e5e2da" }}>
-              <CalendarDays size={18} strokeWidth={1.5} style={{ color: "#4344FD", flexShrink: 0 }} />
-              <div>
-                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
-                  언제
-                </p>
-                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
-                  월 선택
-                </p>
-              </div>
-            </div>
-            {/* 카테고리 */}
-            <div className="flex-1 flex items-center gap-3 px-6 py-4 border-b sm:border-b-0 sm:border-r" style={{ borderColor: "#e5e2da" }}>
-              <Palette size={18} strokeWidth={1.5} style={{ color: "#4344FD", flexShrink: 0 }} />
-              <div>
-                <p className="text-xs font-semibold tracking-wide" style={{ color: "#9e9e9e", fontFamily: "'Pretendard', sans-serif" }}>
-                  카테고리
-                </p>
-                <p className="text-sm font-medium mt-0.5" style={{ color: "#1a1a1a", fontFamily: "'Pretendard', sans-serif" }}>
-                  전체
-                </p>
-              </div>
-            </div>
-            {/* 검색 버튼 */}
-            <Link
-              href="/explore"
-              className="flex items-center justify-center gap-2 px-8 py-4 transition-opacity hover:opacity-90"
-              style={{
-                background: "#4344FD",
-                color: "#ffffff",
-                fontFamily: "'Pretendard', sans-serif",
-              }}
-            >
-              <Search size={20} strokeWidth={2.5} />
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* ═══ 2. QUICK MENU ═══ */}
       <section className="py-8 lg:py-10 border-b" style={{ borderColor: "#e5e2da", background: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
