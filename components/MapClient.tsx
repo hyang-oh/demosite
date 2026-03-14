@@ -38,20 +38,21 @@ export default function MapClient({ festivals }: MapClientProps) {
   return (
     <main className="min-h-screen" style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}>
       {/* Header */}
-      <div style={{ borderBottom: "1px solid var(--color-border-default)" }}>
-        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "48px", paddingBottom: "32px" }}>
+      <div>
+        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "96px", paddingBottom: "64px" }}>
           <h1
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "36px",
+              fontSize: "48px",
               fontWeight: 400,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
               color: "var(--color-text-primary)",
             }}
           >
             Festival Map
           </h1>
-          <p className="text-body" style={{ color: "var(--color-text-secondary)", marginTop: "8px" }}>
+          <p className="text-body" style={{ color: "var(--color-text-secondary)", marginTop: "12px" }}>
             Explore festivals by region
           </p>
         </div>
@@ -122,39 +123,50 @@ export default function MapClient({ festivals }: MapClientProps) {
             <div className="flex gap-2 mt-4 flex-wrap">
               <button
                 onClick={() => setSelectedContinent(null)}
+                className="filter-pill"
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "13px",
-                  fontWeight: !selectedContinent ? 500 : 400,
+                  fontWeight: 500,
                   color: !selectedContinent ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
-                  background: !selectedContinent ? "var(--color-text-primary)" : "transparent",
-                  border: "1px solid var(--color-border-default)",
+                  background: !selectedContinent ? "var(--color-text-primary)" : "none",
+                  border: !selectedContinent
+                    ? "1px solid var(--color-text-primary)"
+                    : "1px solid var(--color-border-default)",
                   padding: "6px 14px",
                   borderRadius: "9999px",
                   cursor: "pointer",
+                  transition: "all 0.2s",
                 }}
               >
                 All
               </button>
-              {continentData.map((c) => (
-                <button
-                  key={c.id}
-                  onClick={() => setSelectedContinent(selectedContinent === c.id ? null : c.id)}
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
-                    fontWeight: selectedContinent === c.id ? 500 : 400,
-                    color: selectedContinent === c.id ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
-                    background: selectedContinent === c.id ? "var(--color-text-primary)" : "transparent",
-                    border: "1px solid var(--color-border-default)",
-                    padding: "6px 14px",
-                    borderRadius: "9999px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {c.label}
-                </button>
-              ))}
+              {continentData.map((c) => {
+                const isActive = selectedContinent === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => setSelectedContinent(isActive ? null : c.id)}
+                    className="filter-pill"
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      color: isActive ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
+                      background: isActive ? "var(--color-text-primary)" : "none",
+                      border: isActive
+                        ? "1px solid var(--color-text-primary)"
+                        : "1px solid var(--color-border-default)",
+                      padding: "6px 14px",
+                      borderRadius: "9999px",
+                      cursor: "pointer",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    {c.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -210,15 +222,16 @@ export default function MapClient({ festivals }: MapClientProps) {
                                   <p
                                     className="truncate"
                                     style={{
-                                      fontFamily: "var(--font-sans)",
-                                      fontSize: "14px",
-                                      fontWeight: 500,
+                                      fontFamily: "var(--font-serif)",
+                                      fontSize: "16px",
+                                      fontWeight: 400,
+                                      letterSpacing: "-0.02em",
                                       color: "var(--color-text-primary)",
                                     }}
                                   >
                                     {f.name}
                                   </p>
-                                  <p className="text-caption" style={{ color: "var(--color-text-tertiary)" }}>
+                                  <p className="text-caption" style={{ color: "var(--color-text-secondary)" }}>
                                     {f.city} · {f.month}
                                   </p>
                                 </div>

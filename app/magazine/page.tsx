@@ -85,7 +85,7 @@ export default function MagazinePage() {
             <h1
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "54px",
+                fontSize: "48px",
                 fontWeight: 400,
                 letterSpacing: "-0.03em",
                 lineHeight: 1.1,
