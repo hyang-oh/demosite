@@ -1,239 +1,265 @@
 "use client";
 
 import Navigation from "@/components/Navigation";
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { festivals } from "@/lib/festivals";
 
-/* ── Bento card data: mix of images & videos with object-position focus ── */
-const bentoCards = [
+/* ── Floating media particles — scattered on top of giant text ── */
+const particles: {
+  id: string;
+  type: "image" | "video";
+  src: string;
+  poster?: string;
+  w: number;
+  h: number;
+  x: string;
+  y: string;
+  rotate: number;
+  depth: number; /* 0.3–1.0, controls parallax intensity */
+  objectPosition: string;
+}[] = [
   {
-    id: festivals[0].id,
-    type: "image" as const,
-    src: festivals[0].heroImage,
-    title: festivals[0].name,
-    subtitle: `${festivals[0].city}, ${festivals[0].country}`,
-    category: festivals[0].category,
-    span: "col-span-2 row-span-2",
+    id: "p1",
+    type: "image",
+    src: festivals[0].image,
+    w: 180,
+    h: 140,
+    x: "8%",
+    y: "18%",
+    rotate: -6,
+    depth: 0.8,
     objectPosition: "center 30%",
   },
   {
-    id: "video-1",
-    type: "video" as const,
-    src: "https://cdn.coverr.co/videos/coverr-confetti-falling-down-1584/1080p.mp4",
-    poster: festivals[5].image,
-    title: "Festival Highlights",
-    subtitle: "Best moments from around the world",
-    category: "Highlights",
-    span: "col-span-1 row-span-1",
-    objectPosition: "center",
-  },
-  {
-    id: festivals[6].id,
-    type: "image" as const,
-    src: festivals[6].heroImage,
-    title: festivals[6].name,
-    subtitle: `${festivals[6].city}, ${festivals[6].country}`,
-    category: festivals[6].category,
-    span: "col-span-1 row-span-1",
+    id: "p2",
+    type: "image",
+    src: festivals[5].image,
+    w: 120,
+    h: 160,
+    x: "28%",
+    y: "12%",
+    rotate: 3,
+    depth: 0.5,
     objectPosition: "center 20%",
   },
   {
-    id: festivals[11].id,
-    type: "image" as const,
-    src: festivals[11].heroImage,
-    title: festivals[11].name,
-    subtitle: `${festivals[11].city}, ${festivals[11].country}`,
-    category: festivals[11].category,
-    span: "col-span-1 row-span-2",
+    id: "p3",
+    type: "video",
+    src: "https://cdn.coverr.co/videos/coverr-confetti-falling-down-1584/1080p.mp4",
+    poster: festivals[6].image,
+    w: 160,
+    h: 120,
+    x: "48%",
+    y: "8%",
+    rotate: -2,
+    depth: 0.9,
+    objectPosition: "center",
+  },
+  {
+    id: "p4",
+    type: "image",
+    src: festivals[11].image,
+    w: 100,
+    h: 130,
+    x: "72%",
+    y: "15%",
+    rotate: 5,
+    depth: 0.4,
     objectPosition: "center 40%",
   },
   {
-    id: "video-2",
-    type: "video" as const,
-    src: "https://cdn.coverr.co/videos/coverr-people-at-a-concert-8498/1080p.mp4",
-    poster: festivals[17].image,
-    title: "Live Performances",
-    subtitle: "Music festivals worldwide",
-    category: "Music",
-    span: "col-span-2 row-span-1",
-    objectPosition: "center 60%",
-  },
-  {
-    id: festivals[9].id,
-    type: "image" as const,
-    src: festivals[9].heroImage,
-    title: festivals[9].name,
-    subtitle: `${festivals[9].city}, ${festivals[9].country}`,
-    category: festivals[9].category,
-    span: "col-span-1 row-span-1",
+    id: "p5",
+    type: "image",
+    src: festivals[9].image,
+    w: 140,
+    h: 100,
+    x: "88%",
+    y: "22%",
+    rotate: -4,
+    depth: 0.7,
     objectPosition: "right 30%",
   },
   {
-    id: festivals[14].id,
-    type: "image" as const,
-    src: festivals[14].heroImage,
-    title: festivals[14].name,
-    subtitle: `${festivals[14].city}, ${festivals[14].country}`,
-    category: festivals[14].category,
-    span: "col-span-1 row-span-1",
+    id: "p6",
+    type: "image",
+    src: festivals[4].image,
+    w: 110,
+    h: 150,
+    x: "15%",
+    y: "52%",
+    rotate: 4,
+    depth: 0.6,
+    objectPosition: "center 60%",
+  },
+  {
+    id: "p7",
+    type: "video",
+    src: "https://cdn.coverr.co/videos/coverr-people-at-a-concert-8498/1080p.mp4",
+    poster: festivals[17].image,
+    w: 170,
+    h: 120,
+    x: "38%",
+    y: "48%",
+    rotate: -3,
+    depth: 0.85,
+    objectPosition: "center",
+  },
+  {
+    id: "p8",
+    type: "image",
+    src: festivals[14].image,
+    w: 90,
+    h: 90,
+    x: "60%",
+    y: "55%",
+    rotate: 8,
+    depth: 0.35,
     objectPosition: "center 25%",
   },
   {
-    id: festivals[4].id,
-    type: "image" as const,
-    src: festivals[4].heroImage,
-    title: festivals[4].name,
-    subtitle: `${festivals[4].city}, ${festivals[4].country}`,
-    category: festivals[4].category,
-    span: "col-span-2 row-span-1",
+    id: "p9",
+    type: "image",
+    src: festivals[12].image,
+    w: 130,
+    h: 170,
+    x: "78%",
+    y: "45%",
+    rotate: -5,
+    depth: 0.75,
     objectPosition: "center 50%",
+  },
+  {
+    id: "p10",
+    type: "image",
+    src: festivals[7].image,
+    w: 150,
+    h: 110,
+    x: "5%",
+    y: "78%",
+    rotate: 2,
+    depth: 0.55,
+    objectPosition: "center 35%",
+  },
+  {
+    id: "p11",
+    type: "image",
+    src: festivals[16].image,
+    w: 100,
+    h: 80,
+    x: "32%",
+    y: "82%",
+    rotate: -7,
+    depth: 0.45,
+    objectPosition: "center",
+  },
+  {
+    id: "p12",
+    type: "image",
+    src: festivals[20].image,
+    w: 120,
+    h: 90,
+    x: "55%",
+    y: "78%",
+    rotate: 3,
+    depth: 0.65,
+    objectPosition: "center 45%",
+  },
+  {
+    id: "p13",
+    type: "image",
+    src: festivals[2].image,
+    w: 80,
+    h: 110,
+    x: "85%",
+    y: "72%",
+    rotate: -2,
+    depth: 0.5,
+    objectPosition: "center 20%",
   },
 ];
 
-/* ── Animation variants ── */
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
+/* ── Single floating particle with parallax ── */
+function FloatingParticle({
+  particle,
+  mouseX,
+  mouseY,
+}: {
+  particle: (typeof particles)[number];
+  mouseX: ReturnType<typeof useSpring>;
+  mouseY: ReturnType<typeof useSpring>;
+}) {
+  const px = useTransform(mouseX, (v) => v * particle.depth * 40);
+  const py = useTransform(mouseY, (v) => v * particle.depth * 40);
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 32, scale: 0.97 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
-
-/* ── Bento Card ── */
-function BentoCard({ card }: { card: (typeof bentoCards)[number] }) {
-  const [hovered, setHovered] = useState(false);
-  const isLink = !card.id.startsWith("video-");
-
-  const content = (
+  return (
     <motion.div
-      variants={cardVariants}
-      className={`${card.span} relative overflow-hidden group`}
-      style={{ minHeight: card.span.includes("row-span-2") ? 420 : 200 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="absolute overflow-hidden"
+      style={{
+        left: particle.x,
+        top: particle.y,
+        width: particle.w,
+        height: particle.h,
+        x: px,
+        y: py,
+        rotate: particle.rotate,
+        zIndex: Math.round(particle.depth * 10),
+      }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        delay: 0.3 + Math.random() * 0.8,
+        ease: "easeOut" as const,
+      }}
     >
-      {/* Media */}
-      {card.type === "video" ? (
+      {particle.type === "video" ? (
         <video
-          src={card.src}
-          poster={card.poster}
+          src={particle.src}
+          poster={particle.poster}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
-          style={{
-            objectPosition: card.objectPosition,
-            transform: hovered ? "scale(1.06)" : "scale(1)",
-          }}
+          className="w-full h-full object-cover"
+          style={{ objectPosition: particle.objectPosition }}
         />
       ) : (
-        <Image
-          src={card.src}
-          alt={card.title}
-          fill
-          className="object-cover transition-transform duration-700 ease-out"
-          style={{
-            objectPosition: card.objectPosition,
-            transform: hovered ? "scale(1.06)" : "scale(1)",
-          }}
-          sizes={
-            card.span.includes("col-span-2")
-              ? "(max-width: 768px) 100vw, 50vw"
-              : "(max-width: 768px) 50vw, 25vw"
-          }
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={particle.src}
+          alt=""
+          className="w-full h-full object-cover"
+          style={{ objectPosition: particle.objectPosition }}
         />
-      )}
-
-      {/* Gradient overlay */}
-      <div
-        className="absolute inset-0 transition-opacity duration-500"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, transparent 100%)",
-          opacity: hovered ? 1 : 0.55,
-        }}
-      />
-
-      {/* Inner border on hover */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{
-          boxShadow: hovered
-            ? "inset 0 0 0 1px rgba(255,255,255,0.25)"
-            : "inset 0 0 0 0px rgba(255,255,255,0)",
-        }}
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Text overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-        <motion.span
-          className="text-label"
-          style={{ color: "var(--color-text-on-dark-tertiary)" }}
-          animate={{ y: hovered ? 0 : 6, opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        >
-          {card.category}
-        </motion.span>
-        <motion.h3
-          className="text-card-title mt-1"
-          style={{ color: "var(--color-text-on-dark)" }}
-          animate={{ y: hovered ? 0 : 4 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        >
-          {card.title}
-        </motion.h3>
-        <motion.p
-          className="text-caption mt-1"
-          style={{ color: "var(--color-text-on-dark-secondary)" }}
-          animate={{ y: hovered ? 0 : 6, opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.35, ease: "easeOut", delay: 0.03 }}
-        >
-          {card.subtitle}
-        </motion.p>
-      </div>
-
-      {/* Play indicator for video cards */}
-      {card.type === "video" && (
-        <motion.div
-          className="absolute top-4 right-4 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center z-10"
-          style={{ width: 32, height: 32 }}
-          animate={{ scale: hovered ? 1.1 : 1, opacity: hovered ? 1 : 0.6 }}
-          transition={{ duration: 0.3 }}
-        >
-          <svg width="10" height="12" viewBox="0 0 10 12" fill="none">
-            <path d="M1 1L9 6L1 11V1Z" fill="white" />
-          </svg>
-        </motion.div>
       )}
     </motion.div>
   );
-
-  if (isLink) {
-    return (
-      <Link href={`/festival/${card.id}`} className="contents">
-        {content}
-      </Link>
-    );
-  }
-  return content;
 }
 
 /* ── Page ── */
 export default function FestivalIndexPage() {
-  const totalFestivals = festivals.length;
-  const totalCountries = new Set(festivals.map((f) => f.country)).size;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState(false);
+
+  /* Mouse tracking → normalized -1 to 1 */
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const mouseX = useSpring(rawX, { stiffness: 50, damping: 20 });
+  const mouseY = useSpring(rawY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    setReady(true);
+    const handleMove = (e: MouseEvent) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      rawX.set((e.clientX - cx) / cx);
+      rawY.set((e.clientY - cy) / cy);
+    };
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, [rawX, rawY]);
 
   return (
     <>
@@ -243,143 +269,168 @@ export default function FestivalIndexPage() {
         className="min-h-screen"
         style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}
       >
-        {/* ═══ Hero — Sana Summit style ═══ */}
-        <motion.section
-          className="text-center"
-          style={{ paddingTop: "80px", paddingBottom: "48px" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+        {/* ═══ Hero: giant text + floating particles ═══ */}
+        <section
+          ref={containerRef}
+          className="relative overflow-hidden"
+          style={{ height: "calc(100vh - 64px)", minHeight: "600px" }}
         >
-          <div className="max-w-[1100px] mx-auto px-8">
-            <motion.p
-              className="text-label"
-              style={{ color: "var(--color-text-tertiary)", marginBottom: "20px" }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              Festivo Collection
-            </motion.p>
-
-            <motion.h1
-              className="text-display"
-              style={{ color: "var(--color-text-primary)" }}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Celebrations that
-              <br />
-              <span style={{ color: "var(--color-text-tertiary)" }}>
-                move the world
-              </span>
-            </motion.h1>
-
-            <motion.p
-              className="text-body"
-              style={{
-                color: "var(--color-text-secondary)",
-                marginTop: "24px",
-                maxWidth: "440px",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              Immerse yourself in the sights, sounds, and stories
-              of festivals across {totalCountries} countries.
-            </motion.p>
-
-            <motion.div
-              className="flex items-center justify-center gap-3"
-              style={{ marginTop: "32px" }}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <Link
-                href="/explore"
+          {/* Giant background text — fills viewport */}
+          <div className="absolute inset-0 flex flex-col justify-between px-6 md:px-12 py-8 md:py-12 pointer-events-none select-none">
+            {/* Top-left: description + CTA */}
+            <div className="relative z-20 pointer-events-auto max-w-[420px]">
+              <motion.p
+                className="text-body"
                 style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "14px",
-                  fontWeight: 500,
-                  background: "var(--color-text-primary)",
-                  color: "var(--color-bg-elevated)",
-                  padding: "10px 28px",
-                  transition: "opacity 0.15s",
-                }}
-                className="hover:opacity-90"
-              >
-                Explore all
-              </Link>
-              <Link
-                href="/calendar"
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "14px",
-                  fontWeight: 500,
-                  border: "1px solid var(--color-border-default)",
                   color: "var(--color-text-secondary)",
-                  padding: "10px 28px",
-                  transition: "border-color 0.15s",
+                  lineHeight: 1.6,
                 }}
-                className="hover:border-[--color-text-tertiary]"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
-                By season
-              </Link>
-            </motion.div>
-          </div>
-        </motion.section>
+                From ancient lantern ceremonies to desert music
+                gatherings — discover festivals that move people
+                across {new Set(festivals.map((f) => f.country)).size} countries.
+              </motion.p>
+              <motion.div
+                style={{ marginTop: "20px" }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Link
+                  href="/explore"
+                  className="text-body-sm hover:opacity-80"
+                  style={{
+                    display: "inline-block",
+                    background: "var(--color-text-primary)",
+                    color: "var(--color-bg-elevated)",
+                    padding: "10px 28px",
+                    transition: "opacity 0.15s",
+                  }}
+                >
+                  Explore festivals
+                </Link>
+              </motion.div>
+            </div>
 
-        {/* ═══ Bento Grid ═══ */}
-        <section style={{ paddingBottom: "64px" }}>
-          <div className="max-w-[1100px] mx-auto px-8">
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-3"
-              style={{ gridAutoRows: "200px" }}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {bentoCards.map((card) => (
-                <BentoCard key={card.id} card={card} />
-              ))}
-            </motion.div>
+            {/* Giant serif text — right-aligned, stacked */}
+            <div className="absolute top-[5%] right-0 md:right-[-2%] z-0">
+              <motion.div
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontWeight: 400,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 0.9,
+                  color: "var(--color-text-primary)",
+                  fontSize: "clamp(80px, 14vw, 200px)",
+                  textAlign: "right",
+                  paddingRight: "12px",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+              >
+                Festivo
+                <br />
+                Collection
+              </motion.div>
+            </div>
+
+            {/* Bottom-left giant text — date & details */}
+            <div className="relative z-0">
+              <motion.div
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontWeight: 400,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 0.9,
+                  color: "var(--color-text-primary)",
+                  fontSize: "clamp(60px, 11vw, 160px)",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span style={{ color: "var(--color-text-tertiary)" }}>*</span>
+                World
+                <br />
+                Festivals
+                <br />
+                <span
+                  style={{
+                    fontSize: "clamp(48px, 9vw, 130px)",
+                    color: "var(--color-text-tertiary)",
+                  }}
+                >
+                  2026
+                </span>
+              </motion.div>
+            </div>
           </div>
+
+          {/* Floating image/video particles */}
+          {ready && (
+            <div className="absolute inset-0 z-10 pointer-events-none">
+              {particles.map((p) => (
+                <FloatingParticle
+                  key={p.id}
+                  particle={p}
+                  mouseX={mouseX}
+                  mouseY={mouseY}
+                />
+              ))}
+            </div>
+          )}
         </section>
 
-        {/* ═══ Stats line ═══ */}
+        {/* ═══ Bottom info bar ═══ */}
         <motion.section
           style={{
             borderTop: "1px solid var(--color-border-default)",
-            paddingTop: "40px",
-            paddingBottom: "40px",
+            paddingTop: "32px",
+            paddingBottom: "32px",
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
         >
-          <div className="max-w-[1100px] mx-auto px-8 flex items-center justify-center gap-16">
-            {[
-              { label: "Festivals", value: String(totalFestivals) },
-              { label: "Countries", value: String(totalCountries) },
-              { label: "Categories", value: "6" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-heading" style={{ color: "var(--color-text-primary)" }}>
-                  {stat.value}
-                </p>
-                <p
-                  className="text-label"
-                  style={{ color: "var(--color-text-tertiary)", marginTop: "4px" }}
-                >
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+          <div className="max-w-[1100px] mx-auto px-8 flex items-center justify-between">
+            <div className="flex items-center gap-12">
+              {[
+                { label: "Festivals", value: String(festivals.length) },
+                {
+                  label: "Countries",
+                  value: String(
+                    new Set(festivals.map((f) => f.country)).size
+                  ),
+                },
+                { label: "Categories", value: "6" },
+              ].map((stat) => (
+                <div key={stat.label} className="flex items-baseline gap-2">
+                  <span
+                    className="text-subheading"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span
+                    className="text-label"
+                    style={{ color: "var(--color-text-tertiary)" }}
+                  >
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/explore"
+              className="text-label hidden md:block"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              View all →
+            </Link>
           </div>
         </motion.section>
       </main>
