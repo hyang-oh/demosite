@@ -9,11 +9,13 @@ const destinations = [
   { name: "Japan", count: 3, image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80" },
   { name: "South Korea", count: 5, image: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600&q=80" },
   { name: "India", count: 2, image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80" },
-  { name: "Thailand", count: 1, image: "https://images.unsplash.com/photo-1528181304800-259b08848526?w=600&q=80" },
-  { name: "United Kingdom", count: 3, image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80" },
-  { name: "Germany", count: 1, image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80" },
-  { name: "Brazil", count: 1, image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=80" },
-  { name: "United States", count: 2, image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80" },
+  { name: "Thailand", count: 2, image: "https://images.unsplash.com/photo-1528181304800-259b08848526?w=600&q=80" },
+  { name: "Italy", count: 1, image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" },
+  { name: "Belgium", count: 1, image: "https://images.unsplash.com/photo-1559113202-c916b8e44373?w=600&q=80" },
+  { name: "Australia", count: 1, image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80" },
+  { name: "United States", count: 3, image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80" },
+  { name: "South Africa", count: 1, image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80" },
+  { name: "China", count: 1, image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=600&q=80" },
 ];
 
 export default function HomePage() {
