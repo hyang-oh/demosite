@@ -181,7 +181,7 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
                         fontFamily: "var(--font-serif)",
                         fontSize: "20px",
                         fontWeight: 400,
-                        color: "var(--color-border-default)",
+                        color: "var(--color-text-primary)",
                       }}
                     >
                       {String(i + 1).padStart(2, "0")}

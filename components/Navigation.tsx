@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Map } from "lucide-react";
+import { Search, Map, X } from "lucide-react";
 
 const navLinks = [
   { href: "/explore", label: "Explore" },
@@ -18,6 +18,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 16);
@@ -29,6 +30,21 @@ export default function Navigation() {
     setMenuOpen(false);
     setSearchOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [searchOpen]);
 
   return (
     <>
@@ -61,28 +77,77 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop nav — flat, no mega menu */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map(({ href, label }) => {
-              const active = pathname === href || (href !== "/" && pathname.startsWith(href));
-              return (
-                <Link
-                  key={href}
-                  href={href}
+          {/* Desktop center: nav links OR inline search */}
+          <AnimatePresence mode="wait">
+            {searchOpen ? (
+              <motion.div
+                key="search"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "100%" }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ duration: 0.2 }}
+                className="hidden md:flex items-center flex-1 mx-8"
+              >
+                <div
+                  className="flex items-center gap-3 w-full px-4"
                   style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "15px",
-                    fontWeight: active ? 500 : 400,
-                    color: "var(--color-text-primary)",
-                    transition: "color 0.15s",
+                    height: "40px",
+                    background: "var(--color-bg-sunken)",
+                    borderRadius: "8px",
                   }}
-                  className="hover:text-[--color-text-primary]"
                 >
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
+                  <Search size={16} strokeWidth={1.5} style={{ color: "var(--color-text-tertiary)", flexShrink: 0 }} />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder="Search festivals, cities, countries..."
+                    className="flex-1 outline-none bg-transparent"
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "14px",
+                      color: "var(--color-text-primary)",
+                    }}
+                  />
+                  <button
+                    onClick={() => setSearchOpen(false)}
+                    className="flex items-center justify-center flex-shrink-0"
+                    style={{ color: "var(--color-text-tertiary)" }}
+                  >
+                    <X size={16} strokeWidth={1.5} />
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.nav
+                key="nav"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="hidden md:flex items-center gap-8"
+              >
+                {navLinks.map(({ href, label }) => {
+                  const active = pathname === href || (href !== "/" && pathname.startsWith(href));
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "15px",
+                        fontWeight: active ? 500 : 400,
+                        color: "var(--color-text-primary)",
+                        transition: "color 0.15s",
+                      }}
+                      className="hover:text-[--color-text-primary]"
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </motion.nav>
+            )}
+          </AnimatePresence>
 
           {/* Desktop right */}
           <div className="hidden md:flex items-center gap-1">
@@ -90,21 +155,19 @@ export default function Navigation() {
               onClick={() => setSearchOpen(!searchOpen)}
               className="w-8 h-8 flex items-center justify-center transition-colors"
               aria-label="Search"
-              style={{ color: "var(--color-text-tertiary)" }}
+              style={{ color: "var(--color-text-primary)" }}
             >
-              <Search size={16} strokeWidth={1.5} />
+              <Search size={20} strokeWidth={1.5} />
             </button>
             <Link
               href="/map"
               className="w-8 h-8 flex items-center justify-center transition-colors"
               aria-label="Map"
               style={{
-                color: pathname === "/map"
-                  ? "var(--color-text-primary)"
-                  : "var(--color-text-tertiary)",
+                color: "var(--color-text-primary)",
               }}
             >
-              <Map size={16} strokeWidth={1.5} />
+              <Map size={20} strokeWidth={1.5} />
             </Link>
             <Link
               href="/settings"
@@ -150,43 +213,6 @@ export default function Navigation() {
             />
           </button>
         </div>
-
-        {/* ── Search bar overlay ── */}
-        <AnimatePresence>
-          {searchOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden"
-              style={{ borderTop: "1px solid var(--color-border-default)" }}
-            >
-              <div className="max-w-[1100px] mx-auto px-8 py-4">
-                <div className="flex items-center gap-3">
-                  <Search size={16} strokeWidth={1.5} style={{ color: "var(--color-text-tertiary)" }} />
-                  <input
-                    type="text"
-                    placeholder="Search festivals, cities, countries..."
-                    autoFocus
-                    className="flex-1 outline-none bg-transparent"
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "14px",
-                      color: "var(--color-text-primary)",
-                    }}
-                  />
-                  <button
-                    onClick={() => setSearchOpen(false)}
-                    className="text-label"
-                    style={{ color: "var(--color-text-tertiary)" }}
-                  >
-                    ESC
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </header>
 
       {/* ── Mobile menu ── */}
