@@ -9,7 +9,7 @@ import { Search, Map } from "lucide-react";
 const navLinks = [
   { href: "/explore", label: "Explore" },
   { href: "/calendar", label: "Calendar" },
-  { href: "/explore?filter=theme", label: "Theme" },
+  { href: "/theme", label: "Theme" },
   { href: "/magazine", label: "Magazine" },
 ];
 
