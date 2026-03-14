@@ -17,13 +17,10 @@ export default async function FestivalPage({ params }: Params) {
   const festival = getFestivalById(id);
   if (!festival) notFound();
 
-  const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
-  const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
-
   return (
     <>
       <Navigation />
-      <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
+      <main className="min-h-screen" style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}>
         {/* Hero */}
         <div className="relative w-full overflow-hidden" style={{ height: "50vh", maxHeight: "520px", minHeight: "360px" }}>
           <Image
@@ -35,70 +32,86 @@ export default async function FestivalPage({ params }: Params) {
             sizes="100vw"
           />
           <div className="absolute inset-0 gradient-full" />
-          <div className="absolute bottom-0 left-0 right-0 px-6 lg:px-10 pb-10 max-w-5xl mx-auto">
-            <span
-              className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#4344FD", fontFamily: pretendard }}
-            >
+          <div className="absolute bottom-0 left-0 right-0 px-8 pb-10 max-w-[1100px] mx-auto">
+            <span className="text-label" style={{ color: "rgba(255,255,255,0.6)" }}>
               {festival.category}
             </span>
             <h1
-              className="text-4xl lg:text-6xl font-semibold text-white mt-2"
-              style={{ fontFamily: cormorant, fontStyle: "italic", lineHeight: 1.05 }}
+              className="mt-2"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(32px, 5vw, 56px)",
+                fontWeight: 400,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+                color: "#ffffff",
+              }}
             >
               {festival.name}
             </h1>
             {festival.nameKo && (
-              <p className="text-white/50 text-base mt-1" style={{ fontFamily: cormorant }}>{festival.nameKo}</p>
+              <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-serif)", fontSize: "16px", marginTop: "4px" }}>
+                {festival.nameKo}
+              </p>
             )}
-            <p className="text-white/60 mt-2 text-sm" style={{ fontFamily: pretendard }}>
-              {festival.city}, {festival.country} &nbsp;·&nbsp; {festival.month}
+            <p className="text-caption mt-2" style={{ color: "rgba(255,255,255,0.6)" }}>
+              {festival.city}, {festival.country} · {festival.month}
             </p>
           </div>
         </div>
 
         {/* Content */}
-        <div className="max-w-5xl mx-auto px-6 lg:px-10 py-12">
+        <div className="max-w-[1100px] mx-auto px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main */}
             <div className="lg:col-span-2">
               {/* Stats row */}
               <div
-                className="flex gap-0 mb-10 border"
-                style={{ borderColor: "#e5e2da" }}
+                className="flex gap-0 mb-10"
+                style={{ border: "1px solid var(--color-border-default)" }}
               >
-                <div className="flex-1 text-center py-5 border-r" style={{ borderColor: "#e5e2da" }}>
+                {[
+                  { value: `${festival.rating}`, label: "Rating" },
+                  { value: festival.reviewCount.toLocaleString(), label: "Reviews" },
+                  { value: festival.duration, label: "Duration" },
+                ].map((stat, i) => (
                   <div
-                    className="text-2xl font-semibold"
-                    style={{ fontFamily: cormorant, color: "#1a1a1a" }}
+                    key={stat.label}
+                    className="flex-1 text-center py-5"
+                    style={{
+                      borderRight: i < 2 ? "1px solid var(--color-border-default)" : "none",
+                    }}
                   >
-                    ★ {festival.rating}
+                    <div
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "22px",
+                        fontWeight: 400,
+                        color: "var(--color-text-primary)",
+                      }}
+                    >
+                      {stat.value}
+                    </div>
+                    <div className="text-caption mt-1" style={{ color: "var(--color-text-tertiary)" }}>
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: pretendard, letterSpacing: "0.08em" }}>평점</div>
-                </div>
-                <div className="w-px" style={{ background: "#e5e2da" }} />
-                <div className="flex-1 text-center py-5 border-r" style={{ borderColor: "#e5e2da" }}>
-                  <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
-                    {festival.reviewCount.toLocaleString()}
-                  </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: pretendard, letterSpacing: "0.08em" }}>리뷰</div>
-                </div>
-                <div className="flex-1 text-center py-5">
-                  <div className="text-2xl font-semibold" style={{ fontFamily: cormorant, color: "#1a1a1a" }}>
-                    {festival.duration}
-                  </div>
-                  <div className="text-xs mt-1" style={{ color: "#9e9e9e", fontFamily: pretendard, letterSpacing: "0.08em" }}>기간</div>
-                </div>
+                ))}
               </div>
 
               {/* Description */}
               <h2
-                className="text-xl font-semibold mb-4"
-                style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "20px",
+                  fontWeight: 400,
+                  color: "var(--color-text-primary)",
+                  marginBottom: "16px",
+                }}
               >
                 About the Festival
               </h2>
-              <p className="text-base leading-relaxed" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
+              <p className="text-body" style={{ color: "var(--color-text-secondary)", lineHeight: 1.7 }}>
                 {festival.description}
               </p>
 
@@ -110,19 +123,22 @@ export default async function FestivalPage({ params }: Params) {
               </div>
 
               {/* Perfect for */}
-              <div className="mt-8 pt-6 border-t" style={{ borderColor: "#e5e2da" }}>
-                <h3
-                  className="text-xs font-semibold uppercase tracking-widest mb-4"
-                  style={{ color: "#9e9e9e", fontFamily: pretendard }}
-                >
-                  이런 분께 추천
-                </h3>
+              <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--color-border-default)" }}>
+                <p className="text-label" style={{ color: "var(--color-text-tertiary)", marginBottom: "12px" }}>
+                  Perfect for
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {festival.mood.map((m) => (
                     <span
                       key={m}
-                      className="px-3 py-1.5 text-sm font-medium border"
-                      style={{ borderColor: "#e5e2da", color: "#1a1a1a", fontFamily: pretendard }}
+                      style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        padding: "6px 14px",
+                        border: "1px solid var(--color-border-default)",
+                        color: "var(--color-text-primary)",
+                      }}
                     >
                       {m}
                     </span>
@@ -131,78 +147,120 @@ export default async function FestivalPage({ params }: Params) {
               </div>
 
               {/* Reviews */}
-              <div className="mt-8 pt-6 border-t" style={{ borderColor: "#e5e2da" }}>
+              <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--color-border-default)" }}>
                 <h2
-                  className="text-xl font-semibold mb-6"
-                  style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "20px",
+                    fontWeight: 400,
+                    color: "var(--color-text-primary)",
+                    marginBottom: "24px",
+                  }}
                 >
                   Traveler Reviews
                 </h2>
-                <div className="space-y-0">
-                  {festival.reviews.map((r, i) => (
-                    <div
-                      key={i}
-                      className="py-5 border-b"
-                      style={{ borderColor: "#e5e2da" }}
-                    >
-                      <div className="flex items-center gap-3 mb-3">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={r.avatar} alt={r.author} className="w-8 h-8 object-cover" />
-                        <div>
-                          <p className="text-sm font-medium" style={{ color: "#1a1a1a", fontFamily: pretendard }}>{r.author}</p>
-                          <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: pretendard }}>{r.date}</p>
-                        </div>
-                        <div className="ml-auto flex items-center gap-0.5">
-                          {[...Array(5)].map((_, j) => (
-                            <span key={j} className="text-xs" style={{ color: j < r.rating ? "#4344FD" : "#e5e2da" }}>★</span>
-                          ))}
-                        </div>
+                {festival.reviews.map((r, i) => (
+                  <div
+                    key={i}
+                    className="py-5"
+                    style={{ borderBottom: "1px solid var(--color-border-default)" }}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={r.avatar} alt={r.author} className="w-8 h-8 object-cover rounded-full" />
+                      <div>
+                        <p
+                          style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "14px",
+                            fontWeight: 500,
+                            color: "var(--color-text-primary)",
+                          }}
+                        >
+                          {r.author}
+                        </p>
+                        <p className="text-caption" style={{ color: "var(--color-text-tertiary)" }}>{r.date}</p>
                       </div>
-                      <p className="text-sm leading-relaxed" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
-                        {r.comment}
-                      </p>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-body" style={{ color: "var(--color-text-secondary)" }}>
+                      {r.comment}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
             {/* Sidebar */}
             <div>
               <div
-                className="border sticky top-18 p-6"
-                style={{ background: "#ffffff", borderColor: "#e5e2da", top: "80px" }}
+                className="sticky"
+                style={{
+                  top: "80px",
+                  padding: "24px",
+                  border: "1px solid var(--color-border-default)",
+                  background: "var(--color-bg-elevated)",
+                }}
               >
                 <h3
-                  className="text-base font-semibold mb-5"
-                  style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    color: "var(--color-text-primary)",
+                    marginBottom: "20px",
+                  }}
                 >
                   Plan Your Visit
                 </h3>
-                <div className="space-y-3 text-sm border-b pb-5 mb-5" style={{ borderColor: "#e5e2da" }}>
+                <div
+                  className="space-y-3 text-sm pb-5 mb-5"
+                  style={{ borderBottom: "1px solid var(--color-border-default)" }}
+                >
                   {[
-                    { label: "시기", value: festival.month },
-                    { label: "기간", value: festival.duration },
-                    { label: "도시", value: festival.city },
-                    { label: "국가", value: festival.country },
+                    { label: "When", value: festival.month },
+                    { label: "Duration", value: festival.duration },
+                    { label: "City", value: festival.city },
+                    { label: "Country", value: festival.country },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between">
-                      <span style={{ color: "#9e9e9e", fontFamily: pretendard }}>{label}</span>
-                      <span className="font-medium text-right" style={{ color: "#1a1a1a", fontFamily: pretendard }}>{value}</span>
+                      <span className="text-caption" style={{ color: "var(--color-text-tertiary)" }}>{label}</span>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-sans)",
+                          fontSize: "13px",
+                          fontWeight: 500,
+                          color: "var(--color-text-primary)",
+                          textAlign: "right",
+                        }}
+                      >
+                        {value}
+                      </span>
                     </div>
                   ))}
                 </div>
                 <button
                   className="w-full py-3 text-sm font-medium transition-opacity hover:opacity-90"
-                  style={{ background: "#1a1a1a", color: "#ffffff", fontFamily: pretendard }}
+                  style={{
+                    background: "var(--color-text-primary)",
+                    color: "var(--color-bg-elevated)",
+                    fontFamily: "var(--font-sans)",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
                 >
-                  위시리스트에 저장
+                  Save to Wishlist
                 </button>
                 <button
-                  className="w-full mt-2 py-3 text-sm font-medium border transition-colors hover:bg-gray-50"
-                  style={{ borderColor: "#e5e2da", color: "#6e6e6e", fontFamily: pretendard }}
+                  className="w-full mt-2 py-3 text-sm font-medium transition-colors"
+                  style={{
+                    border: "1px solid var(--color-border-default)",
+                    color: "var(--color-text-secondary)",
+                    fontFamily: "var(--font-sans)",
+                    background: "none",
+                    cursor: "pointer",
+                  }}
                 >
-                  공유하기
+                  Share
                 </button>
               </div>
             </div>
@@ -210,13 +268,13 @@ export default async function FestivalPage({ params }: Params) {
         </div>
 
         {/* Back link */}
-        <div className="max-w-5xl mx-auto px-6 lg:px-10 pb-12">
+        <div className="max-w-[1100px] mx-auto px-8 pb-12">
           <Link
             href="/explore"
-            className="text-sm font-medium flex items-center gap-2 transition-colors"
-            style={{ color: "#4344FD", fontFamily: pretendard }}
+            className="text-label"
+            style={{ color: "var(--color-text-secondary)" }}
           >
-            ← 탐색으로 돌아가기
+            ← Back to Explore
           </Link>
         </div>
       </main>

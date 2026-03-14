@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import FestivalCard from "@/components/FestivalCard";
 import type { Festival } from "@/lib/festivals";
 
@@ -9,32 +10,44 @@ interface ExploreClientProps {
   festivals: Festival[];
 }
 
-/* ── Sidebar filter sections — §7 ── */
-const sidebarSections = [
+const filterSections = [
   {
     id: "theme",
-    label: "By Theme",
-    items: ["Music", "Cultural", "Food", "Light & Fire", "Nature", "Art", "Seasonal", "Water"],
+    label: "Theme",
+    items: ["Music", "Culture", "Food", "Nature", "Art", "Seasonal"],
   },
   {
     id: "country",
-    label: "By Country",
+    label: "Country",
     items: ["Japan", "South Korea", "India", "Thailand", "United Kingdom", "Germany", "Spain", "Brazil", "United States", "Mexico"],
   },
   {
     id: "month",
-    label: "By Month",
+    label: "Month",
     items: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   },
   {
     id: "vibe",
-    label: "By Vibe",
-    items: ["Family-friendly", "Romantic", "Solo", "Adventure", "Cultural"],
+    label: "Vibe",
+    items: ["Energetic", "Spiritual", "Romantic", "Family", "Adventure", "Chill"],
   },
 ];
 
 export default function ExploreClient({ festivals }: ExploreClientProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!openDropdown) return;
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [openDropdown]);
 
   const filtered = useMemo(() => {
     if (!activeFilter) return festivals;
@@ -50,114 +63,155 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
 
   return (
     <main
-      style={{
-        display: "grid",
-        gridTemplateColumns: "200px 1fr",
-        minHeight: "100vh",
-        paddingTop: "56px",
-      }}
+      className="min-h-screen"
+      style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}
     >
-      {/* ── Left sidebar — §7 ── */}
-      <aside
-        style={{
-          background: "var(--color-bg-sunken)",
-          borderRight: "1px solid var(--color-border-default)",
-          padding: "32px 0",
-          position: "sticky",
-          top: "56px",
-          height: "calc(100vh - 56px)",
-          overflowY: "auto",
-        }}
-      >
-        {/* All reset */}
-        <div style={{ padding: "0 20px", marginBottom: "20px" }}>
-          <button
-            onClick={() => setActiveFilter(null)}
+      <div className="max-w-[1100px] mx-auto px-8">
+        {/* Header */}
+        <div style={{ paddingTop: "48px", paddingBottom: "32px" }}>
+          <h1
             style={{
-              display: "block",
-              width: "100%",
-              textAlign: "left",
+              fontFamily: "var(--font-serif)",
+              fontSize: "36px",
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text-primary)",
+            }}
+          >
+            Explore Festivals
+          </h1>
+          <p
+            className="text-body"
+            style={{ color: "var(--color-text-secondary)", marginTop: "8px" }}
+          >
+            {filtered.length} festivals{activeFilter ? ` — ${activeFilter}` : ""}
+          </p>
+        </div>
+
+        {/* Filter bar */}
+        <div
+          ref={dropdownRef}
+          className="relative flex items-center gap-2 flex-wrap"
+          style={{
+            paddingBottom: "32px",
+            borderBottom: "1px solid var(--color-border-default)",
+            marginBottom: "32px",
+          }}
+        >
+          {/* All button */}
+          <button
+            onClick={() => { setActiveFilter(null); setOpenDropdown(null); }}
+            style={{
               fontFamily: "var(--font-sans)",
               fontSize: "13px",
               fontWeight: activeFilter === null ? 500 : 400,
-              color: activeFilter === null
-                ? "var(--color-text-primary)"
-                : "var(--color-text-secondary)",
+              color: activeFilter === null ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+              padding: "6px 14px",
+              border: activeFilter === null
+                ? "1px solid var(--color-text-primary)"
+                : "1px solid var(--color-border-default)",
+              borderRadius: "9999px",
               background: "none",
-              border: "none",
               cursor: "pointer",
-              padding: "7px 0 7px 8px",
-              borderLeft: activeFilter === null
-                ? "2px solid var(--color-accent)"
-                : "2px solid transparent",
+              transition: "all 0.15s",
             }}
           >
-            All ({festivals.length})
+            All
           </button>
-        </div>
 
-        {sidebarSections.map((section) => (
-          <div key={section.id} style={{ padding: "0 20px", marginBottom: "28px" }}>
-            <p
-              className="text-label"
-              style={{
-                color: "var(--color-text-tertiary)",
-                marginBottom: "10px",
-              }}
-            >
-              {section.label}
-            </p>
-            {section.items.map((item) => {
-              const isActive = activeFilter === item;
-              return (
+          {/* Filter dropdowns */}
+          {filterSections.map((section) => {
+            const isOpen = openDropdown === section.id;
+            const hasActive = section.items.some((item) => item === activeFilter);
+            return (
+              <div key={section.id} className="relative">
                 <button
-                  key={item}
-                  onClick={() => setActiveFilter(isActive ? null : item)}
+                  onClick={() => setOpenDropdown(isOpen ? null : section.id)}
+                  className="flex items-center gap-1"
                   style={{
-                    display: "block",
-                    width: "100%",
-                    textAlign: "left",
                     fontFamily: "var(--font-sans)",
                     fontSize: "13px",
-                    color: isActive
-                      ? "var(--color-text-primary)"
-                      : "var(--color-text-secondary)",
-                    fontWeight: isActive ? 500 : 400,
-                    padding: "7px 0 7px 8px",
+                    fontWeight: hasActive ? 500 : 400,
+                    color: hasActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+                    padding: "6px 14px",
+                    border: hasActive
+                      ? "1px solid var(--color-text-primary)"
+                      : "1px solid var(--color-border-default)",
+                    borderRadius: "9999px",
                     background: "none",
-                    border: "none",
-                    borderLeft: isActive
-                      ? "2px solid var(--color-accent)"
-                      : "2px solid transparent",
                     cursor: "pointer",
-                    transition: "all 0.1s",
+                    transition: "all 0.15s",
                   }}
                 >
-                  {item}
+                  {hasActive ? activeFilter : section.label}
+                  <ChevronDown
+                    size={12}
+                    strokeWidth={1.5}
+                    style={{
+                      transform: isOpen ? "rotate(180deg)" : "none",
+                      transition: "transform 0.15s",
+                    }}
+                  />
                 </button>
-              );
-            })}
-          </div>
-        ))}
-      </aside>
 
-      {/* ── Right content — §7 ── */}
-      <div style={{ padding: "48px 32px", background: "var(--color-bg-base)" }}>
-        {/* Section header — §4 pattern */}
-        <div style={{ marginBottom: "48px" }}>
-          <p className="text-label" style={{ color: "var(--color-text-tertiary)", marginBottom: "8px" }}>
-            {activeFilter ?? `전 세계 ${filtered.length}개 축제`}
-          </p>
-          <h1 className="text-heading">Explore Festivals</h1>
+                {/* Dropdown layer */}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
+                      transition={{ duration: 0.12 }}
+                      style={{
+                        position: "absolute",
+                        top: "calc(100% + 8px)",
+                        left: 0,
+                        background: "var(--color-bg-elevated)",
+                        border: "1px solid var(--color-border-default)",
+                        borderRadius: "8px",
+                        padding: "8px 0",
+                        minWidth: "180px",
+                        zIndex: 50,
+                        boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+                      }}
+                    >
+                      {section.items.map((item) => (
+                        <button
+                          key={item}
+                          onClick={() => {
+                            setActiveFilter(activeFilter === item ? null : item);
+                            setOpenDropdown(null);
+                          }}
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            textAlign: "left",
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "13px",
+                            fontWeight: activeFilter === item ? 500 : 400,
+                            color: activeFilter === item
+                              ? "var(--color-text-primary)"
+                              : "var(--color-text-secondary)",
+                            padding: "8px 16px",
+                            background: activeFilter === item
+                              ? "var(--color-bg-sunken)"
+                              : "transparent",
+                            border: "none",
+                            cursor: "pointer",
+                            transition: "all 0.1s",
+                          }}
+                          className="hover:bg-[--color-bg-sunken]"
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
-
-        {/* Result count */}
-        <p
-          className="text-caption"
-          style={{ color: "var(--color-text-secondary)", marginBottom: "24px" }}
-        >
-          {filtered.length}개의 축제
-        </p>
 
         {/* Card grid — 3 columns */}
         <AnimatePresence mode="wait">
@@ -170,10 +224,10 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
               style={{ padding: "96px 0", textAlign: "center" }}
             >
               <p className="text-heading" style={{ color: "var(--color-text-tertiary)" }}>
-                검색 결과가 없어요
+                No results
               </p>
               <p className="text-caption" style={{ color: "var(--color-text-tertiary)", marginTop: "8px" }}>
-                다른 필터를 선택해 보세요
+                Try a different filter
               </p>
             </motion.div>
           ) : (
@@ -183,11 +237,8 @@ export default function ExploreClient({ festivals }: ExploreClientProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "24px",
-              }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              style={{ paddingBottom: "80px" }}
             >
               {filtered.map((f, i) => (
                 <FestivalCard key={f.id} festival={f} variant="standard" index={i} />

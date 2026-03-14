@@ -11,16 +11,13 @@ interface MapClientProps {
   festivals: Festival[];
 }
 
-const continentData: { id: Continent; label: string; labelKo: string; coords: { x: string; y: string } }[] = [
-  { id: "Americas", label: "Americas", labelKo: "아메리카", coords: { x: "22%", y: "45%" } },
-  { id: "Europe", label: "Europe", labelKo: "유럽", coords: { x: "48%", y: "30%" } },
-  { id: "Africa", label: "Africa", labelKo: "아프리카", coords: { x: "52%", y: "55%" } },
-  { id: "Asia", label: "Asia", labelKo: "아시아", coords: { x: "72%", y: "35%" } },
-  { id: "Oceania", label: "Oceania", labelKo: "오세아니아", coords: { x: "80%", y: "65%" } },
+const continentData: { id: Continent; label: string; coords: { x: string; y: string } }[] = [
+  { id: "Americas", label: "Americas", coords: { x: "22%", y: "45%" } },
+  { id: "Europe", label: "Europe", coords: { x: "48%", y: "30%" } },
+  { id: "Africa", label: "Africa", coords: { x: "52%", y: "55%" } },
+  { id: "Asia", label: "Asia", coords: { x: "72%", y: "35%" } },
+  { id: "Oceania", label: "Oceania", coords: { x: "80%", y: "65%" } },
 ];
-
-const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
-const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
 export default function MapClient({ festivals }: MapClientProps) {
   const [selectedContinent, setSelectedContinent] = useState<Continent | null>(null);
@@ -39,39 +36,39 @@ export default function MapClient({ festivals }: MapClientProps) {
   }, [filteredFestivals]);
 
   return (
-    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
+    <main className="min-h-screen" style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}>
       {/* Header */}
-      <div className="py-12 lg:py-16 border-b" style={{ borderColor: "#e5e2da" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="rule-line" />
-          <span
-            className="text-xs font-semibold uppercase tracking-widest block mb-2"
-            style={{ color: "#4344FD", fontFamily: pretendard }}
-          >
-            지도로 찾기
-          </span>
+      <div style={{ borderBottom: "1px solid var(--color-border-default)" }}>
+        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "48px", paddingBottom: "32px" }}>
           <h1
-            className="text-4xl lg:text-6xl font-semibold"
-            style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "36px",
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text-primary)",
+            }}
           >
             Festival Map
           </h1>
-          <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
-            대륙을 선택하면 해당 지역의 축제를 볼 수 있어요.
+          <p className="text-body" style={{ color: "var(--color-text-secondary)", marginTop: "8px" }}>
+            Explore festivals by region
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
+      <div className="max-w-[1100px] mx-auto px-8 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Map area */}
           <div className="lg:col-span-2">
-            {/* Continent visual map */}
             <div
-              className="relative w-full border overflow-hidden"
-              style={{ aspectRatio: "16/9", background: "#fafafa", borderColor: "#e5e2da" }}
+              className="relative w-full overflow-hidden"
+              style={{
+                aspectRatio: "16/9",
+                background: "var(--color-bg-sunken)",
+                border: "1px solid var(--color-border-default)",
+              }}
             >
-              {/* Simple world map representation with clickable continents */}
               {continentData.map((c) => {
                 const count = festivals.filter((f) => f.continent === c.id).length;
                 const isActive = selectedContinent === c.id;
@@ -89,37 +86,35 @@ export default function MapClient({ festivals }: MapClientProps) {
                     <div
                       className="w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center transition-all duration-200"
                       style={{
-                        background: isActive ? "#4344FD" : "#1a1a1a",
+                        background: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
                         borderRadius: "50%",
-                        boxShadow: isActive ? "0 0 0 4px rgba(67,68,253,0.2)" : "none",
+                        boxShadow: isActive ? "0 0 0 4px rgba(0,0,0,0.1)" : "none",
                       }}
                     >
                       <MapPin size={18} strokeWidth={1.5} color="#ffffff" />
                     </div>
                     <span
-                      className="text-xs font-semibold whitespace-nowrap"
                       style={{
-                        color: isActive ? "#4344FD" : "#1a1a1a",
-                        fontFamily: pretendard,
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "11px",
+                        fontWeight: isActive ? 500 : 400,
+                        color: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+                        whiteSpace: "nowrap",
                       }}
                     >
-                      {c.labelKo}
+                      {c.label}
                     </span>
-                    <span
-                      className="text-xs"
-                      style={{ color: "#9e9e9e", fontFamily: pretendard }}
-                    >
-                      {count}개
+                    <span className="text-caption" style={{ color: "var(--color-text-tertiary)" }}>
+                      {count}
                     </span>
                   </button>
                 );
               })}
 
-              {/* Background decorative lines */}
               <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <line x1="0" y1="50" x2="100" y2="50" stroke="#9e9e9e" strokeWidth="0.2" />
-                <line x1="50" y1="0" x2="50" y2="100" stroke="#9e9e9e" strokeWidth="0.2" />
-                <circle cx="50" cy="50" r="30" fill="none" stroke="#9e9e9e" strokeWidth="0.2" />
+                <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" strokeWidth="0.2" />
+                <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.2" />
+                <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.2" />
               </svg>
             </div>
 
@@ -127,29 +122,37 @@ export default function MapClient({ festivals }: MapClientProps) {
             <div className="flex gap-2 mt-4 flex-wrap">
               <button
                 onClick={() => setSelectedContinent(null)}
-                className="px-4 py-2 text-xs font-medium border transition-all"
                 style={{
-                  background: !selectedContinent ? "#1a1a1a" : "#ffffff",
-                  color: !selectedContinent ? "#ffffff" : "#6e6e6e",
-                  borderColor: !selectedContinent ? "#1a1a1a" : "#e5e2da",
-                  fontFamily: pretendard,
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  fontWeight: !selectedContinent ? 500 : 400,
+                  color: !selectedContinent ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
+                  background: !selectedContinent ? "var(--color-text-primary)" : "transparent",
+                  border: "1px solid var(--color-border-default)",
+                  padding: "6px 14px",
+                  borderRadius: "9999px",
+                  cursor: "pointer",
                 }}
               >
-                전체
+                All
               </button>
               {continentData.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setSelectedContinent(selectedContinent === c.id ? null : c.id)}
-                  className="px-4 py-2 text-xs font-medium border transition-all"
                   style={{
-                    background: selectedContinent === c.id ? "#4344FD" : "#ffffff",
-                    color: selectedContinent === c.id ? "#ffffff" : "#6e6e6e",
-                    borderColor: selectedContinent === c.id ? "#4344FD" : "#e5e2da",
-                    fontFamily: pretendard,
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    fontWeight: selectedContinent === c.id ? 500 : 400,
+                    color: selectedContinent === c.id ? "var(--color-bg-elevated)" : "var(--color-text-secondary)",
+                    background: selectedContinent === c.id ? "var(--color-text-primary)" : "transparent",
+                    border: "1px solid var(--color-border-default)",
+                    padding: "6px 14px",
+                    borderRadius: "9999px",
+                    cursor: "pointer",
                   }}
                 >
-                  {c.labelKo}
+                  {c.label}
                 </button>
               ))}
             </div>
@@ -157,21 +160,23 @@ export default function MapClient({ festivals }: MapClientProps) {
 
           {/* Festival list panel */}
           <div className="lg:col-span-1">
-            <div className="sticky" style={{ top: "106px" }}>
-              <div className="flex items-center justify-between mb-4">
-                <h2
-                  className="text-sm font-semibold"
-                  style={{ color: "#1a1a1a", fontFamily: pretendard }}
-                >
-                  {selectedContinent
-                    ? continentData.find((c) => c.id === selectedContinent)?.labelKo
-                    : "전체"}{" "}
-                  · {filteredFestivals.length}개 축제
-                </h2>
-              </div>
+            <div className="sticky" style={{ top: "80px" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  color: "var(--color-text-primary)",
+                  marginBottom: "16px",
+                }}
+              >
+                {selectedContinent
+                  ? continentData.find((c) => c.id === selectedContinent)?.label
+                  : "All"}{" "}
+                — {filteredFestivals.length} festivals
+              </p>
 
-              {/* Country groups */}
-              <div className="space-y-0 max-h-[60vh] overflow-y-auto">
+              <div className="max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selectedContinent || "all"}
@@ -183,10 +188,10 @@ export default function MapClient({ festivals }: MapClientProps) {
                     {Object.entries(countryCounts)
                       .sort((a, b) => b[1] - a[1])
                       .map(([country]) => (
-                        <div key={country} className="border-b" style={{ borderColor: "#e5e2da" }}>
+                        <div key={country} style={{ borderBottom: "1px solid var(--color-border-default)" }}>
                           <p
-                            className="text-xs font-semibold uppercase tracking-widest py-3"
-                            style={{ color: "#9e9e9e", fontFamily: pretendard }}
+                            className="text-label"
+                            style={{ color: "var(--color-text-tertiary)", padding: "12px 0 4px" }}
                           >
                             {country}
                           </p>
@@ -199,22 +204,21 @@ export default function MapClient({ festivals }: MapClientProps) {
                                 className="flex items-center gap-3 py-2.5 group"
                               >
                                 <div className="relative w-10 h-10 flex-shrink-0 overflow-hidden">
-                                  <Image
-                                    src={f.image}
-                                    alt={f.name}
-                                    fill
-                                    className="object-cover"
-                                    sizes="40px"
-                                  />
+                                  <Image src={f.image} alt={f.name} fill className="object-cover" sizes="40px" />
                                 </div>
                                 <div className="min-w-0 flex-1">
                                   <p
-                                    className="text-sm font-medium truncate group-hover:text-blue-500 transition-colors"
-                                    style={{ color: "#1a1a1a", fontFamily: pretendard }}
+                                    className="truncate"
+                                    style={{
+                                      fontFamily: "var(--font-sans)",
+                                      fontSize: "14px",
+                                      fontWeight: 500,
+                                      color: "var(--color-text-primary)",
+                                    }}
                                   >
                                     {f.name}
                                   </p>
-                                  <p className="text-xs" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
+                                  <p className="text-caption" style={{ color: "var(--color-text-tertiary)" }}>
                                     {f.city} · {f.month}
                                   </p>
                                 </div>

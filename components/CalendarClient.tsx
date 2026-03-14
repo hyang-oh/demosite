@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { CalendarDays } from "lucide-react";
 import type { Festival } from "@/lib/festivals";
 
 interface CalendarClientProps {
@@ -17,12 +16,9 @@ const months = [
 ];
 
 const monthsShort = [
-  "1월", "2월", "3월", "4월", "5월", "6월",
-  "7월", "8월", "9월", "10월", "11월", "12월",
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
-
-const pretendard = "'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
-const cormorant = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
 
 function getMonthIndex(month: string): number {
   for (let i = 0; i < months.length; i++) {
@@ -47,7 +43,6 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
     festivals.forEach((f) => {
       const idx = getMonthIndex(f.month);
       if (idx >= 0) counts[idx]++;
-      // Handle multi-month like "March–April"
       if (f.month.includes("–")) {
         const parts = f.month.split("–");
         const idx2 = months.indexOf(parts[1]);
@@ -58,65 +53,71 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
   }, [festivals]);
 
   return (
-    <main className="min-h-screen" style={{ background: "#ffffff", paddingTop: "90px" }}>
+    <main className="min-h-screen" style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}>
       {/* Header */}
-      <div className="py-12 lg:py-16 border-b" style={{ borderColor: "#e5e2da" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="rule-line" />
-          <span
-            className="text-xs font-semibold uppercase tracking-widest block mb-2"
-            style={{ color: "#4344FD", fontFamily: pretendard }}
-          >
-            월별 축제 일정
-          </span>
+      <div style={{ borderBottom: "1px solid var(--color-border-default)" }}>
+        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "48px", paddingBottom: "32px" }}>
           <h1
-            className="text-4xl lg:text-6xl font-semibold"
-            style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "36px",
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text-primary)",
+            }}
           >
             Festival Calendar
           </h1>
-          <p className="mt-3 text-base" style={{ color: "#6e6e6e", fontFamily: pretendard, fontWeight: 300 }}>
-            원하는 달을 선택하면 해당 시기의 축제를 확인할 수 있어요.
+          <p className="text-body" style={{ color: "var(--color-text-secondary)", marginTop: "8px" }}>
+            Browse festivals by month
           </p>
         </div>
       </div>
 
       {/* Month selector - sticky */}
       <div
-        className="sticky z-30 border-b"
+        className="sticky z-30"
         style={{
-          top: "90px",
+          top: "64px",
           background: "rgba(255,255,255,0.97)",
           backdropFilter: "blur(12px)",
-          borderColor: "#e5e2da",
+          borderBottom: "1px solid var(--color-border-default)",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex gap-0 overflow-x-auto hide-scrollbar">
+        <div className="max-w-[1100px] mx-auto px-8">
+          <div className="flex gap-0 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
             {months.map((month, i) => (
               <button
                 key={month}
                 onClick={() => setSelectedMonth(i)}
-                className="flex flex-col items-center gap-1 px-4 lg:px-5 py-3 flex-shrink-0 transition-all duration-200 border-b-2"
+                className="flex flex-col items-center gap-1 px-4 lg:px-5 py-3 flex-shrink-0 transition-all duration-200"
                 style={{
-                  borderColor: selectedMonth === i ? "#4344FD" : "transparent",
+                  borderBottom: selectedMonth === i
+                    ? "2px solid var(--color-text-primary)"
+                    : "2px solid transparent",
                 }}
               >
                 <span
-                  className="text-xs font-semibold"
                   style={{
-                    color: selectedMonth === i ? "#4344FD" : i === currentMonth ? "#1a1a1a" : "#9e9e9e",
-                    fontFamily: pretendard,
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "13px",
+                    fontWeight: selectedMonth === i ? 500 : 400,
+                    color: selectedMonth === i
+                      ? "var(--color-text-primary)"
+                      : i === currentMonth
+                        ? "var(--color-text-primary)"
+                        : "var(--color-text-tertiary)",
                   }}
                 >
                   {monthsShort[i]}
                 </span>
                 {monthCounts[i] > 0 && (
                   <span
-                    className="text-xs"
+                    className="text-caption"
                     style={{
-                      color: selectedMonth === i ? "#4344FD" : "#c4c4c4",
-                      fontFamily: pretendard,
+                      color: selectedMonth === i
+                        ? "var(--color-text-primary)"
+                        : "var(--color-text-tertiary)",
                     }}
                   >
                     {monthCounts[i]}
@@ -129,14 +130,18 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
       </div>
 
       {/* Festival list */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
-        <div className="flex items-center gap-2 mb-8 pb-4 border-b" style={{ borderColor: "#e5e2da" }}>
-          <CalendarDays size={16} strokeWidth={1.5} style={{ color: "#4344FD" }} />
-          <p className="text-sm" style={{ color: "#6e6e6e", fontFamily: pretendard }}>
-            <span className="font-medium" style={{ color: "#1a1a1a" }}>{months[selectedMonth]}</span>
-            {" "}· {festivalsByMonth.length}개 축제
-          </p>
-        </div>
+      <div className="max-w-[1100px] mx-auto px-8 py-10">
+        <p
+          className="text-caption"
+          style={{
+            color: "var(--color-text-secondary)",
+            marginBottom: "24px",
+            paddingBottom: "16px",
+            borderBottom: "1px solid var(--color-border-default)",
+          }}
+        >
+          {months[selectedMonth]} — {festivalsByMonth.length} festivals
+        </p>
 
         <AnimatePresence mode="wait">
           {festivalsByMonth.length === 0 ? (
@@ -145,17 +150,13 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="py-24 text-center"
+              style={{ padding: "96px 0", textAlign: "center" }}
             >
-              <div className="text-3xl mb-4 font-light" style={{ color: "#9e9e9e" }}>—</div>
-              <h3
-                className="text-2xl font-semibold"
-                style={{ fontFamily: cormorant, color: "#1a1a1a", fontStyle: "italic" }}
-              >
+              <p className="text-heading" style={{ color: "var(--color-text-tertiary)" }}>
                 No festivals this month
-              </h3>
-              <p className="text-sm mt-2" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
-                다른 달을 선택해 보세요
+              </p>
+              <p className="text-caption" style={{ color: "var(--color-text-tertiary)", marginTop: "8px" }}>
+                Try another month
               </p>
             </motion.div>
           ) : (
@@ -165,61 +166,47 @@ export default function CalendarClient({ festivals }: CalendarClientProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="space-y-0"
             >
               {festivalsByMonth.map((f, i) => (
                 <Link
                   key={f.id}
                   href={`/festival/${f.id}`}
-                  className="group flex gap-5 items-center py-5 border-b"
-                  style={{ borderColor: "#e5e2da" }}
+                  className="group flex gap-5 items-center py-5"
+                  style={{ borderBottom: "1px solid var(--color-border-default)" }}
                 >
-                  <div
-                    className="w-8 text-center flex-shrink-0"
-                  >
+                  <div className="w-8 text-center flex-shrink-0">
                     <span
-                      className="text-2xl font-semibold"
-                      style={{ fontFamily: cormorant, color: "#e5e2da" }}
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "20px",
+                        fontWeight: 400,
+                        color: "var(--color-border-default)",
+                      }}
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <div className="relative w-16 h-16 flex-shrink-0 overflow-hidden">
-                    <Image
-                      src={f.image}
-                      alt={f.name}
-                      fill
-                      className="object-cover"
-                      sizes="64px"
-                    />
+                    <Image src={f.image} alt={f.name} fill className="object-cover" sizes="64px" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="text-xs font-semibold tracking-widest uppercase"
-                        style={{ color: "#4344FD", fontFamily: pretendard }}
-                      >
-                        {f.category}
-                      </span>
-                      <span className="text-xs" style={{ color: "#c4c4c4" }}>·</span>
-                      <span className="text-xs" style={{ color: "#9e9e9e", fontFamily: pretendard }}>
-                        {f.duration}
-                      </span>
-                    </div>
+                    <span className="text-label" style={{ color: "var(--color-text-tertiary)" }}>
+                      {f.category} · {f.duration}
+                    </span>
                     <h3
-                      className="text-lg font-semibold mt-0.5 group-hover:text-blue-500 transition-colors truncate"
-                      style={{ fontFamily: cormorant, color: "#1a1a1a" }}
+                      className="mt-1 truncate"
+                      style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "15px",
+                        fontWeight: 500,
+                        color: "var(--color-text-primary)",
+                      }}
                     >
                       {f.name}
                     </h3>
-                    <p className="text-sm mt-0.5" style={{ color: "#6e6e6e", fontFamily: pretendard }}>
+                    <p className="text-caption mt-0.5" style={{ color: "var(--color-text-secondary)" }}>
                       {f.city}, {f.country}
                     </p>
-                  </div>
-                  <div className="hidden sm:flex items-center gap-1 flex-shrink-0">
-                    <span className="text-xs font-medium" style={{ color: "#1a1a1a", fontFamily: pretendard }}>
-                      ★ {f.rating}
-                    </span>
                   </div>
                 </Link>
               ))}
