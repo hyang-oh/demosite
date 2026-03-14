@@ -124,14 +124,14 @@ export default function FestivalCard({
     );
   }
 
-  // Standard card — CLAUDE.md §8
+  // Standard card — unboxed, Magazine-style
   return (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      className="card group"
+      className="group"
     >
       <Link href={`/festival/${festival.id}`} className="block">
         {/* Image — 4:3 */}
@@ -140,29 +140,33 @@ export default function FestivalCard({
             src={festival.image}
             alt={festival.name}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>
 
         {/* Content */}
-        <div style={{ padding: "16px 20px 20px" }}>
+        <div
+          className="mt-4 pb-4"
+          style={{ borderBottom: "1px solid var(--color-border-default)" }}
+        >
           <span className="text-label" style={{ color: "var(--color-text-tertiary)" }}>
             {festival.category}
           </span>
           <h3
-            className="line-clamp-2 mt-1"
+            className="line-clamp-2 mt-2"
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "15px",
-              fontWeight: 500,
-              letterSpacing: "-0.01em",
+              fontFamily: "var(--font-serif)",
+              fontSize: "18px",
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              lineHeight: 1.3,
               color: "var(--color-text-primary)",
             }}
           >
             {festival.name}
           </h3>
-          <p className="text-caption mt-1" style={{ color: "var(--color-text-secondary)" }}>
+          <p className="text-caption mt-2" style={{ color: "var(--color-text-secondary)" }}>
             {festival.city}, {festival.country} · {festival.month}
           </p>
         </div>
