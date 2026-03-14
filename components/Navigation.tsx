@@ -1,48 +1,22 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Map } from "lucide-react";
 
-/* ── Mega-menu data ── */
-const megaCategories = [
-  {
-    id: "theme",
-    label: "By Theme",
-    items: ["Music", "Cultural", "Food", "Light & Fire", "Nature", "Art", "Seasonal", "Water"],
-  },
-  {
-    id: "country",
-    label: "By Country",
-    items: ["Japan", "South Korea", "India", "Thailand", "United Kingdom", "Germany", "Spain", "Brazil", "United States", "Mexico"],
-  },
-  {
-    id: "month",
-    label: "This Month",
-    items: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  },
-  {
-    id: "vibe",
-    label: "By Vibe",
-    items: ["Family-friendly", "Romantic", "Solo", "Adventure", "Cultural"],
-  },
-];
-
 const navLinks = [
-  { href: "/explore", label: "Explore", hasMega: true },
-  { href: "/calendar", label: "Calendar", hasMega: false },
-  { href: "/magazine", label: "Magazine", hasMega: false },
+  { href: "/explore", label: "Explore" },
+  { href: "/calendar", label: "Calendar" },
+  { href: "/magazine", label: "Magazine" },
 ];
 
 export default function Navigation() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(megaCategories[0].id);
-  const megaRef = useRef<HTMLDivElement>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 16);
@@ -52,48 +26,33 @@ export default function Navigation() {
 
   useEffect(() => {
     setMenuOpen(false);
-    setMegaOpen(false);
+    setSearchOpen(false);
   }, [pathname]);
-
-  /* Close mega menu on outside click */
-  useEffect(() => {
-    if (!megaOpen) return;
-    const handler = (e: MouseEvent) => {
-      if (megaRef.current && !megaRef.current.contains(e.target as Node)) {
-        setMegaOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [megaOpen]);
-
-  const activeMega = megaCategories.find((c) => c.id === activeCategory) ?? megaCategories[0];
 
   return (
     <>
       <header
-        ref={megaRef}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: "var(--color-bg-base)",
-          borderBottom: scrolled || megaOpen
+          background: "var(--color-bg-elevated)",
+          borderBottom: scrolled
             ? "1px solid var(--color-border-default)"
             : "1px solid transparent",
         }}
       >
-        {/* ── Nav Bar — 56px ── */}
+        {/* ── Nav Bar — 64px ── */}
         <div
           className="max-w-[1100px] mx-auto px-8 flex items-center justify-between"
-          style={{ height: "56px" }}
+          style={{ height: "64px" }}
         >
-          {/* Logo */}
+          {/* Logo — serif, bold */}
           <Link href="/" className="flex-shrink-0">
             <span
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "14px",
-                fontWeight: 500,
-                letterSpacing: "0.04em",
+                fontFamily: "var(--font-serif)",
+                fontSize: "22px",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
                 color: "var(--color-text-primary)",
               }}
             >
@@ -101,40 +60,18 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map(({ href, label, hasMega }) => {
+          {/* Desktop nav — flat, no mega menu */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map(({ href, label }) => {
               const active = pathname === href || (href !== "/" && pathname.startsWith(href));
-              if (hasMega) {
-                return (
-                  <button
-                    key={href}
-                    onClick={() => setMegaOpen(!megaOpen)}
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "13px",
-                      color: megaOpen || active
-                        ? "var(--color-text-primary)"
-                        : "var(--color-text-secondary)",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      padding: 0,
-                      transition: "color 0.15s",
-                    }}
-                    className="hover:text-[--color-text-primary]"
-                  >
-                    {label}
-                  </button>
-                );
-              }
               return (
                 <Link
                   key={href}
                   href={href}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "13px",
+                    fontSize: "15px",
+                    fontWeight: active ? 500 : 400,
                     color: active
                       ? "var(--color-text-primary)"
                       : "var(--color-text-secondary)",
@@ -150,6 +87,14 @@ export default function Navigation() {
 
           {/* Desktop right */}
           <div className="hidden md:flex items-center gap-1">
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="w-8 h-8 flex items-center justify-center transition-colors"
+              aria-label="Search"
+              style={{ color: "var(--color-text-tertiary)" }}
+            >
+              <Search size={16} strokeWidth={1.5} />
+            </button>
             <Link
               href="/map"
               className="w-8 h-8 flex items-center justify-center transition-colors"
@@ -207,108 +152,37 @@ export default function Navigation() {
           </button>
         </div>
 
-        {/* ── Mega Menu — 2-panel dropdown ── */}
+        {/* ── Search bar overlay ── */}
         <AnimatePresence>
-          {megaOpen && (
+          {searchOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
               className="overflow-hidden"
-              style={{
-                borderTop: "1px solid var(--color-border-default)",
-              }}
+              style={{ borderTop: "1px solid var(--color-border-default)" }}
             >
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "220px 1fr",
-                  background: "var(--color-bg-elevated)",
-                }}
-              >
-                {/* Left — category list */}
-                <div
-                  style={{
-                    background: "var(--color-bg-sunken)",
-                    padding: "24px 0",
-                    borderRight: "1px solid var(--color-border-default)",
-                  }}
-                >
-                  {megaCategories.map((cat) => (
-                    <button
-                      key={cat.id}
-                      onMouseEnter={() => setActiveCategory(cat.id)}
-                      onClick={() => setActiveCategory(cat.id)}
-                      style={{
-                        display: "block",
-                        width: "100%",
-                        textAlign: "left",
-                        padding: "10px 20px",
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "14px",
-                        color: activeCategory === cat.id
-                          ? "var(--color-text-primary)"
-                          : "var(--color-text-secondary)",
-                        fontWeight: activeCategory === cat.id ? 500 : 400,
-                        background: activeCategory === cat.id
-                          ? "var(--color-bg-elevated)"
-                          : "transparent",
-                        border: "none",
-                        borderLeft: activeCategory === cat.id
-                          ? "2px solid var(--color-accent)"
-                          : "2px solid transparent",
-                        cursor: "pointer",
-                        transition: "all 0.1s",
-                      }}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Right — items 2-col */}
-                <div style={{ padding: "28px 40px" }}>
-                  <h3
+              <div className="max-w-[1100px] mx-auto px-8 py-4">
+                <div className="flex items-center gap-3">
+                  <Search size={16} strokeWidth={1.5} style={{ color: "var(--color-text-tertiary)" }} />
+                  <input
+                    type="text"
+                    placeholder="Search festivals, cities, countries..."
+                    autoFocus
+                    className="flex-1 outline-none bg-transparent"
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "18px",
-                      fontWeight: 500,
-                      letterSpacing: "-0.02em",
+                      fontSize: "14px",
                       color: "var(--color-text-primary)",
-                      marginBottom: "20px",
                     }}
+                  />
+                  <button
+                    onClick={() => setSearchOpen(false)}
+                    className="text-label"
+                    style={{ color: "var(--color-text-tertiary)" }}
                   >
-                    {activeMega.label}
-                  </h3>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: "0 40px",
-                    }}
-                  >
-                    {activeMega.items.map((item) => (
-                      <Link
-                        key={item}
-                        href={`/explore?filter=${encodeURIComponent(item)}`}
-                        onClick={() => setMegaOpen(false)}
-                        style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "14px",
-                          color: "var(--color-text-secondary)",
-                          padding: "10px 0",
-                          borderBottom: "1px solid var(--color-border-default)",
-                          textDecoration: "none",
-                          display: "block",
-                          transition: "color 0.1s",
-                        }}
-                        className="hover:text-[--color-text-primary]"
-                      >
-                        {item}
-                      </Link>
-                    ))}
-                  </div>
+                    ESC
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -325,10 +199,10 @@ export default function Navigation() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 flex flex-col"
-            style={{ background: "var(--color-bg-base)", paddingTop: "56px" }}
+            style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}
           >
             <nav className="flex flex-col px-8 py-6 gap-0 flex-1">
-              {[...navLinks, { href: "/map", label: "Map", hasMega: false }].map(({ href, label }, i) => (
+              {[...navLinks, { href: "/map", label: "Map" }].map(({ href, label }, i) => (
                 <motion.div
                   key={href}
                   initial={{ opacity: 0, x: -12 }}
@@ -373,7 +247,7 @@ export default function Navigation() {
                       Hyang Oh
                     </p>
                     <p className="text-caption" style={{ color: "var(--color-text-tertiary)" }}>
-                      설정
+                      Settings
                     </p>
                   </div>
                 </Link>
