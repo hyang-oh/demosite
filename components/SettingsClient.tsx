@@ -89,7 +89,7 @@ export default function SettingsClient() {
     <main className="min-h-screen" style={{ background: "var(--color-bg-elevated)", paddingTop: "64px" }}>
       {/* Header */}
       <div style={{ borderBottom: "1px solid var(--color-border-default)" }}>
-        <div className="max-w-[1100px] mx-auto px-8" style={{ paddingTop: "48px", paddingBottom: "32px" }}>
+        <div className="max-w-[600px] mx-auto px-8" style={{ paddingTop: "48px", paddingBottom: "32px" }}>
           <h1
             style={{
               fontFamily: "var(--font-serif)",
