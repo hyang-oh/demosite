@@ -50,7 +50,7 @@ export default function Navigation() {
             <span
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "22px",
+                fontSize: "26px",
                 fontWeight: 600,
                 letterSpacing: "-0.02em",
                 color: "var(--color-text-primary)",
@@ -72,9 +72,7 @@ export default function Navigation() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "15px",
                     fontWeight: active ? 500 : 400,
-                    color: active
-                      ? "var(--color-text-primary)"
-                      : "var(--color-text-secondary)",
+                    color: "var(--color-text-primary)",
                     transition: "color 0.15s",
                   }}
                   className="hover:text-[--color-text-primary]"
